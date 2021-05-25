@@ -1,0 +1,16 @@
+{
+  "name": "weeee-server",
+  "version": "0.0.1",
+  "description": "A simple application for team and project management",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "team-management",
+    "project-management",
+    "pin-boards"
+  ],
+  "author": "frostzt",
+  "license": "MIT"
+}
