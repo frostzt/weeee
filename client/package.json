@@ -1,0 +1,20 @@
+{
+  "name": "weeee-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "10.2.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "sass": "^1.34.0"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.6",
+    "typescript": "4.2.4"
+  }
+}
