@@ -1,10 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
+import { Fragment } from "react";
+
+// Styles
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <Fragment>
       <Head>
         <title>Weeee - Management made easier</title>
         <meta
@@ -13,6 +15,11 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    </div>
+      <header className={styles.header}>
+        <div className={styles.logo}>
+          <i>W</i>
+        </div>
+      </header>
+    </Fragment>
   );
 }
