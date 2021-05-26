@@ -4,21 +4,5 @@
   width: 100vw;
   height: 100vh;
   border-top: 0.01px solid transparent;
-  background-image: var(--background-gradient);
-
-  .logo {
-    // Animation Stuff
-    color: transparent;
-    display: inline-block;
-    background-clip: text;
-    animation: animatedImageGradient 16s infinite;
-    background-image: url("../public/images/gradients/gradient-1.jpg");
-
-    // Basic properties
-    margin-top: 1.5rem;
-    margin-left: 15rem;
-    font-weight: 900;
-    user-select: none;
-    font-size: var(--logo-font-size);
-  }
+  background-color: var(--background);
 }

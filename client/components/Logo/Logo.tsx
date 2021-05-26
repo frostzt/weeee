@@ -9,7 +9,11 @@ interface Props {
 }
 
 const Logo: React.FC<Props> = ({ extraStyle }) => {
-  return <div style={extraStyle} className={styles.container}></div>;
+  return (
+    <div style={extraStyle} className={styles.container}>
+      <div className={styles.logo}>W</div>
+    </div>
+  );
 };
 
 export default Logo;

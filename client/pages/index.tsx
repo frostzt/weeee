@@ -4,6 +4,9 @@ import { Fragment } from "react";
 // Styles
 import styles from "../styles/Home.module.scss";
 
+// Components
+import Logo from "../components/Logo/Logo";
+
 export default function Home() {
   return (
     <Fragment>
@@ -16,7 +19,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.header}>
-        <div className={styles.logo}>W</div>
+        <Logo />
       </header>
     </Fragment>
   );

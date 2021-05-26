@@ -1,7 +1,29 @@
+@import "../../styles/animations.scss";
+
 .container {
   width: 10rem;
   height: 10rem;
+  display: flex;
+  margin-top: 5rem;
+  margin-left: 15rem;
+  text-align: center;
   border-radius: 2rem;
-  background: #252235;
-  box-shadow: 38px 38px 76px #1c1a28, -38px -38px 76px #2e2b42;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #282439, #211f30);
+  box-shadow: 38px 38px 41px #1e1b2a, -38px -38px 41px #2c2940;
+
+  .logo {
+    // Animation Stuff
+    color: transparent;
+    display: inline-block;
+    background-clip: text;
+    animation: animatedImageGradient 18s infinite ease-in-out;
+    background-image: url("../../public/images/gradients/gradient-1.jpg");
+
+    // Basic properties
+    font-weight: 900;
+    user-select: none;
+    font-size: var(--logo-font-size);
+  }
 }
