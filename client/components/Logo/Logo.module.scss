@@ -1,17 +1,35 @@
 @import "../../styles/animations.scss";
 
 .container {
+  // Adjustment
+  display: flex;
   width: 10rem;
   height: 10rem;
-  display: flex;
   margin-top: 5rem;
   margin-left: 15rem;
-  text-align: center;
   border-radius: 2rem;
+
+  // Text
+  text-align: center;
+
+  // Content
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #282439, #211f30);
+
+  // Color and others
+  cursor: pointer;
+  transition: all 0.3s;
+  background-image: linear-gradient(145deg, #282439, #211f30);
   box-shadow: 38px 38px 41px #1e1b2a, -38px -38px 41px #2c2940;
+
+  &:hover {
+    background: linear-gradient(145deg, #211f30, #282439);
+  }
+
+  &:active {
+    background: #252235;
+    box-shadow: inset 38px 38px 38px #211e2f, inset -38px -38px 38px #29263b;
+  }
 
   .logo {
     // Animation Stuff
