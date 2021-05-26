@@ -1,0 +1,22 @@
+@keyframes animatedImageGradient {
+  0% {
+    background-position-x: 0%;
+    background-position-y: 0%;
+  }
+  25% {
+    background-position-x: 75%;
+    background-position-y: 86%;
+  }
+  50% {
+    background-position-x: -15%;
+    background-position-y: 5%;
+  }
+  75% {
+    background-position-x: 69%;
+    background-position-y: 78%;
+  }
+  100% {
+    background-position-x: 0%;
+    background-position-y: 0%;
+  }
+}

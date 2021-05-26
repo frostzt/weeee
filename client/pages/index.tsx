@@ -16,9 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.header}>
-        <div className={styles.logo}>
-          <i>W</i>
-        </div>
+        <div className={styles.logo}>W</div>
       </header>
     </Fragment>
   );
