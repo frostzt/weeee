@@ -1,11 +1,10 @@
 import Head from "next/head";
 import { Fragment, useEffect } from "react";
 
-// Styles and icons
+// Styles, icons
 import styles from "../styles/Home.module.scss";
 import { motion, useAnimation } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
-import { FaTable, FaTruckLoading, FaUserFriends } from "react-icons/fa";
 
 // Components
 import Logo from "../components/Logo/Logo";
@@ -57,7 +56,7 @@ function Home() {
         </div>
       </header>
       <section className={styles.features}>
-        <FeatureCard title="Title of feature" desc="Test description" />
+        <FeatureCard image="/images/img/teamwork.png" title="Title of feature" desc="Test description" />
       </section>
     </Fragment>
   );
