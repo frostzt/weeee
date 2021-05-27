@@ -23,13 +23,20 @@
 
 @keyframes toBelow {
   0% {
+    transform: translateY(0);
+    opacity: 1;
   }
-  25% {
+  34% {
+    opacity: 1;
   }
-  50% {
+  45% {
+    transform: translateY(0);
   }
-  75% {
+  85% {
+    transform: translateY(2.25rem);
+    opacity: 0;
   }
   100% {
+    transform: translateY(0);
   }
 }

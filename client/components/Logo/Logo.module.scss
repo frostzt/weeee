@@ -6,8 +6,6 @@
   display: flex;
   width: 10rem;
   height: 10rem;
-  margin-top: 5rem;
-  margin-left: 15rem;
   border-radius: 2rem;
 
   // Text
@@ -20,8 +18,8 @@
   // Color and others
   cursor: pointer;
   transition: all 0.3s;
-  background-image: linear-gradient(145deg, #282439, #211f30);
-  box-shadow: 38px 38px 41px #1e1b2a, -38px -38px 41px #2c2940;
+  background-image: linear-gradient(145deg, #282439d3, #211f30d7);
+  box-shadow: 38px 38px 41px #1e1b2aab, -38px -38px 41px #2c2940be;
 
   &:hover {
     background: linear-gradient(145deg, #211f30, #282439);

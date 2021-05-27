@@ -1,9 +1,16 @@
 @import "../styles/animations.scss";
 @import "../styles/mixins.scss";
 
+.logo {
+  top: 6vh;
+  left: 10vw;
+  z-index: 100;
+  position: absolute;
+}
+
 .header {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 120vh;
   position: relative;
   text-align: center;
   color: var(--white);
@@ -11,7 +18,7 @@
   border-top: 0.01px solid transparent;
 
   .title {
-    top: 40%;
+    top: 35%;
     left: 50%;
     font-weight: 900;
     position: absolute;
@@ -27,7 +34,7 @@
   }
 
   .subtitle {
-    top: 50%;
+    top: 45%;
     left: 50%;
     font-weight: 300;
     font-size: 2.4rem;
@@ -39,9 +46,10 @@
 
   .godown {
     &_icon {
-      top: 80%;
+      top: 70%;
       font-size: 3rem;
       position: absolute;
+      animation: toBelow 1.5s ease-in-out infinite;
     }
   }
 }
