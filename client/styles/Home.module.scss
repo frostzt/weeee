@@ -23,13 +23,19 @@
     font-weight: 900;
     position: absolute;
     white-space: nowrap;
-    transform: translate(-50%, -50%);
     font-size: var(--title-font-size);
+    transform: translateY(-50%) translateX(-50%);
 
     .change {
+      cursor: pointer;
       display: inline-block;
+      transition: transform 0.3s;
       @include transformToGradient;
       background-image: url("../public/images/gradients/gradient-2.jpg") !important;
+
+      &:hover {
+        transform: translateY(-1rem);
+      }
     }
   }
 
