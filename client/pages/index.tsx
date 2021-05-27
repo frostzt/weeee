@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { Fragment, useState, useEffect } from "react";
 
-// Styles
+// Styles and icons
+import { IoIosArrowDown } from "react-icons/io";
 import styles from "../styles/Home.module.scss";
 
 // Components
@@ -24,6 +25,10 @@ export default function Home() {
         <h1 className={styles.title}>
           Manage <div className={styles.change}>your {titles[0]}</div> easily!
         </h1>
+        <sub className={styles.subtitle}>Manage everything at one place!</sub>
+        <div className={styles.godown}>
+          <IoIosArrowDown className={styles.godown_icon} />
+        </div>
       </header>
     </Fragment>
   );
