@@ -8,6 +8,7 @@ import styles from "../styles/Home.module.scss";
 
 // Components
 import Logo from "../components/Logo/Logo";
+import FeatureCard from "../components/FeatureCard/FeatureCard";
 
 function Home() {
   const titles = ["team", "projects", "boards"];
@@ -18,7 +19,7 @@ function Home() {
 
   const sequence = async () => {
     await headingControl.start({ y: "-25%", x: "-50%", opacity: 1 });
-    await subTitleControl.start({ y: "-25%", x: "-50%", opacity: 1 });
+    return await subTitleControl.start({ y: "-25%", x: "-50%", opacity: 1 });
   };
 
   useEffect(() => {
@@ -27,7 +28,12 @@ function Home() {
 
   return (
     <Fragment>
-      <Logo className={styles.logo} />
+      <Logo
+        initial={{ x: "-500%" }}
+        animate={{ x: "0" }}
+        transition={{ ease: "easeInOut", duration: 1 }}
+        className={styles.logo}
+      />
       <Head>
         <title>Weeee - Management made easier</title>
         <meta name="description" content="A simple application to manage your team, projects, and tasks." />
@@ -49,7 +55,9 @@ function Home() {
           <IoIosArrowDown className={styles.godown_icon} />
         </div>
       </header>
-      <section className={styles.features}></section>
+      <section className={styles.features}>
+        <FeatureCard title="Title of feature" desc="Test description" />
+      </section>
     </Fragment>
   );
 }

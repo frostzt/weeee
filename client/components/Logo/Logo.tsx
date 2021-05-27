@@ -1,22 +1,28 @@
 import React, { CSSProperties } from "react";
-import Image from "next/image";
+import { motion } from "framer-motion";
 
 // Styles
 import styles from "./Logo.module.scss";
 
 interface Props {
+  initial?: any;
+  animate?: any;
+  transition?: any;
   className?: string;
   extraStyle?: CSSProperties;
 }
 
-const Logo: React.FC<Props> = ({ extraStyle, className }) => {
+const Logo: React.FC<Props> = ({ extraStyle, className, initial, animate, transition }) => {
   return (
-    <div
+    <motion.div
+      initial={initial}
+      animate={animate}
+      transition={transition}
       style={extraStyle}
       className={`${styles.container} ${className ? className : ""}`}
     >
       <div className={styles.logo}>W</div>
-    </div>
+    </motion.div>
   );
 };
 

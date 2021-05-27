@@ -8,6 +8,7 @@
   position: absolute;
 }
 
+// Header Styles
 .header {
   width: 100%;
   height: 120vh;
@@ -58,4 +59,11 @@
       animation: toBelow 1.5s ease-in-out infinite;
     }
   }
+}
+
+// Feature section styles
+.features {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background);
 }
