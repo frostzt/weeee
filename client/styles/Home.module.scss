@@ -1,8 +1,22 @@
 @import "../styles/animations.scss";
+@import "../styles/mixins.scss";
 
 .header {
   width: 100vw;
   height: 100vh;
-  border-top: 0.01px solid transparent;
+  text-align: center;
+  color: var(--white);
   background-color: var(--background);
+  border-top: 0.01px solid transparent;
+
+  .title {
+    font-weight: 900;
+    font-size: var(--title-font-size);
+
+    .change {
+      display: inline-block;
+      @include transformToGradient;
+      background-image: url("../public/images/gradients/gradient-2.jpg") !important;
+    }
+  }
 }

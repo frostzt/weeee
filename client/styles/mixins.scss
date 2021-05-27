@@ -1,0 +1,9 @@
+@import "./animations.scss";
+
+@mixin transformToGradient {
+  color: transparent;
+  display: inline-block;
+  background-clip: text;
+  animation: animatedImageGradient 18s infinite ease-in-out;
+  background-image: url("../public/images/gradients/gradient-1.jpg");
+}

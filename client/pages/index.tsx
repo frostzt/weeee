@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 
 // Styles
 import styles from "../styles/Home.module.scss";
@@ -8,6 +8,8 @@ import styles from "../styles/Home.module.scss";
 import Logo from "../components/Logo/Logo";
 
 export default function Home() {
+  const titles = ["team", "projects", "boards"];
+
   return (
     <Fragment>
       <Head>
@@ -19,7 +21,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.header}>
-        <Logo />
+        <h1 className={styles.title}>
+          Manage <div className={styles.change}>your {titles[0]}</div> easily!
+        </h1>
       </header>
     </Fragment>
   );
