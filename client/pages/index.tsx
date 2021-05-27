@@ -2,9 +2,10 @@ import Head from "next/head";
 import { Fragment, useEffect } from "react";
 
 // Styles and icons
+import styles from "../styles/Home.module.scss";
 import { motion, useAnimation } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
-import styles from "../styles/Home.module.scss";
+import { FaTable, FaTruckLoading, FaUserFriends } from "react-icons/fa";
 
 // Components
 import Logo from "../components/Logo/Logo";
