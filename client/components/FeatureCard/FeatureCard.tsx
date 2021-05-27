@@ -9,8 +9,8 @@ interface Props {
   desc: string;
 }
 
-const FeatureCard: React.FC<Props> = () => {
-  return <div></div>;
+const FeatureCard: React.FC<Props> = ({ title, desc }) => {
+  return <motion.div className={styles.card}></motion.div>;
 };
 
 export default FeatureCard;
