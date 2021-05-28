@@ -67,6 +67,16 @@
   height: 100vh;
   display: flex;
   padding-top: 5rem;
-  justify-content: space-around;
+  flex-direction: column;
   background-color: var(--background);
+
+  .cards {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .btn {
+    margin: 0 auto;
+    margin-top: 5rem;
+  }
 }

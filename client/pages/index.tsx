@@ -8,6 +8,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 // Components
 import Logo from "../components/Logo/Logo";
+import Button from "../components/Button/Button";
 import FeatureCard from "../components/FeatureCard/FeatureCard";
 
 function Home() {
@@ -56,24 +57,27 @@ function Home() {
         </div>
       </header>
       <section className={styles.features}>
-        <FeatureCard
-          image="/images/svgs/teamwork.svg"
-          title="Teams"
-          desc="Managing team has never been easier. Now manage your entire team with just click of a few buttons."
-          color="rgba(30, 144, 255, 1)"
-        />
-        <FeatureCard
-          image="/images/svgs/projects.svg"
-          title="Projects"
-          desc="Create, delete, edit and do everything with your projects, assign teams and people to work on it, that's easy!"
-          color="rgba(255, 165, 2, 1)"
-        />
-        <FeatureCard
-          image="/images/svgs/boards.svg"
-          title="Boards"
-          desc="Wanna let everyone plan or know something? Or maybe you want your team to be more productive? Say no more!"
-          color="rgba(255, 131, 123, 1)"
-        />
+        <div className={styles.cards}>
+          <FeatureCard
+            image="/images/svgs/teamwork.svg"
+            title="Teams"
+            desc="Managing team has never been easier. Now manage your entire team with just click of a few buttons."
+            color="rgba(30, 144, 255, 1)"
+          />
+          <FeatureCard
+            image="/images/svgs/projects.svg"
+            title="Projects"
+            desc="Create, delete, edit and do everything with your projects, assign teams and people to work on it, that's easy!"
+            color="rgba(255, 165, 2, 1)"
+          />
+          <FeatureCard
+            image="/images/svgs/boards.svg"
+            title="Boards"
+            desc="Wanna let everyone plan or know something? Or maybe you want your team to be more productive? Say no more!"
+            color="rgba(255, 131, 123, 1)"
+          />
+        </div>
+        <Button extraClass={styles.btn}>Try it out</Button>
       </section>
     </Fragment>
   );
