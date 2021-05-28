@@ -77,7 +77,7 @@ function Home() {
             color="rgba(255, 131, 123, 1)"
           />
         </div>
-        <Button extraClass={styles.btn}>Try it out</Button>
+        <Button extraClass={styles.btn}>Try it now!</Button>
       </section>
     </Fragment>
   );
