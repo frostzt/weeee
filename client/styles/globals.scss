@@ -7,12 +7,13 @@
   --white: #fff;
   --background: #252235;
 
-  --teamwork: rgba(30, 144, 255, 0.5);
-  --projects: rgba(255, 165, 2, 0.5);
-  --boards: rgba(255, 131, 123, 0.5);
+  --teamwork: rgba(30, 144, 255, 1);
+  --projects: rgba(255, 165, 2, 1);
+  --boards: rgba(255, 131, 123, 1);
 
   // Gradients
   --background-gradient: linear-gradient(to bottom right, #252235, #2e2e3e);
+  --primary-gradient: linear-gradient(to bottom right, #6fccf4, #0760f3);
 
   // Fonts
   --default-font-size: 1.6rem;

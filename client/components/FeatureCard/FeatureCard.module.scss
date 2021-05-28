@@ -9,6 +9,34 @@
     height: 100%;
 
     .imgContainer {
+      width: 9rem;
+      height: 9rem;
+      display: flex;
+      cursor: pointer;
+      text-align: center;
+      align-items: center;
+      border-radius: 1rem;
+      transition: all 0.3s;
+      justify-content: center;
+      backface-visibility: hidden;
+    }
+
+    .title {
+      font-size: 4rem;
+      font-weight: 900;
+      margin-top: 4rem;
+      margin-left: 5rem;
+      color: transparent;
+      background-clip: text;
+      display: inline-block;
+      text-transform: uppercase;
+    }
+
+    .desc {
+      font-size: 4rem;
+      font-weight: 300;
+      margin-top: 2rem;
+      color: var(--white);
     }
   }
 }
