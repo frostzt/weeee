@@ -9,13 +9,16 @@ interface Props {
   image: string;
   title: string;
   desc: string;
+  color: string;
 }
 
-const FeatureCard: React.FC<Props> = ({ title, desc, image }) => {
+const FeatureCard: React.FC<Props> = ({ title, desc, image, color }) => {
   return (
     <motion.div className={styles.card}>
       <motion.div className={styles.content}>
-        <Image className={styles.image} src={image} width={"100%"} height={"100%"} />
+        <motion.div className={styles.imgContainer}>
+          <Image src={image} width={65} height={65} />
+        </motion.div>
       </motion.div>
     </motion.div>
   );

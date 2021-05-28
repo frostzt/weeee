@@ -56,7 +56,24 @@ function Home() {
         </div>
       </header>
       <section className={styles.features}>
-        <FeatureCard image="/images/img/teamwork.png" title="Title of feature" desc="Test description" />
+        <FeatureCard
+          image="/images/svgs/teamwork.svg"
+          title="Title of feature"
+          desc="Test description"
+          color="rgba(30, 144, 255, 1)"
+        />
+        <FeatureCard
+          image="/images/svgs/projects.svg"
+          title="Title of feature"
+          desc="Test description"
+          color="rgba(255, 165, 2, 1)"
+        />
+        <FeatureCard
+          image="/images/svgs/boards.svg"
+          title="Title of feature"
+          desc="Test description"
+          color="rgba(255, 131, 123, 1)"
+        />
       </section>
     </Fragment>
   );
