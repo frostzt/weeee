@@ -60,21 +60,24 @@ function Home() {
         <div className={styles.cards}>
           <FeatureCard
             image="/images/svgs/teamwork.svg"
-            title="Teams"
+            heroUrl="/images/img/teamwork.png"
+            title="Manage teams"
             desc="Managing team has never been easier. Now manage your entire team with just click of a few buttons."
-            color="rgba(30, 144, 255, 1)"
+            color="rgba(255, 131, 123, 1)"
           />
           <FeatureCard
             image="/images/svgs/projects.svg"
-            title="Projects"
+            heroUrl="/images/img/projects.png"
+            title="Nail projects"
             desc="Create, delete, edit and do everything with your projects, assign teams and people to work on it, that's easy!"
             color="rgba(255, 165, 2, 1)"
           />
           <FeatureCard
             image="/images/svgs/boards.svg"
-            title="Boards"
+            heroUrl="/images/img/boards.png"
+            title="Create boards"
             desc="Wanna let everyone plan or know something? Or maybe you want your team to be more productive? Say no more!"
-            color="rgba(255, 131, 123, 1)"
+            color="rgba(30, 144, 255, 1)"
           />
         </div>
         <Button extraClass={styles.btn}>Try it now!</Button>
