@@ -3,8 +3,9 @@ import { Fragment, useEffect } from "react";
 
 // Styles, icons
 import styles from "../styles/Home.module.scss";
-import { motion, useAnimation } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 // Components
 import Logo from "../components/Logo/Logo";
@@ -17,15 +18,30 @@ function Home() {
   // Animations
   const headingControl = useAnimation();
   const subTitleControl = useAnimation();
+  const cardsControl = useAnimation();
 
-  const sequence = async () => {
+  // Monitor viewport of sections
+  const { ref: featuresRef, inView: featuresInView } = useInView({ threshold: 0.25 });
+
+  // Sequences
+  const headerSequence = async () => {
     await headingControl.start({ y: "-25%", x: "-50%", opacity: 1 });
     return await subTitleControl.start({ y: "-25%", x: "-50%", opacity: 1 });
   };
 
+  const featuresSequence = async () => {
+    await cardsControl.start({ y: "0", opacity: 1 }, { duration: 0.5 });
+  };
+
   useEffect(() => {
-    sequence();
+    headerSequence();
   }, []);
+
+  useEffect(() => {
+    if (featuresInView) {
+      featuresSequence();
+    }
+  }, [featuresInView]);
 
   return (
     <Fragment>
@@ -56,8 +72,8 @@ function Home() {
           <IoIosArrowDown className={styles.godown_icon} />
         </div>
       </header>
-      <section className={styles.features}>
-        <div className={styles.cards}>
+      <section ref={featuresRef} className={styles.features}>
+        <motion.div initial={{ y: "20%", opacity: 0 }} animate={cardsControl} className={styles.cards}>
           <FeatureCard
             image="/images/svgs/teamwork.svg"
             heroUrl="/images/img/teamwork.png"
@@ -82,7 +98,7 @@ function Home() {
             fullDesc="Wanna let everyone plan or know something? Or maybe you want your team to be more productive? Say no more! Boards can not only help you stay creative but they take away the pain in writing a huge report or idea just to explain someone or a group of people. Boards can express ideas, content, and several others things much more creatively and easily!"
             color="rgba(30, 144, 255, 1)"
           />
-        </div>
+        </motion.div>
         <Button extraClass={styles.btn}>Try it now!</Button>
       </section>
     </Fragment>
