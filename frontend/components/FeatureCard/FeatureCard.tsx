@@ -13,10 +13,11 @@ interface Props {
   heroUrl: string;
   title: string;
   desc: string;
+  fullDesc: string;
   color: string;
 }
 
-const FeatureCard: React.FC<Props> = ({ title, desc, image, color, heroUrl }) => {
+const FeatureCard: React.FC<Props> = ({ title, desc, image, color, heroUrl, fullDesc }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Handle popping up feature
@@ -24,7 +25,15 @@ const FeatureCard: React.FC<Props> = ({ title, desc, image, color, heroUrl }) =>
 
   return (
     <Fragment>
-      {isOpen ? <FeaturePopup heroUrl={heroUrl} handler={handleOpenFeatureCard} color={color} /> : null}
+      {isOpen ? (
+        <FeaturePopup
+          title={title}
+          content={fullDesc}
+          heroUrl={heroUrl}
+          handler={handleOpenFeatureCard}
+          color={color}
+        />
+      ) : null}
       <motion.div className={styles.card}>
         <motion.div className={styles.content}>
           <motion.div

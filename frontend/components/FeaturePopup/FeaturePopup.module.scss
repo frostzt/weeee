@@ -33,6 +33,18 @@
     padding: 4rem;
     transform: translateX(-1rem);
     background-color: var(--white);
+
+    .title {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: var(--heading-font-size);
+    }
+
+    .text {
+      font-weight: 300;
+      margin-top: 1.7rem;
+      font-size: var(--default-font-size);
+    }
   }
 }
 
