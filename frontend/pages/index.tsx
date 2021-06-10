@@ -101,6 +101,13 @@ function Home() {
         </motion.div>
         <Button extraClass={styles.btn}>Try it now!</Button>
       </section>
+      <section className={styles.whywe}>
+        <div className={styles.whywe__container}>
+          <h2 className={styles.whywe__title}>
+            But why <span className={styles.whywe__title_grad}>weeee?</span>
+          </h2>
+        </div>
+      </section>
     </Fragment>
   );
 }

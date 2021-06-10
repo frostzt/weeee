@@ -64,7 +64,7 @@
 // Feature section styles
 .features {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   padding-top: 5rem;
   flex-direction: column;
@@ -78,5 +78,29 @@
   .btn {
     margin: 0 auto;
     margin-top: 5rem;
+  }
+}
+
+// Why weeee
+.whywe {
+  height: 100%;
+  padding-top: 13rem;
+  background-color: var(--background);
+  border-top: 0.1px solid transparent;
+
+  &__container {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__title {
+    margin: 0 auto;
+    color: var(--white);
+    display: inline-block;
+    font-size: var(--title-font-size);
+
+    &_grad {
+      @include transformToGradient;
+    }
   }
 }
