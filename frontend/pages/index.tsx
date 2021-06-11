@@ -106,6 +106,18 @@ function Home() {
           <h2 className={styles.whywe__title}>
             But why <span className={styles.whywe__title_grad}>weeee?</span>
           </h2>
+          <p className={styles.whywe__paragraph}>
+            We provide you with complete control over the software after all you're the one using it. You can change it
+            as you like and as it fits you. Which makes this open source software not only free but highly configurable.
+            Not only that we are constantly working on bringing latest updates and developing new features as well.
+          </p>
+          <br />
+          <p className={styles.whywe__paragraph}>
+            But if you're wondering this is too good to be true! Naah! It is true you get everything for free however
+            yes there is a catch! The application deployed here is for feature purposes and will not hold any data for
+            long! Therefore hosting the app is upto you! We have tried our best to make sure that this application is as
+            perfect and easy to use as possible with easy deployment and easy configuration!
+          </p>
         </div>
       </section>
     </Fragment>

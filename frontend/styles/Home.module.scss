@@ -96,11 +96,20 @@
   &__title {
     margin: 0 auto;
     color: var(--white);
+    margin-bottom: 3rem;
     display: inline-block;
     font-size: var(--title-font-size);
 
     &_grad {
       @include transformToGradient;
     }
+  }
+
+  &__paragraph {
+    width: 50%;
+    margin: 0 auto;
+    font-weight: 300;
+    color: var(--white);
+    font-size: var(--default-font-size);
   }
 }
