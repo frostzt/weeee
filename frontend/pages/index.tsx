@@ -121,7 +121,12 @@ function Home() {
         </div>
       </section>
       <footer className={styles.footer}>
-        <div className={styles.footer__links}></div>
+        <div className={styles.footer__floater}></div>
+        <div className={styles.footer__links}>
+          <div className={styles.footer__links_link}>About</div>
+          <div className={styles.footer__links_link}>Contact</div>
+          <div className={styles.footer__links_link}>Portfolio</div>
+        </div>
       </footer>
     </Fragment>
   );
