@@ -127,7 +127,13 @@ function Home() {
           <div className={cx([styles.footer__floater_content, styles.footer__floater_seen])}>
             Wanna see the the app repository and jump straight into how to deploy it?
           </div>
-          <div className={cx([styles.footer__floater_content, styles.footer__floater_unseen])}>CLICK ME!</div>
+          <a
+            className={cx([styles.footer__floater_content, styles.footer__floater_unseen])}
+            href="https://github.com/frostzt/weeee"
+            target="_blank"
+          >
+            <div>CLICK ME!</div>
+          </a>
         </div>
         <div className={styles.footer__links}>
           <div className={styles.footer__links_holder}>

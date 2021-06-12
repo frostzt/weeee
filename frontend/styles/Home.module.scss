@@ -150,7 +150,12 @@
     }
 
     &:hover &_seen {
+      opacity: 0;
       transform: translateY(-300%);
+    }
+
+    &:hover &_unseen {
+      opacity: 1;
     }
 
     &_content {
@@ -161,7 +166,12 @@
       transition: all 0.3s ease-in-out;
     }
 
+    &_seen {
+      opacity: 1;
+    }
+
     &_unseen {
+      opacity: 0;
       bottom: -100%;
       font-size: 8rem;
       position: absolute;
