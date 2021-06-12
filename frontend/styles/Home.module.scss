@@ -134,12 +134,43 @@
     // Layout
     width: 60%;
     height: 20rem;
+    display: flex;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    align-items: center;
     border-radius: 1.2rem;
-    background-image: var(--malibu-beach);
+    justify-content: center;
+    background-image: var(--love-kiss);
+
+    &:hover &_content {
+      top: 50%;
+      bottom: 0;
+      transform: translateY(-50%);
+    }
+
+    &:hover &_seen {
+      transform: translateY(-300%);
+    }
+
+    &_content {
+      font-size: 4rem;
+      color: #f6fff8;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &_unseen {
+      bottom: -100%;
+      font-size: 8rem;
+      position: absolute;
+    }
   }
 
   &__links {
     & > *:not(:last-child) {
+      cursor: pointer;
       margin-bottom: 1.5rem;
     }
 

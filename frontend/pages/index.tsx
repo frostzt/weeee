@@ -1,7 +1,9 @@
 import Head from "next/head";
+import Link from "next/link";
 import { Fragment, useEffect } from "react";
 
 // Styles, icons
+import cx from "classnames";
 import styles from "../styles/Home.module.scss";
 import { IoIosArrowDown } from "react-icons/io";
 import { motion, useAnimation } from "framer-motion";
@@ -121,11 +123,28 @@ function Home() {
         </div>
       </section>
       <footer className={styles.footer}>
-        <div className={styles.footer__floater}></div>
+        <div className={styles.footer__floater}>
+          <div className={cx([styles.footer__floater_content, styles.footer__floater_seen])}>
+            Wanna see the the app repository and jump straight into how to deploy it?
+          </div>
+          <div className={cx([styles.footer__floater_content, styles.footer__floater_unseen])}>CLICK ME!</div>
+        </div>
         <div className={styles.footer__links}>
-          <div className={styles.footer__links_link}>About</div>
-          <div className={styles.footer__links_link}>Contact</div>
-          <div className={styles.footer__links_link}>Portfolio</div>
+          <div className={styles.footer__links_holder}>
+            <Link href="/about">
+              <div className={styles.footer__links_link}>About</div>
+            </Link>
+          </div>
+          <div className={styles.footer__links_holder}>
+            <a href="mailto:aidenfrostbite@gmail.com?subject=Important!" target="_blank">
+              <div className={styles.footer__links_link}>Contact</div>
+            </a>
+          </div>
+          <div className={styles.footer__links_holder}>
+            <a href="https://frostzt.vercel.app" target="_blank">
+              <div className={styles.footer__links_link}>Portfolio</div>
+            </a>
+          </div>
         </div>
       </footer>
     </Fragment>
