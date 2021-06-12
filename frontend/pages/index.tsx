@@ -120,7 +120,9 @@ function Home() {
           </p>
         </div>
       </section>
-      <footer className={styles.footer}></footer>
+      <footer className={styles.footer}>
+        <div className={styles.footer__links}></div>
+      </footer>
     </Fragment>
   );
 }
