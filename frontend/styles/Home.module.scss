@@ -126,7 +126,7 @@
 
   &__floater {
     // Postitioning
-    top: -40%;
+    top: -30%;
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
@@ -178,7 +178,23 @@
     }
   }
 
+  // Upper section of Footer
+  &__upper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-weight: 900;
+    margin-left: 5rem;
+    color: var(--white);
+    @include transformToGradient;
+    font-size: calc(var(--logo-font-size) + 2rem);
+  }
+
   &__links {
+    margin-right: 15rem;
+
     & > *:not(:last-child) {
       cursor: pointer;
       margin-bottom: 1.5rem;
@@ -187,8 +203,15 @@
     &_link {
       font-weight: 700;
       color: var(--white);
+      transition: all 0.3s;
+      display: inline-block;
       text-transform: uppercase;
+      border-bottom: 1px solid transparent;
       font-size: calc(var(--default-font-size) - 0.6rem);
+
+      &:hover {
+        border-bottom: 1px solid var(--boards);
+      }
     }
   }
 }

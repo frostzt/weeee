@@ -135,21 +135,24 @@ function Home() {
             <div>CLICK ME!</div>
           </a>
         </div>
-        <div className={styles.footer__links}>
-          <div className={styles.footer__links_holder}>
-            <Link href="/about">
-              <div className={styles.footer__links_link}>About</div>
-            </Link>
-          </div>
-          <div className={styles.footer__links_holder}>
-            <a href="mailto:aidenfrostbite@gmail.com?subject=Important!" target="_blank">
-              <div className={styles.footer__links_link}>Contact</div>
-            </a>
-          </div>
-          <div className={styles.footer__links_holder}>
-            <a href="https://frostzt.vercel.app" target="_blank">
-              <div className={styles.footer__links_link}>Portfolio</div>
-            </a>
+        <div className={styles.footer__upper}>
+          <div className={styles.footer__logo}>Weeee</div>
+          <div className={styles.footer__links}>
+            <div className={styles.footer__links_holder}>
+              <Link href="/about">
+                <div className={styles.footer__links_link}>About</div>
+              </Link>
+            </div>
+            <div className={styles.footer__links_holder}>
+              <a href="mailto:aidenfrostbite@gmail.com?subject=Important!" target="_blank">
+                <div className={styles.footer__links_link}>Contact</div>
+              </a>
+            </div>
+            <div className={styles.footer__links_holder}>
+              <a href="https://frostzt.vercel.app" target="_blank">
+                <div className={styles.footer__links_link}>Portfolio</div>
+              </a>
+            </div>
           </div>
         </div>
       </footer>
