@@ -193,17 +193,21 @@
   }
 
   &__links {
-    margin-right: 15rem;
+    display: flex;
+    align-items: center;
+    margin-right: 6rem;
 
     & > *:not(:last-child) {
       cursor: pointer;
-      margin-bottom: 1.5rem;
+      margin-right: 4rem;
+      display: inline-block;
     }
 
     &_link {
       font-weight: 700;
       color: var(--white);
       transition: all 0.3s;
+      padding-bottom: 1rem;
       display: inline-block;
       text-transform: uppercase;
       border-bottom: 1px solid transparent;
@@ -213,5 +217,9 @@
         border-bottom: 1px solid var(--boards);
       }
     }
+  }
+
+  // Lower section of the footer
+  &__lower {
   }
 }

@@ -139,6 +139,11 @@ function Home() {
           <div className={styles.footer__logo}>Weeee</div>
           <div className={styles.footer__links}>
             <div className={styles.footer__links_holder}>
+              <Link href="/how-to-deploy">
+                <div className={styles.footer__links_link}>How to deploy</div>
+              </Link>
+            </div>
+            <div className={styles.footer__links_holder}>
               <Link href="/about">
                 <div className={styles.footer__links_link}>About</div>
               </Link>
@@ -155,6 +160,14 @@ function Home() {
             </div>
           </div>
         </div>
+        <hr
+          style={{
+            width: "90%",
+            margin: "0 auto",
+            marginTop: "5rem",
+          }}
+        />
+        <div className={styles.footer__lower}></div>
       </footer>
     </Fragment>
   );
