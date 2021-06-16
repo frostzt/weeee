@@ -8,6 +8,7 @@ import styles from "../styles/Home.module.scss";
 import { IoIosArrowDown } from "react-icons/io";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { AiFillTwitterCircle, AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 
 // Components
 import Logo from "../components/Logo/Logo";
@@ -167,7 +168,23 @@ function Home() {
             marginTop: "5rem",
           }}
         />
-        <div className={styles.footer__lower}></div>
+        <div className={styles.footer__lower}>
+          <div className={styles.footer__lower_linkHolder}>
+            <a href="https://twitter.com/souravsrawat" className={styles.footer__lower_link}>
+              <AiFillTwitterCircle className={styles.footer__lower_link_icon} />
+            </a>
+          </div>
+          <div className={styles.footer__lower_linkHolder}>
+            <a href="https://github.com/frostzt" className={styles.footer__lower_link}>
+              <AiFillGithub className={styles.footer__lower_link_icon} />
+            </a>
+          </div>
+          <div className={styles.footer__lower_linkHolder}>
+            <a href="https://www.linkedin.com/in/frostzt/" className={styles.footer__lower_link}>
+              <AiFillLinkedin className={styles.footer__lower_link_icon} />
+            </a>
+          </div>
+        </div>
       </footer>
     </Fragment>
   );

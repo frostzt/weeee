@@ -85,7 +85,7 @@
 .whywe {
   height: 100%;
   padding-top: 13rem;
-  padding-bottom: 20rem;
+  padding-bottom: 30rem;
   background-color: var(--background);
   border-top: 0.1px solid transparent;
 
@@ -221,5 +221,26 @@
 
   // Lower section of the footer
   &__lower {
+    width: 100%;
+    display: flex;
+    margin-top: 8rem;
+    justify-content: center;
+
+    & > *:not(:last-child) {
+      margin-right: 5rem;
+    }
+
+    &_link {
+      &_icon {
+        font-size: 4.5rem;
+        color: var(--white);
+        transition: all 0.3s;
+
+        &:hover {
+          color: var(--boards);
+          transform: scale(1.2);
+        }
+      }
+    }
   }
 }
