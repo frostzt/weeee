@@ -58,6 +58,7 @@
       top: 85%;
       font-size: 3rem;
       position: absolute;
+      transform: translateX(-50%);
       animation: toBelow 1.5s ease-in-out infinite;
     }
   }

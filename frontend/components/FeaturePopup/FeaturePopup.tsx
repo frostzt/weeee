@@ -20,8 +20,8 @@ const FeaturePopup: React.FC<Props> = ({ color, handler, heroUrl, title, content
 
   const sequence = async () => {
     await backdropControl.start({ opacity: 1 }, { duration: 0.3 });
-    await imageControl.start({ x: 0, opacity: 1 }, { duration: 0.3 });
-    return await contentControl.start({ x: 0, opacity: 1 }, { duration: 0.3 });
+    await imageControl.start({ y: 0, opacity: 1 }, { duration: 0.3 });
+    return await contentControl.start({ y: 0, opacity: 1 }, { duration: 0.3 });
   };
 
   useEffect(() => {
@@ -32,14 +32,14 @@ const FeaturePopup: React.FC<Props> = ({ color, handler, heroUrl, title, content
     <Fragment>
       <motion.div className={styles.container}>
         <motion.div
-          initial={{ x: 200, opacity: 0 }}
+          initial={{ y: 80, opacity: 0 }}
           animate={imageControl}
           className={styles.imageContainer}
           style={{ backgroundColor: color }}
         >
           <Image priority className={styles.imageContainer__image} src={heroUrl} layout="fill" />
         </motion.div>
-        <motion.div initial={{ x: -200, opacity: 0 }} animate={contentControl} className={styles.content}>
+        <motion.div initial={{ y: -80, opacity: 0 }} animate={contentControl} className={styles.content}>
           <motion.h2 className={styles.title} style={{ color: color }}>
             {title}
           </motion.h2>
