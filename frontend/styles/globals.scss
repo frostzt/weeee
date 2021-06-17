@@ -33,6 +33,10 @@ html {
   @include respond(tablet) {
     font-size: 50%;
   }
+
+  @include respond(laptop) {
+    font-size: 62.5%;
+  }
 }
 
 body {

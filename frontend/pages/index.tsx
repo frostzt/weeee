@@ -25,7 +25,7 @@ function Home() {
   const subTitleControl = useAnimation();
 
   // Media Queries
-  const isLaptop = useMediaQuery({ minWidth: "1024px" });
+  const isLaptopOrHigher = useMediaQuery({ minWidth: "1024px" });
 
   // Monitor viewport of sections
   const [featuresRef, featuresInView] = useInView({ threshold: 0.25 });

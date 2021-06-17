@@ -37,6 +37,10 @@
         font-size: calc(var(--title-font-size) + 4rem);
       }
 
+      @include respond(laptop) {
+        font-size: calc(var(--title-font-size) + 6rem);
+      }
+
       .change {
         cursor: pointer;
         display: inline-block;
@@ -87,7 +91,7 @@
     flex-direction: column;
 
     @include respond(tablet) {
-      padding: 0 2rem 0 4rem;
+      padding: 0 2rem 0 2rem;
     }
 
     & > *:not(:last-child) {
