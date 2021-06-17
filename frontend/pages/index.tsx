@@ -6,6 +6,7 @@ import { Fragment, useEffect } from "react";
 import cx from "classnames";
 import styles from "../styles/Home.module.scss";
 import { IoIosArrowDown } from "react-icons/io";
+import { useMediaQuery } from "react-responsive";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { AiFillTwitterCircle, AiFillGithub, AiFillLinkedin } from "react-icons/ai";
@@ -19,12 +20,15 @@ function Home() {
   const titles = ["team", "projects", "boards"];
 
   // Animations
+  const cardsControl = useAnimation();
   const headingControl = useAnimation();
   const subTitleControl = useAnimation();
-  const cardsControl = useAnimation();
+
+  // Media Queries
+  const isLaptop = useMediaQuery({ minWidth: "1024px" });
 
   // Monitor viewport of sections
-  const { ref: featuresRef, inView: featuresInView } = useInView({ threshold: 0.25 });
+  const [featuresRef, featuresInView] = useInView({ threshold: 0.25 });
 
   // Sequences
   const headerSequence = async () => {
@@ -36,6 +40,7 @@ function Home() {
     await cardsControl.start({ y: "0", opacity: 1 }, { duration: 0.5 });
   };
 
+  // Effects
   useEffect(() => {
     headerSequence();
   }, []);

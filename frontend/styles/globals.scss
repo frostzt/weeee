@@ -1,8 +1,10 @@
+@import "./responsiveness.scss";
+
 :root {
   // Specials
   --logo-font-size: 5.2rem;
-  --title-font-size: 10rem;
-  --subtitle-font-size: 8rem;
+  --title-font-size: 9rem;
+  --subtitle-font-size: 7rem;
 
   // Colors
   --white: #fff;
@@ -27,6 +29,10 @@
 
 html {
   font-size: 40%;
+
+  @include respond(tablet) {
+    font-size: 50%;
+  }
 }
 
 body {

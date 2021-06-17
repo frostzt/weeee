@@ -1,5 +1,6 @@
 @import "../styles/animations.scss";
 @import "../styles/mixins.scss";
+@import "../styles/responsiveness.scss";
 
 .logo {
   top: 6vh;
@@ -32,6 +33,10 @@
       margin-bottom: 3rem;
       font-size: var(--title-font-size);
 
+      @include respond(tablet) {
+        font-size: calc(var(--title-font-size) + 4rem);
+      }
+
       .change {
         cursor: pointer;
         display: inline-block;
@@ -50,6 +55,10 @@
       font-weight: 300;
       white-space: nowrap;
       text-transform: uppercase;
+
+      @include respond(tablet) {
+        font-size: 3rem;
+      }
     }
   }
 
@@ -76,6 +85,10 @@
   .cards {
     display: flex;
     flex-direction: column;
+
+    @include respond(tablet) {
+      padding: 0 2rem 0 4rem;
+    }
 
     & > *:not(:last-child) {
       margin-bottom: 5rem;
@@ -110,6 +123,10 @@
     display: inline-block;
     font-size: var(--title-font-size);
 
+    @include respond(tablet) {
+      font-size: calc(var(--title-font-size) + 1.4rem);
+    }
+
     &_grad {
       @include transformToGradient;
     }
@@ -121,6 +138,10 @@
     font-weight: 300;
     color: var(--white);
     font-size: var(--default-font-size);
+
+    @include respond(tablet) {
+      font-size: calc(var(--default-font-size) + 0.5rem);
+    }
   }
 }
 
