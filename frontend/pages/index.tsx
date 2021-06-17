@@ -28,8 +28,8 @@ function Home() {
 
   // Sequences
   const headerSequence = async () => {
-    await headingControl.start({ y: "-25%", x: "-50%", opacity: 1 });
-    return await subTitleControl.start({ y: "-25%", x: "-50%", opacity: 1 });
+    await headingControl.start({ opacity: 1, y: 0 });
+    return await subTitleControl.start({ opacity: 1, y: 0 });
   };
 
   const featuresSequence = async () => {
@@ -62,18 +62,20 @@ function Home() {
 
       {/* --------------------------------- HEADER --------------------------------- */}
       <header className={styles.header}>
-        <motion.h1
-          initial={{ y: "20%", x: "-50%", opacity: 0 }}
-          animate={headingControl}
-          transition={{ ease: "easeInOut", duration: 0.5 }}
-          className={styles.title}
-        >
-          Manage <br /> <div className={styles.change}>your {titles[0]}</div>
-          <br /> easily!
-        </motion.h1>
-        <motion.sub initial={{ y: "20%", x: "-50%", opacity: 0 }} animate={subTitleControl} className={styles.subtitle}>
-          Manage everything at one place
-        </motion.sub>
+        <div className={styles.title_sub_container}>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={headingControl}
+            transition={{ ease: "easeInOut", duration: 0.5 }}
+            className={styles.title}
+          >
+            Manage <br /> <div className={styles.change}>your {titles[0]}</div>
+            <br /> easily!
+          </motion.h1>
+          <motion.sub initial={{ opacity: 0, y: 20 }} animate={subTitleControl} className={styles.subtitle}>
+            Manage everything at one place
+          </motion.sub>
+        </div>
         <div className={styles.godown}>
           <IoIosArrowDown className={styles.godown_icon} />
         </div>
