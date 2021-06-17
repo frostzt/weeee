@@ -59,6 +59,8 @@ function Home() {
         <meta name="description" content="A simple application to manage your team, projects, and tasks." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      {/* --------------------------------- HEADER --------------------------------- */}
       <header className={styles.header}>
         <motion.h1
           initial={{ y: "20%", x: "-50%", opacity: 0 }}
@@ -66,7 +68,8 @@ function Home() {
           transition={{ ease: "easeInOut", duration: 0.5 }}
           className={styles.title}
         >
-          Manage <div className={styles.change}>your {titles[0]}</div> easily!
+          Manage <br /> <div className={styles.change}>your {titles[0]}</div>
+          <br /> easily!
         </motion.h1>
         <motion.sub initial={{ y: "20%", x: "-50%", opacity: 0 }} animate={subTitleControl} className={styles.subtitle}>
           Manage everything at one place
@@ -75,6 +78,8 @@ function Home() {
           <IoIosArrowDown className={styles.godown_icon} />
         </div>
       </header>
+
+      {/* --------------------------------- FEATURES --------------------------------- */}
       <section ref={featuresRef} className={styles.features}>
         <motion.div initial={{ y: "20%", opacity: 0 }} animate={cardsControl} className={styles.cards}>
           <FeatureCard
@@ -104,25 +109,30 @@ function Home() {
         </motion.div>
         <Button extraClass={styles.btn}>Try it now!</Button>
       </section>
+
+      {/* --------------------------------- WHY-WE --------------------------------- */}
       <section className={styles.whywe}>
         <div className={styles.whywe__container}>
           <h2 className={styles.whywe__title}>
             But why <span className={styles.whywe__title_grad}>weeee?</span>
           </h2>
           <p className={styles.whywe__paragraph}>
-            We provide you with complete control over the software after all you're the one using it. You can change it
-            as you like and as it fits you. Which makes this open source software not only free but highly configurable.
-            Not only that we are constantly working on bringing latest updates and developing new features as well.
+            We provide you with complete control over the software, after all you're the one using it. You can change it
+            as you like. Which makes this open source software is not only free but highly configurable. Not only that
+            we are constantly working on bringing latest updates and developing new features as well.
           </p>
           <br />
           <p className={styles.whywe__paragraph}>
-            But if you're wondering this is too good to be true! Naah! It is true you get everything for free however
+            Now you're wondering, this is too good to be true! Naah! It is true; you get everything for free, however,
             yes there is a catch! The application deployed here is for feature purposes and will not hold any data for
             long! Therefore hosting the app is upto you! We have tried our best to make sure that this application is as
             perfect and easy to use as possible with easy deployment and easy configuration!
           </p>
         </div>
       </section>
+
+      {/* --------------------------------- FOOTER --------------------------------- */}
+      {/* FOOTER-FLOATER */}
       <footer className={styles.footer}>
         <div className={styles.footer__floater}>
           <div className={cx([styles.footer__floater_content, styles.footer__floater_seen])}>
@@ -136,6 +146,8 @@ function Home() {
             <div>CLICK ME!</div>
           </a>
         </div>
+
+        {/* FOOTER-UPPER-PART */}
         <div className={styles.footer__upper}>
           <div className={styles.footer__logo}>Weeee</div>
           <div className={styles.footer__links}>
@@ -168,6 +180,8 @@ function Home() {
             marginTop: "5rem",
           }}
         />
+
+        {/* FOOTER-LOWER-PART */}
         <div className={styles.footer__lower}>
           <div className={styles.footer__lower_linkHolder}>
             <a href="https://twitter.com/souravsrawat" className={styles.footer__lower_link}>
