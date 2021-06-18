@@ -37,6 +37,10 @@ html {
   @include respond(laptop) {
     font-size: 62.5%;
   }
+
+  @include respond(hugeScreen) {
+    font-size: 70%;
+  }
 }
 
 body {

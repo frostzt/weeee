@@ -10,4 +10,10 @@
       @content;
     }
   }
+
+  @if $breakpoint == hugeScreen {
+    @media only screen and (min-width: 160em) {
+      @content;
+    }
+  }
 }

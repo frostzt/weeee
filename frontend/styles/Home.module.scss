@@ -17,15 +17,15 @@
   text-align: center;
   color: var(--white);
   background-color: var(--background);
-  border-top: 0.01px solid transparent;
+  border-top: 0.01px solid var(--background);
 
   .title_sub_container {
     top: 50%;
     left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
     display: flex;
+    position: absolute;
     flex-direction: column;
+    transform: translate(-50%, -50%);
 
     .title {
       font-weight: 900;
@@ -39,6 +39,10 @@
 
       @include respond(laptop) {
         font-size: calc(var(--title-font-size) + 6rem);
+      }
+
+      @include respond(hugeScreen) {
+        font-size: calc(var(--title-font-size) + 10rem);
       }
 
       .change {
@@ -73,6 +77,10 @@
       position: absolute;
       transform: translateX(-50%);
       animation: toBelow 1.5s ease-in-out infinite;
+
+      @include respond(laptop) {
+        top: 90%;
+      }
     }
   }
 }
@@ -94,6 +102,10 @@
       padding: 0 2rem 0 2rem;
     }
 
+    @include respond(laptop) {
+      flex-direction: row;
+    }
+
     & > *:not(:last-child) {
       margin-bottom: 5rem;
     }
@@ -111,7 +123,7 @@
   padding-top: 13rem;
   padding-bottom: 30rem;
   background-color: var(--background);
-  border-top: 0.1px solid transparent;
+  border-top: 0.1px solid var(--background);
 
   &__container {
     width: 100%;
