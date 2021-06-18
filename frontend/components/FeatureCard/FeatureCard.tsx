@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 
 // Styles
@@ -17,7 +18,14 @@ interface Props {
   color: string;
 }
 
-const FeatureCard: React.FC<Props> = ({ title, desc, image, color, heroUrl, fullDesc }) => {
+const FeatureCard: React.FC<Props> = ({
+  title,
+  desc,
+  image,
+  color,
+  heroUrl,
+  fullDesc,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Handle popping up feature
@@ -25,15 +33,18 @@ const FeatureCard: React.FC<Props> = ({ title, desc, image, color, heroUrl, full
 
   return (
     <Fragment>
-      {isOpen ? (
-        <FeaturePopup
-          title={title}
-          content={fullDesc}
-          heroUrl={heroUrl}
-          handler={handleOpenFeatureCard}
-          color={color}
-        />
-      ) : null}
+      {isOpen
+        ? createPortal(
+            <FeaturePopup
+              title={title}
+              content={fullDesc}
+              heroUrl={heroUrl}
+              handler={handleOpenFeatureCard}
+              color={color}
+            />,
+            document.getElementById("popup-holder")!
+          )
+        : null}
       <motion.div className={styles.card}>
         <motion.div className={styles.content}>
           <motion.div
@@ -49,12 +60,18 @@ const FeatureCard: React.FC<Props> = ({ title, desc, image, color, heroUrl, full
           >
             <Image src={image} width={65} height={65} />
           </motion.div>
-          <motion.h2 className={styles.title} style={{ backgroundColor: `${color}` }}>
+          <motion.h2
+            className={styles.title}
+            style={{ backgroundColor: `${color}` }}
+          >
             {title}
           </motion.h2>
           <motion.p className={styles.desc}>
             {desc}{" "}
-            <span onClick={handleOpenFeatureCard} style={{ color: `${color}`, cursor: "pointer" }}>
+            <span
+              onClick={handleOpenFeatureCard}
+              style={{ color: `${color}`, cursor: "pointer" }}
+            >
               Know more!
             </span>
           </motion.p>

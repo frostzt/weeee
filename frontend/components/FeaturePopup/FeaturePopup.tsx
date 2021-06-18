@@ -13,7 +13,13 @@ interface Props {
   content: string;
 }
 
-const FeaturePopup: React.FC<Props> = ({ color, handler, heroUrl, title, content }) => {
+const FeaturePopup: React.FC<Props> = ({
+  color,
+  handler,
+  heroUrl,
+  title,
+  content,
+}) => {
   const backdropControl = useAnimation();
   const imageControl = useAnimation();
   const contentControl = useAnimation();
@@ -37,16 +43,30 @@ const FeaturePopup: React.FC<Props> = ({ color, handler, heroUrl, title, content
           className={styles.imageContainer}
           style={{ backgroundColor: color }}
         >
-          <Image priority className={styles.imageContainer__image} src={heroUrl} layout="fill" />
+          <Image
+            priority
+            className={styles.imageContainer__image}
+            src={heroUrl}
+            layout="fill"
+          />
         </motion.div>
-        <motion.div initial={{ y: -80, opacity: 0 }} animate={contentControl} className={styles.content}>
+        <motion.div
+          initial={{ y: -80, opacity: 0 }}
+          animate={contentControl}
+          className={styles.content}
+        >
           <motion.h2 className={styles.title} style={{ color: color }}>
             {title}
           </motion.h2>
           <motion.p className={styles.text}>{content}</motion.p>
         </motion.div>
       </motion.div>
-      <motion.div initial={{ opacity: 0 }} animate={backdropControl} onClick={handler} className={styles.backdrop} />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={backdropControl}
+        onClick={handler}
+        className={styles.backdrop}
+      />
     </Fragment>
   );
 };
