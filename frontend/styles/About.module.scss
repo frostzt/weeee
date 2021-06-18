@@ -1,9 +1,22 @@
 @import "../styles/mixins.scss";
+@import "../styles/responsiveness.scss";
 
 .container {
   width: 100%;
   height: 100%;
+  padding: 3rem;
+  text-align: center;
   background-color: var(--background);
+  border-top: 1px solid var(--background);
+
+  @include respond(tablet) {
+    padding: 4rem;
+  }
+
+  @include respond(laptopLarge) {
+    padding: 6rem;
+    padding-top: 4rem;
+  }
 
   .highlight {
     @include transformToGradient;
@@ -11,6 +24,28 @@
 
   .title {
     color: var(--white);
-    font-size: var(--title-font-size);
+    margin: 3rem 0 5rem 0;
+    font-size: calc(var(--title-font-size) - 3rem);
+
+    @include respond(tablet) {
+      font-size: var(--title-font-size);
+    }
+
+    @include respond(laptopLarge) {
+      font-size: calc(var(--title-font-size) + 4rem);
+    }
+  }
+
+  .content {
+    color: var(--white);
+    font-size: calc(var(--default-font-size) - 0.3rem);
+
+    @include respond(tablet) {
+      font-size: calc(var(--default-font-size) + 0.3rem);
+    }
+
+    @include respond(laptopLarge) {
+      font-size: calc(var(--default-font-size) + 0.8rem);
+    }
   }
 }
