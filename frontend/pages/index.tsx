@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // Styles, icons
 import cx from "classnames";
@@ -21,7 +21,7 @@ import Button from "../components/Button/Button";
 import FeatureCard from "../components/FeatureCard/FeatureCard";
 
 function Home() {
-  const titles = ["team", "projects", "boards"];
+  const [counter, setCounter] = useState<number>(1);
 
   // Animations
   const cardsControl = useAnimation();
@@ -55,6 +55,15 @@ function Home() {
     }
   }, [featuresInView]);
 
+  useEffect(() => {
+    const counterInterval = setInterval(() => {
+      console.log("sadf");
+      setCounter((prevState) => prevState + 1);
+    }, 4000);
+
+    return () => clearInterval(counterInterval);
+  }, []);
+
   return (
     <Fragment>
       <Logo
@@ -81,8 +90,38 @@ function Home() {
             transition={{ ease: "easeInOut", duration: 0.5 }}
             className={styles.title}
           >
-            Manage <br /> <div className={styles.change}>your {titles[0]}</div>
-            <br /> easily!
+            Manage{" "}
+            <div>
+              your{" "}
+              <span
+                className={cx([
+                  styles.change,
+                  styles.hidden,
+                  counter % 3 !== 2 && counter % 3 !== 0 ? styles.show : null,
+                ])}
+              >
+                team
+              </span>
+              <span
+                className={cx([
+                  styles.change,
+                  styles.hidden,
+                  counter % 3 === 2 ? styles.show : null,
+                ])}
+              >
+                projects
+              </span>
+              <span
+                className={cx([
+                  styles.change,
+                  styles.hidden,
+                  counter % 3 === 0 ? styles.show : null,
+                ])}
+              >
+                board
+              </span>
+            </div>
+            easily!
           </motion.h1>
           <motion.sub
             initial={{ opacity: 0, y: 20 }}

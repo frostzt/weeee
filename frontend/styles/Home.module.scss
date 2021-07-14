@@ -290,3 +290,15 @@
     }
   }
 }
+
+.hidden {
+  opacity: 0;
+  position: absolute;
+  visibility: hidden;
+}
+
+.show {
+  opacity: 1 !important;
+  position: relative !important;
+  visibility: visible !important;
+}
