@@ -26,8 +26,6 @@
     "@nestjs/graphql": "^8.0.2",
     "@nestjs/platform-express": "^8.0.0",
     "apollo-server-express": "^3.0.0",
-    "class-transformer": "^0.4.0",
-    "class-validator": "^0.13.1",
     "graphql": "^15.5.1",
     "graphql-tools": "^7.0.5",
     "reflect-metadata": "^0.1.13",
