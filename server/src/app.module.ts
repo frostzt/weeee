@@ -1,3 +1,4 @@
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
@@ -10,6 +11,10 @@ import { UsersModule } from './users/users.module';
     GraphQLModule.forRoot({
       debug: true,
       playground: true,
+    }),
+    MikroOrmModule.forRoot({
+      autoLoadEntities: true,
+      type: 'postgresql',
     }),
     AuthModule,
     UsersModule,
