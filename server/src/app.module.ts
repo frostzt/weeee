@@ -1,5 +1,5 @@
-import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -12,10 +12,7 @@ import { UsersModule } from './users/users.module';
       debug: true,
       playground: true,
     }),
-    MikroOrmModule.forRoot({
-      autoLoadEntities: true,
-      type: 'postgresql',
-    }),
+    MikroOrmModule.forRoot(),
     AuthModule,
     UsersModule,
   ],
