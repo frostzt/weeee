@@ -23,7 +23,6 @@ export class UsersResolver {
   // Mutations
   @Mutation(() => UsersType)
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
-    const { name, age, email } = createUserInput;
-    return this.usersService.createUser(name, age, email);
+    return this.usersService.createUser(createUserInput);
   }
 }

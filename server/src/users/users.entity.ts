@@ -3,7 +3,7 @@ import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity()
 export class User {
-  @PrimaryKey({ default: uuidv4() })
+  @PrimaryKey({ default: uuidv4(), unique: true })
   id!: string;
 
   @Property({ type: 'date' })
@@ -15,13 +15,13 @@ export class User {
   @Property()
   name: string;
 
-  @Property({ unique: true })
+  @Property({ nullable: false })
   email: string;
 
   @Property({ nullable: true })
   age?: number;
 
-  @Property({ unique: true })
+  @Property({ nullable: false })
   username: string;
 
   @Property()
