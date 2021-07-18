@@ -6,18 +6,18 @@ export class User {
   @PrimaryKey({ default: uuidv4() })
   id!: string;
 
-  @Property()
+  @Property({ type: 'date' })
   createdAt = new Date();
 
-  @Property({ onUpdate: () => new Date() })
+  @Property({ type: 'date', onUpdate: () => new Date() })
   updatedAt = new Date();
 
   @Property()
   name: string;
 
-  @Property()
+  @Property({ unique: true })
   email: string;
 
-  @Property()
+  @Property({ nullable: true })
   age?: number;
 }
