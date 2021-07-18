@@ -1,15 +1,16 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity()
 export class User {
-  @PrimaryKey()
+  @PrimaryKey({ default: uuidv4() })
   id!: string;
 
   @Property()
-  createdAt: Date = new Date();
+  createdAt = new Date();
 
   @Property({ onUpdate: () => new Date() })
-  updatedAt: Date = new Date();
+  updatedAt = new Date();
 
   @Property()
   name: string;
@@ -17,6 +18,6 @@ export class User {
   @Property()
   email: string;
 
-  @Property({ nullable: true })
+  @Property()
   age?: number;
 }
