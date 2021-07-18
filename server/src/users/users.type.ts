@@ -19,4 +19,10 @@ export class UsersType {
 
   @Field(() => Int, { nullable: true })
   age?: number;
+
+  @Field()
+  username: string;
+
+  @Field()
+  password: string;
 }

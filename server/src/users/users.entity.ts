@@ -20,4 +20,10 @@ export class User {
 
   @Property({ nullable: true })
   age?: number;
+
+  @Property({ unique: true })
+  username: string;
+
+  @Property()
+  password: string;
 }
