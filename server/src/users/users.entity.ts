@@ -1,5 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import {
+  Entity,
+  EntityRepositoryType,
+  PrimaryKey,
+  Property,
+} from '@mikro-orm/core';
+import { UsersRepository } from './users.repository';
 
 @Entity()
 export class User {
@@ -26,4 +32,6 @@ export class User {
 
   @Property()
   password: string;
+
+  [EntityRepositoryType]?: UsersRepository;
 }

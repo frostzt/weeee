@@ -10,14 +10,7 @@ export class UsersResolver {
   // Queries
   @Query(() => UsersType)
   getUser() {
-    return {
-      id: 'some-random-id',
-      name: 'Sourav',
-      email: 'test@test.com',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      age: null,
-    };
+    return 'this is good';
   }
 
   // Mutations
