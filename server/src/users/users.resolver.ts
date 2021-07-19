@@ -14,7 +14,7 @@ export class UsersResolver {
   }
 
   // Mutations
-  @Mutation(() => UsersType)
+  @Mutation(() => String)
   signUp(@Args('createUserInput') createUserInput: CreateUserInput) {
     return this.usersService.createUser(createUserInput);
   }

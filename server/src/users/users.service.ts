@@ -11,13 +11,18 @@ export class UsersService {
     @InjectRepository(User) private usersRepository: EntityRepository<User>,
   ) {}
 
-  async createUser(createUserInput: CreateUserInput): Promise<void> {
+  async createUser(createUserInput: CreateUserInput): Promise<string> {
     const { name, email, age, password, username } = createUserInput;
 
     // Check if username already exists
-    const userExists = this.usersRepository.find({ username });
-    if (userExists) {
+    const usernameExists = await this.usersRepository.findOne({ username });
+    if (usernameExists) {
       throw new BadRequestException('This username is already taken!');
+    }
+
+    const usermailExists = await this.usersRepository.findOne({ email });
+    if (usermailExists) {
+      throw new BadRequestException('This mail is taken, please sign in!');
     }
 
     const user = this.usersRepository.create({
@@ -29,6 +34,7 @@ export class UsersService {
       age,
     });
 
-    this.usersRepository.persistAndFlush(user);
+    await this.usersRepository.persistAndFlush(user);
+    return 'Success';
   }
 }

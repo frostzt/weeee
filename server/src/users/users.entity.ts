@@ -15,7 +15,7 @@ export class User {
   @Property()
   name: string;
 
-  @Property({ nullable: false, unique: true })
+  @Property({ nullable: false })
   email: string;
 
   @Property({ nullable: true })
