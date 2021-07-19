@@ -1,7 +1,9 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import {
   IsEmail,
+  IsNumber,
   IsOptional,
+  IsString,
   Matches,
   MaxLength,
   MinLength,
@@ -10,6 +12,7 @@ import {
 @InputType()
 export class CreateUserInput {
   @MinLength(1)
+  @IsString()
   @Field()
   name: string;
 
@@ -26,12 +29,14 @@ export class CreateUserInput {
   @Field()
   password: string;
 
-  @MinLength(1)
+  @MinLength(4)
   @MaxLength(16)
+  @IsString()
   @Field()
   username: string;
 
   @IsOptional()
+  @IsNumber()
   @Field(() => Int, { nullable: true })
   age?: number;
 }

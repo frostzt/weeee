@@ -1,20 +1,20 @@
+import { EntityRepository } from '@mikro-orm/core';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateUserInput } from './inputs/create-user.input';
 import { User } from './users.entity';
-import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(UsersRepository)
-    private readonly usersRepository: UsersRepository,
+    @InjectRepository(User) private usersRepository: EntityRepository<User>,
   ) {}
 
-  async createUser(createUserInput: CreateUserInput): Promise<User> {
+  async createUser(createUserInput: CreateUserInput): Promise<void> {
     const { name, email, age, password, username } = createUserInput;
 
+    // Check if username already exists
     const userExists = this.usersRepository.find({ username });
     if (userExists) {
       throw new BadRequestException('This username is already taken!');
@@ -30,6 +30,5 @@ export class UsersService {
     });
 
     this.usersRepository.persistAndFlush(user);
-    return user;
   }
 }

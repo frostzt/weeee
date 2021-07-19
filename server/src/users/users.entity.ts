@@ -1,15 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
-import {
-  Entity,
-  EntityRepositoryType,
-  PrimaryKey,
-  Property,
-} from '@mikro-orm/core';
-import { UsersRepository } from './users.repository';
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity()
 export class User {
-  @PrimaryKey({ default: uuidv4(), unique: true })
+  @PrimaryKey({ default: uuidv4() })
   id!: string;
 
   @Property({ type: 'date' })
@@ -21,7 +15,7 @@ export class User {
   @Property()
   name: string;
 
-  @Property({ nullable: false })
+  @Property({ nullable: false, unique: true })
   email: string;
 
   @Property({ nullable: true })
@@ -32,6 +26,4 @@ export class User {
 
   @Property()
   password: string;
-
-  [EntityRepositoryType]?: UsersRepository;
 }
