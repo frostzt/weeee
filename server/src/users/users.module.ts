@@ -6,19 +6,21 @@ import { ConfigModule } from '@nestjs/config';
 import { User } from './users.entity';
 import { UsersResolver } from './users.resolver';
 import { UsersService } from './users.service';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
     ConfigModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      secret: 'this-is-a-secret-long-lost',
       signOptions: {
         expiresIn: 3600,
       },
     }),
     MikroOrmModule.forFeature([User]),
   ],
-  providers: [UsersService, UsersResolver],
+  providers: [UsersService, UsersResolver, JwtStrategy],
+  exports: [JwtStrategy, PassportModule],
 })
 export class UsersModule {}
