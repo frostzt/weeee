@@ -9,12 +9,15 @@ import { v4 as uuidv4 } from 'uuid';
 import { CreateUserInput } from './inputs/create-user.input';
 import { User } from './users.entity';
 import * as bcrypt from 'bcrypt';
-import { LoginUserDTO } from './inputs/login-user.dto';
+import { LoginUserInput } from './inputs/login-user.input';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private usersRepository: EntityRepository<User>,
+    @InjectRepository(User)
+    private usersRepository: EntityRepository<User>,
+    private jwtService: JwtService,
   ) {}
 
   async createUser(createUserInput: CreateUserInput): Promise<string> {
@@ -48,12 +51,14 @@ export class UsersService {
     return 'success';
   }
 
-  async signIn(loginData: LoginUserDTO): Promise<string> {
+  async signIn(loginData: LoginUserInput): Promise<string> {
     const { username, password } = loginData;
     const user = await this.usersRepository.findOne({ username });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      return 'success';
+      const payload = { username };
+      const accessToken = this.jwtService.sign(payload);
+      return accessToken;
     } else {
       throw new UnauthorizedException(
         'The password or username is  incorrect!;',
