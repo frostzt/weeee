@@ -1,9 +1,15 @@
 import { EntityRepository } from '@mikro-orm/core';
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateUserInput } from './inputs/create-user.input';
 import { User } from './users.entity';
+import * as bcrypt from 'bcrypt';
+import { LoginUserDTO } from './inputs/login-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -25,16 +31,33 @@ export class UsersService {
       throw new BadRequestException('This mail is taken, please sign in!');
     }
 
+    // Hash the password
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const user = this.usersRepository.create({
       id: uuidv4(),
       username,
-      password,
+      password: hashedPassword,
       name,
       email,
       age,
     });
 
     await this.usersRepository.persistAndFlush(user);
-    return 'Success';
+    return 'success';
+  }
+
+  async signIn(loginData: LoginUserDTO): Promise<string> {
+    const { username, password } = loginData;
+    const user = await this.usersRepository.findOne({ username });
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+      return 'success';
+    } else {
+      throw new UnauthorizedException(
+        'The password or username is  incorrect!;',
+      );
+    }
   }
 }

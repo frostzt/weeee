@@ -1,5 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateUserInput } from './inputs/create-user.input';
+import { LoginUserDTO } from './inputs/login-user.dto';
 import { UsersService } from './users.service';
 import { UsersType } from './users.type';
 
@@ -9,8 +10,8 @@ export class UsersResolver {
 
   // Queries
   @Query(() => UsersType)
-  getUser() {
-    return 'this is good';
+  signIn(@Args('loginData') loginData: LoginUserDTO) {
+    return this.usersService.signIn(loginData);
   }
 
   // Mutations
