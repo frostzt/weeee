@@ -9,7 +9,7 @@ import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `[.${process.env.STAGE}.stage.env]`,
+      envFilePath: [`.${process.env.STAGE}.stage.env`],
     }),
     GraphQLModule.forRoot({
       debug: true,
