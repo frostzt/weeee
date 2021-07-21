@@ -4,11 +4,11 @@ import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 
 const config: Options = {
   type: 'postgresql',
-  host: 'localhost',
-  port: 5432,
-  user: 'postgres',
-  password: 'postgres',
-  dbName: 'weeee',
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT),
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  dbName: process.env.DB_NAME,
   debug: true,
   entities: ['dist/**/*.entity.js'],
   entitiesTs: ['src/**/*.entity.ts'],
