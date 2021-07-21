@@ -1,24 +1,24 @@
-import Head from "next/head";
-import Link from "next/link";
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 
 // Styles, icons
-import cx from "classnames";
-import styles from "../styles/Home.module.scss";
-import { IoIosArrowDown } from "react-icons/io";
-import { useMediaQuery } from "react-responsive";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import cx from 'classnames';
+import styles from '../styles/Home.module.scss';
+import { IoIosArrowDown } from 'react-icons/io';
+import { useMediaQuery } from 'react-responsive';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import {
   AiFillTwitterCircle,
   AiFillGithub,
   AiFillLinkedin,
-} from "react-icons/ai";
+} from 'react-icons/ai';
 
 // Components
-import Logo from "../components/Logo/Logo";
-import Button from "../components/Button/Button";
-import FeatureCard from "../components/FeatureCard/FeatureCard";
+import Logo from '../components/Logo/Logo';
+import Button from '../components/Button/Button';
+import FeatureCard from '../components/FeatureCard/FeatureCard';
 
 function Home() {
   const [counter, setCounter] = useState<number>(1);
@@ -29,7 +29,7 @@ function Home() {
   const subTitleControl = useAnimation();
 
   // Media Queries
-  const isLaptopOrHigher = useMediaQuery({ minWidth: "1024px" });
+  const isLaptopOrHigher = useMediaQuery({ minWidth: '1024px' });
 
   // Monitor viewport of sections
   const [featuresRef, featuresInView] = useInView({ threshold: 0.25 });
@@ -41,7 +41,7 @@ function Home() {
   };
 
   const featuresSequence = async () => {
-    await cardsControl.start({ y: "0", opacity: 1 }, { duration: 0.5 });
+    await cardsControl.start({ y: '0', opacity: 1 }, { duration: 0.5 });
   };
 
   // Effects
@@ -57,7 +57,6 @@ function Home() {
 
   useEffect(() => {
     const counterInterval = setInterval(() => {
-      console.log("sadf");
       setCounter((prevState) => prevState + 1);
     }, 4000);
 
@@ -65,11 +64,11 @@ function Home() {
   }, []);
 
   return (
-    <Fragment>
+    <>
       <Logo
-        initial={{ x: "-500%" }}
-        animate={{ x: "0" }}
-        transition={{ ease: "easeInOut", duration: 1 }}
+        initial={{ x: '-500%' }}
+        animate={{ x: '0' }}
+        transition={{ ease: 'easeInOut', duration: 1 }}
         className={styles.logo}
       />
       <Head>
@@ -87,12 +86,12 @@ function Home() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={headingControl}
-            transition={{ ease: "easeInOut", duration: 0.5 }}
+            transition={{ ease: 'easeInOut', duration: 0.5 }}
             className={styles.title}
           >
-            Manage{" "}
+            Manage{' '}
             <div>
-              your{" "}
+              your{' '}
               <span
                 className={cx([
                   styles.change,
@@ -139,7 +138,7 @@ function Home() {
       {/* --------------------------------- FEATURES --------------------------------- */}
       <section ref={featuresRef} className={styles.features}>
         <motion.div
-          initial={{ y: "20%", opacity: 0 }}
+          initial={{ y: '20%', opacity: 0 }}
           animate={cardsControl}
           className={styles.cards}
         >
@@ -210,6 +209,7 @@ function Home() {
             deploy it?
           </div>
           <a
+            rel="noreferrer"
             className={cx([
               styles.footer__floater_content,
               styles.footer__floater_unseen,
@@ -252,9 +252,9 @@ function Home() {
         </div>
         <hr
           style={{
-            width: "90%",
-            margin: "0 auto",
-            marginTop: "5rem",
+            width: '90%',
+            margin: '0 auto',
+            marginTop: '5rem',
           }}
         />
 
@@ -286,7 +286,7 @@ function Home() {
           </div>
         </div>
       </footer>
-    </Fragment>
+    </>
   );
 }
 
