@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/client';
 
 // Styles, icons
 import cx from 'classnames';
 import styles from '../styles/Home.module.scss';
 import { IoIosArrowDown } from 'react-icons/io';
-import { useMediaQuery } from 'react-responsive';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
@@ -17,19 +17,17 @@ import {
 
 // Components
 import Logo from '../components/Logo/Logo';
-import Button from '../components/Button/Button';
+import { Button } from '../components/Button/Button';
 import FeatureCard from '../components/FeatureCard/FeatureCard';
 
 function Home() {
+  const [session, loading] = useSession();
   const [counter, setCounter] = useState<number>(1);
 
   // Animations
   const cardsControl = useAnimation();
   const headingControl = useAnimation();
   const subTitleControl = useAnimation();
-
-  // Media Queries
-  const isLaptopOrHigher = useMediaQuery({ minWidth: '1024px' });
 
   // Monitor viewport of sections
   const [featuresRef, featuresInView] = useInView({ threshold: 0.25 });
@@ -92,16 +90,17 @@ function Home() {
             Manage{' '}
             <div>
               your{' '}
-              <span
+              <div
                 className={cx([
                   styles.change,
-                  styles.hidden,
-                  counter % 3 !== 2 && counter % 3 !== 0 ? styles.show : null,
+                  styles.show,
+                  // styles.hidden,
+                  // counter % 3 !== 2 && counter % 3 !== 0 ? styles.show : null,
                 ])}
               >
                 team
-              </span>
-              <span
+              </div>
+              {/* <div
                 className={cx([
                   styles.change,
                   styles.hidden,
@@ -109,8 +108,8 @@ function Home() {
                 ])}
               >
                 projects
-              </span>
-              <span
+              </div>
+              <div
                 className={cx([
                   styles.change,
                   styles.hidden,
@@ -118,7 +117,7 @@ function Home() {
                 ])}
               >
                 board
-              </span>
+              </div> */}
             </div>
             easily!
           </motion.h1>
@@ -167,7 +166,9 @@ function Home() {
             color="rgba(30, 144, 255, 1)"
           />
         </motion.div>
-        <Button extraClass={styles.btn}>Try it now!</Button>
+        <Button handler={signIn} extraClass={styles.btn}>
+          Try it now!
+        </Button>
       </section>
 
       {/* --------------------------------- WHY-WE --------------------------------- */}

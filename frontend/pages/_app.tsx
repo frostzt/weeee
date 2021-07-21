@@ -1,11 +1,12 @@
-import "../styles/globals.scss";
-import Head from "next/head";
-import type { AppProps } from "next/app";
-import { Fragment } from "react";
+import Head from 'next/head';
+import '../styles/globals.scss';
+import { Fragment } from 'react';
+import type { AppProps } from 'next/app';
+import { Provider } from 'next-auth/client';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Fragment>
+    <Provider session={pageProps.session}>
       <Head>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
@@ -14,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Component {...pageProps} />
-    </Fragment>
+    </Provider>
   );
 }
 export default MyApp;

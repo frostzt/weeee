@@ -1,6 +1,6 @@
-@import "../styles/animations.scss";
-@import "../styles/mixins.scss";
-@import "../styles/responsiveness.scss";
+@import '../styles/animations.scss';
+@import '../styles/mixins.scss';
+@import '../styles/responsiveness.scss';
 
 .logo {
   top: 6vh;
@@ -50,7 +50,7 @@
         display: inline-block;
         transition: transform 0.3s;
         @include transformToGradient;
-        background-image: url("../public/images/gradients/gradient-2.jpg") !important;
+        background-image: url('../public/images/gradients/gradient-2.jpg') !important;
 
         &:hover {
           transform: translateY(-1rem);

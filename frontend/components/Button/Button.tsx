@@ -1,27 +1,48 @@
-import React from "react";
+import React from 'react';
 
 // Style
-import { motion } from "framer-motion";
-import styles from "./Button.module.scss";
+import { motion } from 'framer-motion';
+import styles from './Button.module.scss';
 
 interface Props {
   extraClass?: string;
+  handler: any;
 }
 
-const Button: React.FC<Props> = ({ children, extraClass }) => {
+export const DivButton: React.FC<Props> = ({
+  children,
+  extraClass,
+  handler,
+}) => {
   return (
     <motion.div
+      onClick={handler}
       whileHover={{
-        scale: "1.1",
+        scale: '1.1',
       }}
       whileTap={{
-        scale: "0.9",
+        scale: '0.9',
       }}
-      className={`${styles.button} ${extraClass ? extraClass : ""}`}
+      className={`${styles.button} ${extraClass ? extraClass : ''}`}
     >
       {children}
     </motion.div>
   );
 };
 
-export default Button;
+export const Button: React.FC<Props> = ({ children, extraClass, handler }) => {
+  return (
+    <motion.div
+      onClick={handler}
+      whileHover={{
+        scale: '1.1',
+      }}
+      whileTap={{
+        scale: '0.9',
+      }}
+      className={`${styles.button} ${extraClass ? extraClass : ''}`}
+    >
+      {children}
+    </motion.div>
+  );
+};
