@@ -17,7 +17,7 @@ import {
 
 // Components
 import Logo from '../components/Logo/Logo';
-import { Button } from '../components/Button/Button';
+import { LinkedButton } from '../components/Button/Button';
 import FeatureCard from '../components/FeatureCard/FeatureCard';
 
 function Home() {
@@ -166,9 +166,9 @@ function Home() {
             color="rgba(30, 144, 255, 1)"
           />
         </motion.div>
-        <Button handler={signIn} extraClass={styles.btn}>
+        <LinkedButton link="/auth" extraClass={styles.btn}>
           Try it now!
-        </Button>
+        </LinkedButton>
       </section>
 
       {/* --------------------------------- WHY-WE --------------------------------- */}
