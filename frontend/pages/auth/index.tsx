@@ -21,16 +21,26 @@ const AuthPage = () => {
         </div>
         <form className={styles.form}>
           <div className={styles.group}>
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name" />
+            <label className={styles.group__label} htmlFor="name">
+              Name
+            </label>
+            <input className={styles.group__input} type="text" name="name" />
           </div>
           <div className={styles.group}>
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" />
+            <label className={styles.group__label} htmlFor="email">
+              Email
+            </label>
+            <input className={styles.group__input} type="email" name="email" />
           </div>
           <div className={styles.group}>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" />
+            <label className={styles.group__label} htmlFor="password">
+              Password
+            </label>
+            <input
+              className={styles.group__input}
+              type="password"
+              name="password"
+            />
           </div>
         </form>
       </div>
