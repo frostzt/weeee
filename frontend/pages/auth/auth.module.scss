@@ -37,7 +37,8 @@
 
       &__label {
         color: white;
-        font-weight: 700;
+        font-size: 3rem;
+        font-weight: 400;
         margin-bottom: 0.8rem;
         text-transform: uppercase;
       }
@@ -48,6 +49,29 @@
         border: none;
         outline: none;
         border-radius: 1rem;
+        padding: 2.3rem 1.5rem;
+        border: transparent 2px solid;
+        transition: all 0.3s ease-in-out;
+
+        &:focus,
+        &:active {
+          border: var(--boards) 2px solid;
+        }
+      }
+    }
+
+    .btns {
+      margin: 0 auto;
+      margin-top: 6rem;
+      text-align: center;
+
+      .signup {
+        margin: 0 auto;
+      }
+
+      .switch {
+        color: white;
+        margin-top: 3rem;
       }
     }
   }

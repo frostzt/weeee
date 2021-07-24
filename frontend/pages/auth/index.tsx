@@ -1,11 +1,15 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
-import { LinkedButton } from '../../components/Button/Button';
+import { Button, LinkedButton } from '../../components/Button/Button';
 
 // Styles
 import styles from './auth.module.scss';
 
 const AuthPage = () => {
+  const signUpHandler = () => {
+    console.log('Clicked');
+  };
+
   return (
     <Fragment>
       <Head>
@@ -41,6 +45,24 @@ const AuthPage = () => {
               type="password"
               name="password"
             />
+          </div>
+          <div className={styles.group}>
+            <label className={styles.group__label} htmlFor="cpassword">
+              Confirm Password
+            </label>
+            <input
+              className={styles.group__input}
+              type="password"
+              name="cpassword"
+            />
+          </div>
+          <div className={styles.btns}>
+            <Button extraClass={styles.signup} handler={signUpHandler}>
+              Sign Up
+            </Button>
+            <div className={styles.switch}>
+              Already have an account? Sign in here and lets get to work asap!
+            </div>
           </div>
         </form>
       </div>
