@@ -1,0 +1,56 @@
+.container {
+  .form {
+    & > *:first-child {
+      margin-top: 6rem;
+    }
+
+    .group {
+      display: flex;
+      margin-bottom: 2rem;
+      flex-direction: column;
+
+      &__label {
+        color: white;
+        font-size: 3rem;
+        font-weight: 400;
+        margin-bottom: 0.8rem;
+        text-transform: uppercase;
+      }
+
+      &__input {
+        width: 100%;
+        height: 4rem;
+        border: none;
+        outline: none;
+        border-radius: 1rem;
+        padding: 2.3rem 1.5rem;
+        border: transparent 2px solid;
+        transition: all 0.3s ease-in-out;
+
+        &:focus,
+        &:active {
+          border: var(--boards) 2px solid;
+        }
+      }
+    }
+
+    .btns {
+      margin: 0 auto;
+      margin-top: 6rem;
+      text-align: center;
+
+      .signup {
+        margin: 0 auto;
+      }
+
+      .switch {
+        color: white;
+        margin-top: 3rem;
+
+        &_btn {
+          color: var(--teamwork);
+        }
+      }
+    }
+  }
+}

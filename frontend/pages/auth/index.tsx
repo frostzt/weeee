@@ -1,13 +1,28 @@
 import Head from 'next/head';
-import { Fragment } from 'react';
-import { Button, LinkedButton } from '../../components/Button/Button';
+import { Fragment, useState } from 'react';
+
+// Components
+import { LinkedButton } from '../../components/Button/Button';
+import SignUpForm from '../../components/Auth/SignUpForm/SignUpForm';
+import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 
 // Styles
 import styles from './auth.module.scss';
 
 const AuthPage = () => {
+  const [creatingAccount, setCreatingAccount] = useState(true);
+
   const signUpHandler = () => {
-    console.log('Clicked');
+    console.log('Sign Up');
+  };
+
+  const signInHandler = () => {
+    console.log('Sign In');
+  };
+
+  const switchContext = () => {
+    setCreatingAccount((prevState) => !prevState);
+    return;
   };
 
   return (
@@ -21,50 +36,23 @@ const AuthPage = () => {
           <LinkedButton override extraClass={styles.backbtn} link="/">
             {'<'}
           </LinkedButton>
-          <div className={styles.title}>Sign up</div>
+          <div className={styles.title}>
+            {creatingAccount ? 'Sign up' : 'Sign in'}
+          </div>
         </div>
-        <form className={styles.form}>
-          <div className={styles.group}>
-            <label className={styles.group__label} htmlFor="name">
-              Name
-            </label>
-            <input className={styles.group__input} type="text" name="name" />
-          </div>
-          <div className={styles.group}>
-            <label className={styles.group__label} htmlFor="email">
-              Email
-            </label>
-            <input className={styles.group__input} type="email" name="email" />
-          </div>
-          <div className={styles.group}>
-            <label className={styles.group__label} htmlFor="password">
-              Password
-            </label>
-            <input
-              className={styles.group__input}
-              type="password"
-              name="password"
-            />
-          </div>
-          <div className={styles.group}>
-            <label className={styles.group__label} htmlFor="cpassword">
-              Confirm Password
-            </label>
-            <input
-              className={styles.group__input}
-              type="password"
-              name="cpassword"
-            />
-          </div>
-          <div className={styles.btns}>
-            <Button extraClass={styles.signup} handler={signUpHandler}>
-              Sign Up
-            </Button>
-            <div className={styles.switch}>
-              Already have an account? Sign in here and lets get to work asap!
-            </div>
-          </div>
-        </form>
+        {creatingAccount ? (
+          <SignUpForm
+            creatingAccount={creatingAccount}
+            handler={signUpHandler}
+            switchHandler={switchContext}
+          />
+        ) : (
+          <SignInForm
+            creatingAccount={creatingAccount}
+            handler={signInHandler}
+            switchHandler={switchContext}
+          />
+        )}
       </div>
     </Fragment>
   );
