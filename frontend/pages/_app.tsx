@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import '../styles/globals.scss';
-import { Fragment } from 'react';
 import type { AppProps } from 'next/app';
 import { Provider } from 'next-auth/client';
 
