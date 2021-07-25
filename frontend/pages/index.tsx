@@ -19,6 +19,7 @@ import {
 import Logo from '../components/Logo/Logo';
 import { LinkedButton } from '../components/Button/Button';
 import FeatureCard from '../components/FeatureCard/FeatureCard';
+import ClientOnly from '../components/Utils/ClientOnly';
 
 function Home() {
   const [session, loading] = useSession();
@@ -127,6 +128,7 @@ function Home() {
             className={styles.subtitle}
           >
             Manage everything at one place
+            <br />
           </motion.sub>
         </div>
         <div className={styles.godown}>

@@ -9,9 +9,6 @@ import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 // Styles
 import styles from './auth.module.scss';
 
-// CONSTANTS
-const ENDPOINT = 'http://localhost:5000';
-
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
 

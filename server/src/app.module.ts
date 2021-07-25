@@ -13,8 +13,10 @@ import { UsersModule } from './users/users.module';
     }),
     GraphQLModule.forRoot({
       debug: true,
-      playground: true,
       autoSchemaFile: true,
+      cors: {
+        origin: '*',
+      },
     }),
     MikroOrmModule.forRoot(),
     UsersModule,

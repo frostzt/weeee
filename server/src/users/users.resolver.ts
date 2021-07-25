@@ -13,6 +13,11 @@ export class UsersResolver {
     return this.usersService.signIn(loginData);
   }
 
+  @Query(() => String)
+  hello() {
+    return 'This is working';
+  }
+
   // Mutations
   @Mutation(() => String)
   signUp(@Args('createUserInput') createUserInput: CreateUserInput) {
