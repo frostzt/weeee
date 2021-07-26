@@ -1,20 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styles from './SignUpForm.module.scss';
 
 // Components
 import { Button } from '../../Button/Button';
+import AuthContext from '../../../contexts/AuthContext/Auth.context';
 
 interface Props {
   creatingAccount: Boolean;
-  handler: any;
   switchHandler: any;
 }
 
-const SignUpForm: React.FC<Props> = ({
-  creatingAccount,
-  handler,
-  switchHandler,
-}) => {
+const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
+  // Contexts
+  const { signUp } = useContext(AuthContext);
+
+  // States
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
@@ -88,7 +88,7 @@ const SignUpForm: React.FC<Props> = ({
           <Button
             extraClass={styles.signup}
             handler={(e: Event) =>
-              handler(e, { name, username, email, password, confirmPassword })
+              signUp(e, { name, username, email, password, confirmPassword })
             }
           >
             Sign Up

@@ -12,15 +12,6 @@ import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 import styles from './auth.module.scss';
 import ClientOnly from '../../components/Utils/ClientOnly';
 
-// Interfaces
-export interface SignUpProps {
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
 // Mutations
 const CREATE_USER = gql`
   mutation signUp(
@@ -42,17 +33,6 @@ const CREATE_USER = gql`
 
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
-
-  const signUpHandler = (e: Event, credentials: SignUpProps) => {
-    e.preventDefault();
-    const { name, username, email, password, confirmPassword } = credentials;
-
-    // Verify if password match
-    if (password !== confirmPassword) {
-      toast.error('The passwords did not match!');
-      return null;
-    }
-  };
 
   const signInHandler = () => {
     console.log('Sign In');
@@ -84,7 +64,6 @@ const AuthPage = () => {
         {creatingAccount ? (
           <SignUpForm
             creatingAccount={creatingAccount}
-            handler={signUpHandler}
             switchHandler={switchContext}
           />
         ) : (
