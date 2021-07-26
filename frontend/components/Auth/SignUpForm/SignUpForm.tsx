@@ -87,8 +87,8 @@ const SignUpForm: React.FC<Props> = ({
         <div className={styles.btns}>
           <Button
             extraClass={styles.signup}
-            handler={() =>
-              handler({ name, username, email, password, confirmPassword })
+            handler={(e: Event) =>
+              handler(e, { name, username, email, password, confirmPassword })
             }
           >
             Sign Up

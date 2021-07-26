@@ -17,6 +17,7 @@
     "pg": "^8.6.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hot-toast": "^2.0.0",
     "react-icons": "^4.2.0",
     "react-intersection-observer": "^8.32.0",
     "react-responsive": "^8.2.0",

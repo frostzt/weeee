@@ -2,12 +2,14 @@ import Head from 'next/head';
 import { Fragment, useState } from 'react';
 
 // Components
+import toast, { Toaster } from 'react-hot-toast';
 import { LinkedButton } from '../../components/Button/Button';
 import SignUpForm from '../../components/Auth/SignUpForm/SignUpForm';
 import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 
 // Styles
 import styles from './auth.module.scss';
+import ClientOnly from '../../components/Utils/ClientOnly';
 
 // Interfaces
 export interface SignUpProps {
@@ -21,12 +23,13 @@ export interface SignUpProps {
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
 
-  const signUpHandler = (credentials: SignUpProps) => {
+  const signUpHandler = (e: Event, credentials: SignUpProps) => {
+    e.preventDefault();
     const { name, username, email, password, confirmPassword } = credentials;
 
     // Verify if password match
     if (password !== confirmPassword) {
-      console.log('passwords not same, to be done');
+      toast.error('The passwords did not match!');
       return null;
     }
   };
@@ -42,6 +45,9 @@ const AuthPage = () => {
 
   return (
     <Fragment>
+      <ClientOnly>
+        <Toaster position="top-right" reverseOrder={true} />
+      </ClientOnly>
       <Head>
         <title>Create an account</title>
         <meta name="description" content="Sign in or create an account" />

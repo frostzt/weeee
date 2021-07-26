@@ -40,7 +40,7 @@ export const DivButton: React.FC<Props> = ({
 
 export const Button: React.FC<Props> = ({ children, extraClass, handler }) => {
   return (
-    <motion.div
+    <motion.button
       onClick={handler}
       whileHover={{
         scale: '1.1',
@@ -51,7 +51,7 @@ export const Button: React.FC<Props> = ({ children, extraClass, handler }) => {
       className={`${styles.button} ${extraClass ? extraClass : ''}`}
     >
       {children}
-    </motion.div>
+    </motion.button>
   );
 };
 
