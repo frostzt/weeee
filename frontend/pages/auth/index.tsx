@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { gql } from '@apollo/client';
 import { Fragment, useState } from 'react';
 
 // Components
@@ -19,6 +20,25 @@ export interface SignUpProps {
   password: string;
   confirmPassword: string;
 }
+
+// Mutations
+const CREATE_USER = gql`
+  mutation signUp(
+    $name: String!
+    $email: String!
+    $password: String!
+    $username: String!
+  ) {
+    signUp(
+      createUserInput: {
+        name: $name
+        email: $email
+        password: $password
+        username: $username
+      }
+    )
+  }
+`;
 
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
