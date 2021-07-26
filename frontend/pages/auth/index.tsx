@@ -12,6 +12,7 @@ import styles from './auth.module.scss';
 // Interfaces
 export interface SignUpProps {
   name: string;
+  username: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -21,11 +22,12 @@ const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
 
   const signUpHandler = (credentials: SignUpProps) => {
-    const { name, email, password, confirmPassword } = credentials;
+    const { name, username, email, password, confirmPassword } = credentials;
 
     // Verify if password match
     if (password !== confirmPassword) {
-      alert("Passwords don't match");
+      console.log('passwords not same, to be done');
+      return null;
     }
   };
 

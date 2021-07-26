@@ -17,6 +17,7 @@ const SignUpForm: React.FC<Props> = ({
 }) => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
@@ -33,6 +34,18 @@ const SignUpForm: React.FC<Props> = ({
             className={styles.group__input}
             type="text"
             name="name"
+          />
+        </div>
+        <div className={styles.group}>
+          <label className={styles.group__label} htmlFor="username">
+            Username
+          </label>
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className={styles.group__input}
+            type="text"
+            name="username"
           />
         </div>
         <div className={styles.group}>
@@ -74,7 +87,9 @@ const SignUpForm: React.FC<Props> = ({
         <div className={styles.btns}>
           <Button
             extraClass={styles.signup}
-            handler={() => handler({ name, email, password, confirmPassword })}
+            handler={() =>
+              handler({ name, username, email, password, confirmPassword })
+            }
           >
             Sign Up
           </Button>
