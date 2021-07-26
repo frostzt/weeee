@@ -9,11 +9,24 @@ import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 // Styles
 import styles from './auth.module.scss';
 
+// Interfaces
+export interface SignUpProps {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
 
-  const signUpHandler = () => {
-    console.log('Sign Up');
+  const signUpHandler = (credentials: SignUpProps) => {
+    const { name, email, password, confirmPassword } = credentials;
+
+    // Verify if password match
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+    }
   };
 
   const signInHandler = () => {

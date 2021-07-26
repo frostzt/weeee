@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './SignUpForm.module.scss';
 
 // Components
@@ -14,6 +15,11 @@ const SignUpForm: React.FC<Props> = ({
   handler,
   switchHandler,
 }) => {
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+
   return (
     <div className={styles.container}>
       <form className={styles.form}>
@@ -21,19 +27,33 @@ const SignUpForm: React.FC<Props> = ({
           <label className={styles.group__label} htmlFor="name">
             Name
           </label>
-          <input className={styles.group__input} type="text" name="name" />
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={styles.group__input}
+            type="text"
+            name="name"
+          />
         </div>
         <div className={styles.group}>
           <label className={styles.group__label} htmlFor="email">
             Email
           </label>
-          <input className={styles.group__input} type="email" name="email" />
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.group__input}
+            type="email"
+            name="email"
+          />
         </div>
         <div className={styles.group}>
           <label className={styles.group__label} htmlFor="password">
             Password
           </label>
           <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className={styles.group__input}
             type="password"
             name="password"
@@ -44,13 +64,18 @@ const SignUpForm: React.FC<Props> = ({
             Confirm Password
           </label>
           <input
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             className={styles.group__input}
             type="password"
             name="cpassword"
           />
         </div>
         <div className={styles.btns}>
-          <Button extraClass={styles.signup} handler={handler}>
+          <Button
+            extraClass={styles.signup}
+            handler={() => handler({ name, email, password, confirmPassword })}
+          >
             Sign Up
           </Button>
           <div className={styles.switch}>
