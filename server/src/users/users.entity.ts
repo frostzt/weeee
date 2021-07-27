@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class User {
@@ -25,5 +26,6 @@ export class User {
   username: string;
 
   @Property()
+  @Exclude({ toPlainOnly: true })
   password: string;
 }

@@ -81,6 +81,13 @@ export const AuthProvider = ({ children }: ProviderProps) => {
         password,
       }),
     });
+
+    const data = await res.json();
+
+    console.log(data);
+
+    if (res.ok) {
+    }
   };
 
   // Sign out

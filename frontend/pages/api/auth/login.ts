@@ -1,5 +1,12 @@
+import { gql } from '@apollo/client';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { API_URL } from '../../../Config/Config';
+
+// Queries
+const SIGN_IN = gql`
+  query signIn($email: String!, $password: String!) {
+    signIn(loginData: { email: $email, password: $password })
+  }
+`;
 
 const login = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {

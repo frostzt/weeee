@@ -1,4 +1,8 @@
-import { UseGuards } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CurrentUser } from 'src/authUtils/currentUser.decorator';
 import { GqlAuthGuard } from 'src/authUtils/gqlauthguard';
@@ -18,6 +22,7 @@ export class UsersResolver {
     return this.usersService.signIn(loginData);
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Query(() => UsersType)
   @UseGuards(GqlAuthGuard)
   getUser(@CurrentUser() user: User) {

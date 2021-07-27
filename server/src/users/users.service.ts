@@ -56,11 +56,11 @@ export class UsersService {
   }
 
   async signIn(loginData: LoginUserInput): Promise<string> {
-    const { username, password } = loginData;
-    const user = await this.usersRepository.findOne({ username });
+    const { email, password } = loginData;
+    const user = await this.usersRepository.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      const payload = { username };
+      const payload = { email };
       const accessToken = this.jwtService.sign(payload);
       return accessToken;
     } else {
