@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { gql } from '@apollo/client';
 import { Fragment, useState } from 'react';
 
 // Components
@@ -11,25 +10,6 @@ import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 // Styles
 import styles from './auth.module.scss';
 import ClientOnly from '../../components/Utils/ClientOnly';
-
-// Mutations
-const CREATE_USER = gql`
-  mutation signUp(
-    $name: String!
-    $email: String!
-    $password: String!
-    $username: String!
-  ) {
-    signUp(
-      createUserInput: {
-        name: $name
-        email: $email
-        password: $password
-        username: $username
-      }
-    )
-  }
-`;
 
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
@@ -69,7 +49,6 @@ const AuthPage = () => {
         ) : (
           <SignInForm
             creatingAccount={creatingAccount}
-            handler={signInHandler}
             switchHandler={switchContext}
           />
         )}

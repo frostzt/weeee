@@ -23,6 +23,5 @@ export class UsersType {
   @Field()
   username: string;
 
-  @Field()
   password: string;
 }

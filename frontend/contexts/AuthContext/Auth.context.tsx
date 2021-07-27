@@ -1,5 +1,8 @@
-import { createContext, useState } from 'react';
+import { gql } from '@apollo/client';
 import { toast } from 'react-hot-toast';
+import { NEXT_URL } from '../../Config/Config';
+import { createContext, useState } from 'react';
+import { StringValueNode } from 'graphql';
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -13,10 +16,34 @@ export interface SignUpProps {
   confirmPassword: string;
 }
 
+export interface SignInProps {
+  email: string;
+  password: string;
+}
+
+// Mutations
+const CREATE_USER = gql`
+  mutation signUp(
+    $name: String!
+    $email: String!
+    $password: String!
+    $username: String!
+  ) {
+    signUp(
+      createUserInput: {
+        name: $name
+        email: $email
+        password: $password
+        username: $username
+      }
+    )
+  }
+`;
+
 const AuthContext = createContext({
   user: undefined,
   error: undefined,
-  signIn: () => {},
+  signIn: (event: Event, credentials: SignInProps) => {},
   signUp: (event: Event, credentials: SignUpProps) => {},
   signOut: () => {},
 });
@@ -40,8 +67,20 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   };
 
   // Sign in
-  const signIn = () => {
-    console.log('Sign In');
+  const signIn = async (event: Event, credentials: SignInProps) => {
+    event.preventDefault();
+    const { email, password } = credentials;
+
+    const res = await fetch(`${NEXT_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
   };
 
   // Sign out

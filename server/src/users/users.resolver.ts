@@ -1,7 +1,12 @@
+import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { CurrentUser } from 'src/authUtils/currentUser.decorator';
+import { GqlAuthGuard } from 'src/authUtils/gqlauthguard';
 import { CreateUserInput } from './inputs/create-user.input';
 import { LoginUserInput } from './inputs/login-user.input';
+import { User } from './users.entity';
 import { UsersService } from './users.service';
+import { UsersType } from './users.type';
 
 @Resolver()
 export class UsersResolver {
@@ -13,9 +18,10 @@ export class UsersResolver {
     return this.usersService.signIn(loginData);
   }
 
-  @Query(() => String)
-  hello() {
-    return 'This is working';
+  @Query(() => UsersType)
+  @UseGuards(GqlAuthGuard)
+  getUser(@CurrentUser() user: User) {
+    return this.usersService.getUser(user);
   }
 
   // Mutations

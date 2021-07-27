@@ -1,19 +1,23 @@
+import { useContext } from 'react';
+import AuthContext from '../../../contexts/AuthContext/Auth.context';
+
 import styles from './SignInForm.module.scss';
 
 // Components
 import { Button } from '../../Button/Button';
+import { useState } from 'react';
 
 interface Props {
   creatingAccount: Boolean;
-  handler: any;
   switchHandler: any;
 }
 
-const SignInForm: React.FC<Props> = ({
-  creatingAccount,
-  handler,
-  switchHandler,
-}) => {
+const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const { signIn } = useContext(AuthContext);
+
   return (
     <div className={styles.container}>
       <form className={styles.form}>
@@ -21,7 +25,13 @@ const SignInForm: React.FC<Props> = ({
           <label className={styles.group__label} htmlFor="email">
             Email
           </label>
-          <input className={styles.group__input} type="email" name="email" />
+          <input
+            className={styles.group__input}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            name="email"
+          />
         </div>
         <div className={styles.group}>
           <label className={styles.group__label} htmlFor="password">
@@ -30,11 +40,16 @@ const SignInForm: React.FC<Props> = ({
           <input
             className={styles.group__input}
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             name="password"
           />
         </div>
         <div className={styles.btns}>
-          <Button extraClass={styles.signup} handler={handler}>
+          <Button
+            extraClass={styles.signup}
+            handler={(e: Event) => signIn(e, { email, password })}
+          >
             Sign In
           </Button>
           <div className={styles.switch}>

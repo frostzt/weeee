@@ -51,6 +51,10 @@ export class UsersService {
     return 'success';
   }
 
+  async getUser(user: User): Promise<User> {
+    return user;
+  }
+
   async signIn(loginData: LoginUserInput): Promise<string> {
     const { username, password } = loginData;
     const user = await this.usersRepository.findOne({ username });
