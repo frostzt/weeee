@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/client';
@@ -15,6 +15,9 @@ import {
   AiFillLinkedin,
 } from 'react-icons/ai';
 
+// Contexts
+import AuthContext from '../contexts/AuthContext/Auth.context';
+
 // Components
 import Logo from '../components/Logo/Logo';
 import { LinkedButton } from '../components/Button/Button';
@@ -23,6 +26,8 @@ import FeatureCard from '../components/FeatureCard/FeatureCard';
 function Home() {
   const [session, loading] = useSession();
   const [counter, setCounter] = useState<number>(1);
+
+  const { user } = useContext(AuthContext);
 
   // Animations
   const cardsControl = useAnimation();

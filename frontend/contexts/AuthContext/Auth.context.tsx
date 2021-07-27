@@ -53,17 +53,25 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     event.preventDefault();
     const { email, password } = credentials;
 
-    const res = await axios.post(
-      `${NEXT_URL}/api/auth/login`,
-      { email, password },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    try {
+      const res = await axios.post(
+        `${NEXT_URL}/api/auth/login`,
+        { email, password },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
-    console.log(res);
+      console.log(res);
+
+      const { user } = res.data;
+      setUser(user);
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
   };
 
   // Sign out

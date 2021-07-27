@@ -24,25 +24,25 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const { email, password } = req.body;
 
-    try {
-      const client = createApolloClient();
-      const SIGN_IN = gql`
-        query signIn($email: String!, $password: String!) {
-          signIn(loginData: { email: $email, password: $password }) {
-            accessToken
-            user {
-              id
-              name
-              email
-              age
-              username
-              createdAt
-              updatedAt
-            }
+    const client = createApolloClient();
+    const SIGN_IN = gql`
+      query signIn($email: String!, $password: String!) {
+        signIn(loginData: { email: $email, password: $password }) {
+          accessToken
+          user {
+            id
+            name
+            email
+            age
+            username
+            createdAt
+            updatedAt
           }
         }
-      `;
+      }
+    `;
 
+    try {
       const response = await client.query({
         query: SIGN_IN,
         variables: { email, password },
@@ -50,10 +50,10 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const { accessToken, user } = response.data.signIn;
 
-      res.status(200).json({ user });
+      return res.status(200).json({ user });
     } catch (error) {
       console.error(error);
-      res.status(400).json({});
+      return res.json({ error });
     }
   } else {
     res.setHeader('Allow', ['POST']);
