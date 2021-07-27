@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { NEXT_URL } from '../../Config/Config';
 import { createContext, useState } from 'react';
 import { StringValueNode } from 'graphql';
+import axios from 'axios';
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -20,25 +21,6 @@ export interface SignInProps {
   email: string;
   password: string;
 }
-
-// Mutations
-const CREATE_USER = gql`
-  mutation signUp(
-    $name: String!
-    $email: String!
-    $password: String!
-    $username: String!
-  ) {
-    signUp(
-      createUserInput: {
-        name: $name
-        email: $email
-        password: $password
-        username: $username
-      }
-    )
-  }
-`;
 
 const AuthContext = createContext({
   user: undefined,
@@ -71,23 +53,17 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     event.preventDefault();
     const { email, password } = credentials;
 
-    const res = await fetch(`${NEXT_URL}/api/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    const res = await axios.post(
+      `${NEXT_URL}/api/auth/login`,
+      { email, password },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
 
-    const data = await res.json();
-
-    console.log(data);
-
-    if (res.ok) {
-    }
+    console.log(res);
   };
 
   // Sign out

@@ -12,6 +12,10 @@ import * as bcrypt from 'bcrypt';
 import { LoginUserInput } from './inputs/login-user.input';
 import { JwtService } from '@nestjs/jwt';
 
+export interface UserWToken {
+  accessToken: string;
+  user: User;
+}
 @Injectable()
 export class UsersService {
   constructor(
@@ -55,17 +59,24 @@ export class UsersService {
     return user;
   }
 
-  async signIn(loginData: LoginUserInput): Promise<string> {
+  async signIn(loginData: LoginUserInput): Promise<UserWToken> {
     const { email, password } = loginData;
     const user = await this.usersRepository.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
+      // Mutate the user object
+      const curUser = JSON.parse(JSON.stringify(user));
+      delete curUser.password;
+
       const payload = { email };
       const accessToken = this.jwtService.sign(payload);
-      return accessToken;
+      return {
+        accessToken,
+        user,
+      };
     } else {
       throw new UnauthorizedException(
-        'The password or username is  incorrect!;',
+        'The password or username is incorrect!;',
       );
     }
   }

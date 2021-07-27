@@ -8,6 +8,7 @@ import { CurrentUser } from 'src/authUtils/currentUser.decorator';
 import { GqlAuthGuard } from 'src/authUtils/gqlauthguard';
 import { CreateUserInput } from './inputs/create-user.input';
 import { LoginUserInput } from './inputs/login-user.input';
+import { UserWToken } from './types/UserWToken';
 import { User } from './users.entity';
 import { UsersService } from './users.service';
 import { UsersType } from './users.type';
@@ -17,7 +18,7 @@ export class UsersResolver {
   constructor(private usersService: UsersService) {}
 
   // Queries
-  @Query(() => String)
+  @Query(() => UserWToken)
   signIn(@Args('loginData') loginData: LoginUserInput) {
     return this.usersService.signIn(loginData);
   }

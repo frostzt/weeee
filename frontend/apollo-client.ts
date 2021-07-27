@@ -1,7 +1,7 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { API_URL } from './Config/Config';
 
-const ENDPOINT = API_URL;
+const ENDPOINT = `${API_URL}/graphql`;
 
 const httpLink = createHttpLink({
   uri: ENDPOINT,
