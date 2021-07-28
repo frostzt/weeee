@@ -1,9 +1,8 @@
-import { gql } from '@apollo/client';
+import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { NEXT_URL } from '../../Config/Config';
 import { createContext, useState } from 'react';
-import { StringValueNode } from 'graphql';
-import axios from 'axios';
+import { useEffect } from 'react';
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -33,6 +32,10 @@ const AuthContext = createContext({
 export const AuthProvider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState();
   const [error, setError] = useState();
+
+  useEffect(() => {
+    checkIfUserLoggedIn();
+  }, []);
 
   // Register
   const signUp = (event: Event, credentials: SignUpProps) => {
@@ -64,7 +67,11 @@ export const AuthProvider = ({ children }: ProviderProps) => {
         }
       );
 
-      console.log(res);
+      if (res.data.error) {
+        toast.error(res.data.error.message);
+        setError(res.data.error.message);
+        return;
+      }
 
       const { user } = res.data;
       setUser(user);
@@ -80,8 +87,9 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   };
 
   // Check if user is logged in
-  const checkIfUserLoggedIn = () => {
-    console.log('Check');
+  const checkIfUserLoggedIn = async () => {
+    const res = await axios.post(`${NEXT_URL}/api/auth/user`);
+    setUser(res.data.user);
   };
 
   return (

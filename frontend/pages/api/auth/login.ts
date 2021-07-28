@@ -1,3 +1,4 @@
+import cookie from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { API_URL } from '../../../Config/Config';
 import {
@@ -49,6 +50,17 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
       });
 
       const { accessToken, user } = response.data.signIn;
+
+      res.setHeader(
+        'Set-Cookie',
+        cookie.serialize('accessToken', accessToken, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV !== 'development',
+          maxAge: 60 * 60 * 24 * 7,
+          sameSite: 'strict',
+          path: '/',
+        })
+      );
 
       return res.status(200).json({ user });
     } catch (error) {

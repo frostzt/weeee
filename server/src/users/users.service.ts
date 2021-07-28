@@ -75,9 +75,7 @@ export class UsersService {
         user,
       };
     } else {
-      throw new UnauthorizedException(
-        'The password or username is incorrect!;',
-      );
+      throw new UnauthorizedException('The password or username is incorrect!');
     }
   }
 }
