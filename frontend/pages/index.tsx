@@ -29,7 +29,7 @@ function Home() {
 
   const { user } = useContext(AuthContext);
 
-  console.log(user);
+  // console.log(user);
 
   // Animations
   const cardsControl = useAnimation();

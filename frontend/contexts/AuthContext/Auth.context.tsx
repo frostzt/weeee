@@ -88,8 +88,12 @@ export const AuthProvider = ({ children }: ProviderProps) => {
 
   // Check if user is logged in
   const checkIfUserLoggedIn = async () => {
-    const res = await axios.post(`${NEXT_URL}/api/auth/user`);
-    setUser(res.data.user);
+    try {
+      const res = await axios.post(`${NEXT_URL}/api/auth/user`);
+      setUser(res.data.user);
+    } catch (error) {
+      setUser(undefined);
+    }
   };
 
   return (

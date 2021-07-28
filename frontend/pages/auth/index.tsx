@@ -14,10 +14,6 @@ import ClientOnly from '../../components/Utils/ClientOnly';
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
 
-  const signInHandler = () => {
-    console.log('Sign In');
-  };
-
   const switchContext = () => {
     setCreatingAccount((prevState) => !prevState);
     return;
