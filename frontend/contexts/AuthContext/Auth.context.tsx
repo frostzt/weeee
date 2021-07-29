@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { NEXT_URL } from '../../Config/Config';
 import { createContext, useState } from 'react';
-import { useEffect } from 'react';
+import { useRouter } from 'next/dist/client/router';
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -32,6 +33,8 @@ const AuthContext = createContext({
 export const AuthProvider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState();
   const [error, setError] = useState();
+
+  const Router = useRouter();
 
   useEffect(() => {
     checkIfUserLoggedIn();
@@ -75,6 +78,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
 
       const { user } = res.data;
       setUser(user);
+      Router.push('/account/dashboard');
     } catch (error) {
       console.error(error);
       setError(error);
