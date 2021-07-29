@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Fragment, useState } from 'react';
 
 // Components
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { LinkedButton } from '../../components/Button/Button';
 import SignUpForm from '../../components/Auth/SignUpForm/SignUpForm';
 import SignInForm from '../../components/Auth/SignInForm/SignInForm';

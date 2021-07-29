@@ -86,8 +86,15 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   };
 
   // Sign out
-  const signOut = () => {
-    console.log('Sign Out');
+  const signOut = async () => {
+    try {
+      await axios.post(`${NEXT_URL}/api/auth/logout`);
+      setUser(undefined);
+      Router.push('/');
+      toast.success('Logged out successfully!');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // Check if user is logged in
