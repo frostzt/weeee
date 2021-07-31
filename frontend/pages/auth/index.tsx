@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 
 // Components
 import { Toaster } from 'react-hot-toast';
@@ -10,9 +10,14 @@ import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 // Styles
 import styles from './auth.module.scss';
 import ClientOnly from '../../components/Utils/ClientOnly';
+import AuthContext from '../../contexts/AuthContext/Auth.context';
+import { useRouter } from 'next/dist/client/router';
 
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
+  const { user } = useContext(AuthContext);
+
+  const Router = useRouter();
 
   const switchContext = () => {
     setCreatingAccount((prevState) => !prevState);
