@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import Head from 'next/head';
+import React, { Fragment, useContext } from 'react';
 import { GetServerSideProps } from 'next';
 
 // Custom
@@ -12,23 +13,35 @@ import { motion } from 'framer-motion';
 
 // Varients
 import { profileVarient } from './me.varients';
+import { useEffect } from 'react';
+
+interface Props {}
 
 interface Context {
   user: User | undefined;
 }
 
-const MePage: React.FC = () => {
+const MePage: React.FC<Props> = ({}) => {
   const { user }: Context = useContext(AuthContext);
 
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   return (
-    <div className={styles.container}>
-      <motion.div
-        variants={profileVarient}
-        initial="initial"
-        animate="animated"
-        className={styles.profile}
-      ></motion.div>
-    </div>
+    <Fragment>
+      <Head>
+        <title>Me - Dashboard</title>
+      </Head>
+      <div className={styles.container}>
+        <motion.div
+          variants={profileVarient}
+          initial="initial"
+          animate="animated"
+          className={styles.profile}
+        ></motion.div>
+      </div>
+    </Fragment>
   );
 };
 

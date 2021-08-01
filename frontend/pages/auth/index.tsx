@@ -12,6 +12,7 @@ import styles from './auth.module.scss';
 import { useRouter } from 'next/dist/client/router';
 import ClientOnly from '../../components/Utils/ClientOnly';
 import AuthContext from '../../contexts/AuthContext/Auth.context';
+import { useEffect } from 'react';
 
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
@@ -22,6 +23,10 @@ const AuthPage = () => {
   const switchContext = () => {
     setCreatingAccount((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   if (user) {
     Router.push('/account/dashboard');

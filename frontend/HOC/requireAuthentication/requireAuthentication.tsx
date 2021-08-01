@@ -1,5 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
+// @TODO Create a req to verify the user
 export function requireAuthentication(gssp: GetServerSideProps) {
   return async (ctx: GetServerSidePropsContext) => {
     const { req } = ctx;
