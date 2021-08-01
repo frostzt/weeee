@@ -9,9 +9,9 @@ import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 
 // Styles
 import styles from './auth.module.scss';
+import { useRouter } from 'next/dist/client/router';
 import ClientOnly from '../../components/Utils/ClientOnly';
 import AuthContext from '../../contexts/AuthContext/Auth.context';
-import { useRouter } from 'next/dist/client/router';
 
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
@@ -23,6 +23,10 @@ const AuthPage = () => {
     setCreatingAccount((prevState) => !prevState);
     return;
   };
+
+  if (user) {
+    Router.push('/account/dashboard');
+  }
 
   return (
     <Fragment>
