@@ -21,7 +21,6 @@ const AuthPage = () => {
 
   const switchContext = () => {
     setCreatingAccount((prevState) => !prevState);
-    return;
   };
 
   if (user) {
