@@ -1,3 +1,10 @@
 .container {
-  width: 100%;
+  .picture {
+    width: 13rem;
+    height: 13rem;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%;
+    filter: var(--drop-shadow-normal);
+  }
 }

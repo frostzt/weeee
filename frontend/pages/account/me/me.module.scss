@@ -5,9 +5,25 @@
   .profile {
     width: 100%;
     height: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     filter: var(--drop-shadow-normal);
     border-bottom-left-radius: 3.5rem;
     border-bottom-right-radius: 3.5rem;
     background-image: var(--background-gradient);
+
+    .item {
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      color: black;
+      font-size: 2rem;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      filter: var(--drop-shadow-small);
+    }
   }
 }

@@ -1,18 +1,17 @@
 import Head from 'next/head';
+import { Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/dist/client/router';
 import { Fragment, useState, useContext } from 'react';
+import AuthContext from '../../contexts/AuthContext/Auth.context';
 
 // Components
-import { Toaster } from 'react-hot-toast';
 import { LinkedButton } from '../../components/Button/Button';
 import SignUpForm from '../../components/Auth/SignUpForm/SignUpForm';
 import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 
 // Styles
 import styles from './auth.module.scss';
-import { useRouter } from 'next/dist/client/router';
 import ClientOnly from '../../components/Utils/ClientOnly';
-import AuthContext from '../../contexts/AuthContext/Auth.context';
-import { useEffect } from 'react';
 
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
@@ -23,10 +22,6 @@ const AuthPage = () => {
   const switchContext = () => {
     setCreatingAccount((prevState) => !prevState);
   };
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   if (user) {
     Router.push('/account/dashboard');
