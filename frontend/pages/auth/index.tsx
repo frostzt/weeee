@@ -41,20 +41,12 @@ const AuthPage = () => {
           <LinkedButton override extraClass={styles.backbtn} link="/">
             {'<'}
           </LinkedButton>
-          <div className={styles.title}>
-            {creatingAccount ? 'Sign up' : 'Sign in'}
-          </div>
+          <div className={styles.title}>{creatingAccount ? 'Sign up' : 'Sign in'}</div>
         </div>
         {creatingAccount ? (
-          <SignUpForm
-            creatingAccount={creatingAccount}
-            switchHandler={switchContext}
-          />
+          <SignUpForm creatingAccount={creatingAccount} switchHandler={switchContext} />
         ) : (
-          <SignInForm
-            creatingAccount={creatingAccount}
-            switchHandler={switchContext}
-          />
+          <SignInForm creatingAccount={creatingAccount} switchHandler={switchContext} />
         )}
       </div>
     </Fragment>

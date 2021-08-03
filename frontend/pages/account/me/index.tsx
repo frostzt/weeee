@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 // Custom
 import { User } from '../../../interfaces/User.interface';
@@ -8,6 +8,7 @@ import { requireAuthentication } from '../../../HOC/requireAuthentication/requir
 
 // Components, HOCs
 import { withLoading } from '../../../HOC/withLoading/withLoading';
+import EditProfile from '../../../components/Profile/EditProfile/EditProfile';
 import ProfilePicture from '../../../components/Profile/ProfilePicture/ProfilePicture';
 
 // Styling
@@ -23,14 +24,22 @@ interface Props {
 }
 
 const MePage: React.FC<Props> = ({ user }) => {
+  const [isEditingProfile, setIsEditingProfile] = useState<Boolean>(false);
+
+  // Handlers
+  const handleEditingProfile = () => {
+    setIsEditingProfile((prevState) => !prevState);
+  };
+
   return (
     <Fragment>
       <Head>
         <title>Customize your profile | Weeee</title>
       </Head>
+      {isEditingProfile ? <EditProfile user={user} /> : null}
       <div className={styles.container}>
         <motion.div variants={profileVarient} initial="initial" animate="animated" className={styles.profile}>
-          <div className={styles.item}>
+          <div onClick={handleEditingProfile} className={styles.item}>
             <AiFillEdit />
           </div>
           <ProfilePicture picture="business" />

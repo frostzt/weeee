@@ -87,16 +87,12 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
         <div className={styles.btns}>
           <Button
             extraClass={styles.signup}
-            handler={(e: Event) =>
-              signUp(e, { name, username, email, password, confirmPassword })
-            }
+            handler={(e: Event) => signUp(e, { name, username, email, password, confirmPassword })}
           >
             Sign Up
           </Button>
           <div className={styles.switch}>
-            {creatingAccount
-              ? 'Already have an account?'
-              : 'No account? No problem!'}{' '}
+            {creatingAccount ? 'Already have an account?' : 'No account? No problem!'}{' '}
             <span onClick={switchHandler} className={styles.switch_btn}>
               {creatingAccount ? 'Sign in' : 'Sign up'}
             </span>{' '}

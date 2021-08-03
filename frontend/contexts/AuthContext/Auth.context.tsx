@@ -107,11 +107,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     }
   };
 
-  return (
-    <AuthContext.Provider value={{ user, error, signIn, signUp, signOut }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, error, signIn, signUp, signOut }}>{children}</AuthContext.Provider>;
 };
 
 export default AuthContext;

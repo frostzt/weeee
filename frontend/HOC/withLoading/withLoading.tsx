@@ -26,6 +26,6 @@ export const withLoading = (WrappedComponent: React.FC<any>) => {
       );
     }
 
-    return <WrappedComponent user={user} signOut={signOut} {...props} />;
+    return <WrappedComponent isAuthenticated={isAuthenticated} user={user} signOut={signOut} {...props} />;
   };
 };
