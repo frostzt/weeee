@@ -11,6 +11,7 @@ import { User } from './users.entity';
 import * as bcrypt from 'bcrypt';
 import { LoginUserInput } from './inputs/login-user.input';
 import { JwtService } from '@nestjs/jwt';
+import { UpdateUserInput } from './inputs/update-user.input';
 
 export interface UserWToken {
   accessToken: string;
@@ -24,6 +25,7 @@ export class UsersService {
     private jwtService: JwtService,
   ) {}
 
+  // Create and register a user
   async createUser(createUserInput: CreateUserInput): Promise<string> {
     const { name, email, age, password, username } = createUserInput;
 
@@ -55,10 +57,12 @@ export class UsersService {
     return 'success';
   }
 
+  // Get and return a user using the Bearer Token
   async getUser(user: User): Promise<User> {
     return user;
   }
 
+  // Verify and sign a user in and return the accessToken
   async signIn(loginData: LoginUserInput): Promise<UserWToken> {
     const { email, password } = loginData;
     const user = await this.usersRepository.findOne({ email });
@@ -77,5 +81,33 @@ export class UsersService {
     } else {
       throw new UnauthorizedException('The password or username is incorrect!');
     }
+  }
+
+  // Update the user on the bases of data provided
+  async updateUser(updateData: UpdateUserInput, user: User): Promise<User> {
+    const updatedUser = await this.usersRepository.findOne({
+      email: user.email,
+    });
+
+    // Update the user
+    const { name, email, age, username } = updateData;
+    if (name) {
+      updatedUser.name = name;
+    }
+
+    if (email) {
+      updatedUser.email = email;
+    }
+
+    if (age) {
+      updatedUser.age = parseInt(age);
+    }
+
+    if (username) {
+      updatedUser.username = username;
+    }
+
+    await this.usersRepository.persistAndFlush(updatedUser);
+    return updatedUser;
   }
 }
