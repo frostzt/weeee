@@ -2,15 +2,17 @@ import Image from 'next/image';
 import React from 'react';
 
 // Styling
+import cx from 'classnames';
 import styles from './ProfilePicture.module.scss';
 
 interface Props {
   picture: string;
+  extraClass?: string;
 }
 
-const ProfilePicture: React.FC<Props> = ({ picture }) => {
+const ProfilePicture: React.FC<Props> = ({ picture, extraClass }) => {
   return (
-    <div className={styles.container}>
+    <div className={cx([styles.container, extraClass ? extraClass : null])}>
       <div className={styles.picture}>
         {picture === 'business' ? <Image src="/images/users/business-thought-catalog.jpg" layout="fill" /> : null}
         {picture === 'cat' ? <Image src="/images/users/cat-mikhail-vasilyev.jpg" layout="fill" /> : null}

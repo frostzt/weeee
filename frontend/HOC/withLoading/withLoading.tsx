@@ -13,8 +13,8 @@ export const withLoading = (WrappedComponent: React.FC<any>) => {
     useEffect(() => {
       if (user) {
         setIsAuthenticated(true);
+        setLoading(false);
       }
-      setLoading(false);
     }, [user]);
 
     // If loading

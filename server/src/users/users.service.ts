@@ -51,6 +51,7 @@ export class UsersService {
       name,
       email,
       age,
+      picture: 'cat',
     });
 
     await this.usersRepository.persistAndFlush(user);

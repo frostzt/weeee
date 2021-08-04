@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { User } from '../../../interfaces/User.interface';
 import styles from './EditProfile.module.scss';
 
 // Components
 import { Button } from '../../Button/Button';
+import ProfilePicture from '../ProfilePicture/ProfilePicture';
 
 interface Props {
   user: User;
@@ -11,12 +12,26 @@ interface Props {
 }
 
 const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
+  // Initialize the states
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
 
+  // Update the states to the user
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+      setUsername(user.username);
+    }
+  }, [user]);
+
   return (
     <div className={styles.container}>
+      <h2 className={styles.title}>Your information!</h2>
+      <div className={styles.profileWrapper}>
+        <ProfilePicture extraClass={styles.profilePicture} picture={user.picture ? user.picture : 'dog'} />
+      </div>
       <form className={styles.form}>
         <div className={styles.group}>
           <label className={styles.group__label} htmlFor="name">

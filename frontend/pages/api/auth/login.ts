@@ -1,12 +1,7 @@
 import cookie from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { API_URL } from '../../../Config/Config';
-import {
-  createHttpLink,
-  ApolloClient,
-  InMemoryCache,
-  gql,
-} from '@apollo/client';
+import { createHttpLink, ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 export const createApolloClient = () => {
   const ENDPOINT = `${API_URL}/graphql`;
@@ -36,6 +31,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
             email
             age
             username
+            picture
             createdAt
             updatedAt
           }

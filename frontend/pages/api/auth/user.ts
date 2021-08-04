@@ -21,6 +21,7 @@ const user = async (req: NextApiRequest, res: NextApiResponse) => {
           name
           email
           username
+          picture
           updatedAt
           createdAt
         }

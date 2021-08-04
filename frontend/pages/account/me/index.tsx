@@ -42,7 +42,7 @@ const MePage: React.FC<Props> = ({ user }) => {
           <div onClick={handleEditingProfile} className={styles.item}>
             <AiFillEdit />
           </div>
-          <ProfilePicture picture="business" />
+          <ProfilePicture picture={user.picture ? user.picture : 'dog'} />
           <div className={styles.item}>
             <AiFillMail />
           </div>
