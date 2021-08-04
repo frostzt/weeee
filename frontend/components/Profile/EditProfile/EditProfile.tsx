@@ -7,9 +7,10 @@ import { Button } from '../../Button/Button';
 
 interface Props {
   user: User;
+  stateHandler(): void;
 }
 
-const EditProfile: React.FC<Props> = ({ user }) => {
+const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');

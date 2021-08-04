@@ -36,7 +36,7 @@ const MePage: React.FC<Props> = ({ user }) => {
       <Head>
         <title>Customize your profile | Weeee</title>
       </Head>
-      {isEditingProfile ? <EditProfile user={user} /> : null}
+      {isEditingProfile ? <EditProfile stateHandler={handleEditingProfile} user={user} /> : null}
       <div className={styles.container}>
         <motion.div variants={profileVarient} initial="initial" animate="animated" className={styles.profile}>
           <div onClick={handleEditingProfile} className={styles.item}>

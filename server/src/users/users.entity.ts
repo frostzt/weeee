@@ -28,4 +28,7 @@ export class User {
   @Property()
   @Exclude({ toPlainOnly: true })
   password: string;
+
+  @Property({ default: 'cat' })
+  picture: string;
 }
