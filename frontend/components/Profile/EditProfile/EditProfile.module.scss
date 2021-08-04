@@ -13,6 +13,11 @@
   transform: translate(-50%, -50%);
   background-color: var(--background);
 
+  .backbtn {
+    color: white;
+    font-size: 4rem;
+  }
+
   .profileWrapper {
     width: 100%;
     display: flex;
@@ -68,7 +73,9 @@
     }
 
     .btns {
+      bottom: 2%;
       margin: 0 auto;
+      position: fixed;
       margin-top: 6rem;
       text-align: center;
 
@@ -76,13 +83,9 @@
         margin: 0 auto;
       }
 
-      .switch {
-        color: white;
-        margin-top: 3rem;
-
-        &_btn {
-          color: var(--teamwork);
-        }
+      .discard {
+        margin-left: 2rem;
+        display: inline-block;
       }
     }
   }

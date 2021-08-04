@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { User } from '../../../interfaces/User.interface';
-import styles from './EditProfile.module.scss';
 
 // Components
-import { Button } from '../../Button/Button';
+import { Button, DivButton } from '../../Button/Button';
 import ProfilePicture from '../ProfilePicture/ProfilePicture';
+
+// Styling
+import styles from './EditProfile.module.scss';
 
 interface Props {
   user: User;
@@ -73,6 +75,9 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
           <Button extraClass={styles.signup} handler={(e: Event) => console.log(e)}>
             Update
           </Button>
+          <DivButton handler={stateHandler} extraClass={styles.discard}>
+            Discard
+          </DivButton>
         </div>
       </form>
     </div>
