@@ -1,5 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 import AuthContext from '../../contexts/AuthContext/Auth.context';
+import LoadingScreen from './LoadingComponents/LoadingScreen';
 
 export const withLoading = (WrappedComponent: React.FC<any>) => {
   return (props: any) => {
@@ -13,16 +14,16 @@ export const withLoading = (WrappedComponent: React.FC<any>) => {
     useEffect(() => {
       if (user) {
         setIsAuthenticated(true);
-        setLoading(false);
+        // setLoading(false);
       }
     }, [user]);
 
     // If loading
     if (loading) {
       return (
-        <>
-          <h1 style={{ color: 'white' }}>Loading...</h1>
-        </>
+        <Fragment>
+          <LoadingScreen />
+        </Fragment>
       );
     }
 
