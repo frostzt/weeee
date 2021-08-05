@@ -13,6 +13,19 @@
     border-bottom-right-radius: 3.5rem;
     background-image: var(--background-gradient);
 
+    &Info {
+      display: flex;
+      color: white;
+      text-align: center;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      .name {
+        margin-top: 2rem;
+      }
+    }
+
     .item {
       width: 4rem;
       height: 4rem;

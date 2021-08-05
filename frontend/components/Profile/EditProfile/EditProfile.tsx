@@ -15,13 +15,15 @@ interface Props {
 
 const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
   // Initialize the states
+  const [age, setAge] = useState(0);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
 
-  // Update the states to the user
+  // Update the states to the user informations
   useEffect(() => {
     if (user) {
+      setAge(user.age);
       setName(user.name);
       setEmail(user.email);
       setUsername(user.username);
@@ -69,6 +71,18 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
             className={styles.group__input}
             type="email"
             name="email"
+          />
+        </div>
+        <div className={styles.group}>
+          <label className={styles.group__label} htmlFor="age">
+            Age
+          </label>
+          <input
+            value={age}
+            onChange={(e) => setAge(parseInt(e.target.value))}
+            className={styles.group__input}
+            type="number"
+            name="age"
           />
         </div>
         <div className={styles.btns}>

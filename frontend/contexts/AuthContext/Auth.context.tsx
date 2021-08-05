@@ -27,6 +27,7 @@ const AuthContext = createContext({
   error: undefined,
   signIn: (event: Event, credentials: SignInProps) => {},
   signUp: (event: Event, credentials: SignUpProps) => {},
+  updateUser: (event: Event, updatedData: any) => {},
   signOut: () => {},
 });
 
@@ -85,6 +86,14 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     }
   };
 
+  // Update User
+  const updateUser = async (event: Event, updatedData: any) => {
+    try {
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // Sign out
   const signOut = async () => {
     try {
@@ -107,7 +116,9 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     }
   };
 
-  return <AuthContext.Provider value={{ user, error, signIn, signUp, signOut }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, error, signIn, signUp, signOut, updateUser }}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthContext;
