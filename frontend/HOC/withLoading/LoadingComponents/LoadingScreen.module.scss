@@ -3,8 +3,27 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  display: flex;
   position: fixed;
+  align-items: center;
+  justify-content: center;
   z-index: 999999999999999;
-  background-color: #212529;
+  background-color: #1a1a1a;
   // background-color: white;
+
+  .dots {
+    display: flex;
+    justify-content: space-around;
+
+    & > *:not(:last-child) {
+      margin-right: 2rem;
+    }
+
+    .dot {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      background-color: white;
+    }
+  }
 }
