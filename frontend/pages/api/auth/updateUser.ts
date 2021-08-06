@@ -24,6 +24,8 @@ const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
           age
           username
           picture
+          createdAt
+          updatedAt
         }
       }
     `;
@@ -34,8 +36,8 @@ const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
         variables: { name, email, username, age },
       });
 
-      console.log(response);
-      res.json({ msg: 'heheheh' });
+      const { updateUser } = response.data;
+      res.json({ user: updateUser });
     } catch (error) {
       console.error(error);
       res.json({ error });

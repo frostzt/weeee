@@ -5,10 +5,10 @@
   left: 50%;
   width: 95%;
   height: 95%;
+  z-index: 9999;
   padding: 4rem;
   position: fixed;
   overflow-y: auto;
-  z-index: 99999999999;
   border: 4px solid white;
   transform: translate(-50%, -50%);
   background-color: var(--background);

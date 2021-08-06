@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import { User } from '../../../interfaces/User.interface';
 import AuthContext from '../../../contexts/AuthContext/Auth.context';
 
@@ -8,6 +8,7 @@ import ProfilePicture from '../ProfilePicture/ProfilePicture';
 
 // Styling
 import styles from './EditProfile.module.scss';
+import { Toaster } from 'react-hot-toast';
 
 interface Props {
   user: User;

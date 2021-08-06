@@ -18,6 +18,7 @@ import { AiFillEdit, AiFillMail } from 'react-icons/ai';
 
 // Varients
 import { profileVarient } from './me.varients';
+import { Toaster } from 'react-hot-toast';
 
 interface Props {
   user: User;
@@ -36,6 +37,7 @@ const MePage: React.FC<Props> = ({ user }) => {
       <Head>
         <title>Customize your profile | Weeee</title>
       </Head>
+      <Toaster />
       {isEditingProfile ? <EditProfile stateHandler={handleEditingProfile} user={user} /> : null}
       <div className={styles.container}>
         <motion.div variants={profileVarient} initial="initial" animate="animated" className={styles.profile}>

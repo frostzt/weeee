@@ -109,7 +109,14 @@ export const AuthProvider = ({ children }: ProviderProps) => {
         }
       );
 
-      console.log(res);
+      if (res.data.error) {
+        toast.error(res.data.error.message);
+        setError(res.data.error.message);
+        return;
+      }
+
+      toast.success('Updated information successfully!');
+      setUser(res.data.user);
     } catch (error) {
       console.error(error);
     }
