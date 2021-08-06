@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { User } from '../../../interfaces/User.interface';
+import AuthContext from '../../../contexts/AuthContext/Auth.context';
 
 // Components
 import { Button, DivButton } from '../../Button/Button';
@@ -19,6 +20,8 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
+
+  const { updateUser } = useContext(AuthContext);
 
   // Update the states to the user informations
   useEffect(() => {
@@ -86,7 +89,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
           />
         </div>
         <div className={styles.btns}>
-          <Button extraClass={styles.signup} handler={(e: Event) => console.log(e)}>
+          <Button extraClass={styles.signup} handler={(e: Event) => updateUser(e, { name, age, email, username })}>
             Update
           </Button>
           <DivButton handler={stateHandler} extraClass={styles.discard}>

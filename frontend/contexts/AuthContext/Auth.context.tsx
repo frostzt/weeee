@@ -18,8 +18,15 @@ export interface SignUpProps {
 }
 
 export interface SignInProps {
-  email: string;
-  password: string;
+  email: String;
+  password: String;
+}
+
+export interface UpdatedData {
+  name: String;
+  age: Number;
+  email: String;
+  username: String;
 }
 
 const AuthContext = createContext({
@@ -87,8 +94,22 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   };
 
   // Update User
-  const updateUser = async (event: Event, updatedData: any) => {
+  const updateUser = async (event: Event, updatedData: UpdatedData) => {
+    event.preventDefault();
+    const { name, email, username, age } = updatedData;
+
     try {
+      const res = await axios.post(
+        `${NEXT_URL}/api/auth/updateUser`,
+        { name, email, username, age },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      console.log(res);
     } catch (error) {
       console.error(error);
     }
