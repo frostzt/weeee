@@ -75,6 +75,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
             className={styles.group__input}
             type="email"
             name="email"
+            disabled
           />
         </div>
         <div className={styles.group}>

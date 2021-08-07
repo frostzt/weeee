@@ -22,6 +22,9 @@ export class User {
   @Property({ nullable: true })
   age?: number;
 
+  @Property({ nullable: true })
+  bio?: string;
+
   @Property({ nullable: false })
   username: string;
 

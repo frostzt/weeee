@@ -91,7 +91,7 @@ export class UsersService {
     });
 
     // Update the user
-    const { name, email, age, username } = updateData;
+    const { name, email, age, username, bio } = updateData;
     if (name) {
       updatedUser.name = name;
     }
@@ -106,6 +106,10 @@ export class UsersService {
 
     if (username) {
       updatedUser.username = username;
+    }
+
+    if (bio) {
+      updatedUser.bio = bio;
     }
 
     await this.usersRepository.persistAndFlush(updatedUser);

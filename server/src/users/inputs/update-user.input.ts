@@ -32,4 +32,10 @@ export class UpdateUserInput {
   @IsNumber()
   @Field(() => Int, { nullable: true })
   age?: string;
+
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  @Field(() => String, { nullable: true })
+  bio?: string;
 }
