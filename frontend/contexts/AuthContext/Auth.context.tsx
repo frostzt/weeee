@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   }, []);
 
   // Register
-  const signUp = (event: Event, credentials: SignUpProps) => {
+  const signUp = async (event: Event, credentials: SignUpProps) => {
     event.preventDefault();
     const { name, username, email, password, confirmPassword } = credentials;
 
@@ -59,7 +59,17 @@ export const AuthProvider = ({ children }: ProviderProps) => {
       return null;
     }
 
-    console.log(credentials);
+    try {
+      const res = await axios.post(
+        `${NEXT_URL}/api/auth/signup`,
+        { name, username, email, password },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+    } catch (error) {}
   };
 
   // Sign in
