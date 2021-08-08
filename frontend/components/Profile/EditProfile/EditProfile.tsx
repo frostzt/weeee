@@ -27,7 +27,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
   // Update the states to the user informations
   useEffect(() => {
     if (user) {
-      setAge(user.age);
+      setAge(user.age ? user.age : 0);
       setName(user.name);
       setEmail(user.email);
       setUsername(user.username);

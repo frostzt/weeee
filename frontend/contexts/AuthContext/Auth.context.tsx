@@ -69,7 +69,17 @@ export const AuthProvider = ({ children }: ProviderProps) => {
           },
         }
       );
-    } catch (error) {}
+
+      if (res.data.error) {
+        toast.error(res.data.error.message);
+        return null;
+      }
+
+      toast.success(res.data.msg);
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
   };
 
   // Sign in
