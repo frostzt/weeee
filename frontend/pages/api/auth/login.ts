@@ -1,26 +1,15 @@
 import cookie from 'cookie';
+import { gql } from '@apollo/client';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { API_URL } from '../../../Config/Config';
-import { createHttpLink, ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
-export const createApolloClient = () => {
-  const ENDPOINT = `${API_URL}/graphql`;
-
-  const httpLink = createHttpLink({
-    uri: ENDPOINT,
-  });
-
-  return new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache(),
-  });
-};
+// Custom imports
+import { createApolloClientNT } from '../../../Utils/createApolloClient';
 
 const login = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const { email, password } = req.body;
 
-    const client = createApolloClient();
+    const client = createApolloClientNT();
     const SIGN_IN = gql`
       query signIn($email: String!, $password: String!) {
         signIn(loginData: { email: $email, password: $password }) {

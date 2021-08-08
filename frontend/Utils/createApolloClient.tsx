@@ -23,3 +23,16 @@ export const createApolloClient = (accessToken: string) => {
     cache: new InMemoryCache(),
   });
 };
+
+export const createApolloClientNT = () => {
+  const ENDPOINT = `${API_URL}/graphql`;
+
+  const httpLink = createHttpLink({
+    uri: ENDPOINT,
+  });
+
+  return new ApolloClient({
+    link: httpLink,
+    cache: new InMemoryCache(),
+  });
+};

@@ -94,7 +94,7 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
           <div className={styles.switch}>
             {creatingAccount ? 'Already have an account?' : 'No account? No problem!'}{' '}
             <span onClick={switchHandler} className={styles.switch_btn}>
-              {creatingAccount ? 'Sign in' : 'Sign up'}
+              Sign in
             </span>{' '}
             here and lets get to work asap!
           </div>
