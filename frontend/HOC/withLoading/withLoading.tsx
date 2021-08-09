@@ -6,6 +6,8 @@ import React, { useState, useContext, useEffect, Fragment } from 'react';
 // Varients
 import { DotVarient } from './LoadingComponents/LoadingScreen.varients';
 import { ContainerVarient } from './LoadingComponents/LoadingScreen.varients';
+import NavigationBar from '../../components/NavigationBar/NavigationBar';
+import { NavigationBarContextProvider } from '../../contexts/NavigationBar/NavigationBar.context';
 
 export const withLoading = (WrappedComponent: React.FC<any>) => {
   return (props: any) => {
@@ -46,7 +48,12 @@ export const withLoading = (WrappedComponent: React.FC<any>) => {
             </motion.div>
           )}
         </AnimatePresence>
-        {!loading ? <WrappedComponent isAuthenticated={isAuthenticated} user={user} signOut={signOut} {...props} /> : null}
+        {!loading ? (
+          <NavigationBarContextProvider>
+            <NavigationBar />
+            <WrappedComponent isAuthenticated={isAuthenticated} user={user} signOut={signOut} {...props} />
+          </NavigationBarContextProvider>
+        ) : null}
       </Fragment>
     );
   };
