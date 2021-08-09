@@ -10,18 +10,19 @@ const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
       return;
     }
 
-    const { name, email, username, age } = req.body;
+    const { name, email, username, age, bio } = req.body;
 
     const { accessToken } = cookie.parse(req.headers.cookie);
 
     const client = createApolloClient(accessToken);
     const UPDATE_USER = gql`
-      mutation updateUser($name: String, $email: String, $username: String, $age: Int) {
-        updateUser(updateData: { name: $name, email: $email, username: $username, age: $age }) {
+      mutation updateUser($name: String, $email: String, $username: String, $age: Int, $bio: String) {
+        updateUser(updateData: { name: $name, email: $email, username: $username, age: $age, bio: $bio }) {
           id
           name
           email
           age
+          bio
           username
           picture
           createdAt
@@ -33,7 +34,7 @@ const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const response = await client.mutate({
         mutation: UPDATE_USER,
-        variables: { name, email, username, age },
+        variables: { name, email, username, age, bio },
       });
 
       const { updateUser } = response.data;

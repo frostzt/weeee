@@ -1,6 +1,7 @@
 export interface User {
   id: string;
   age: number;
+  bio: string;
   name: string;
   email: string;
   username: string;

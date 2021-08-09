@@ -25,6 +25,7 @@ export interface SignInProps {
 export interface UpdatedData {
   name: String;
   age: Number;
+  bio: String;
   email: String;
   username: String;
 }
@@ -116,12 +117,12 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   // Update User
   const updateUser = async (event: Event, updatedData: UpdatedData) => {
     event.preventDefault();
-    const { name, email, username, age } = updatedData;
+    const { name, email, username, age, bio } = updatedData;
 
     try {
       const res = await axios.post(
         `${NEXT_URL}/api/auth/updateUser`,
-        { name, email, username, age },
+        { name, email, username, age, bio },
         {
           headers: {
             'Content-Type': 'application/json',

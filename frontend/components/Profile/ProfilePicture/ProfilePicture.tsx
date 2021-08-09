@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 // Styling
 import cx from 'classnames';
@@ -8,9 +8,10 @@ import styles from './ProfilePicture.module.scss';
 interface Props {
   picture: string;
   extraClass?: string;
+  isUpdating?: Boolean;
 }
 
-const ProfilePicture: React.FC<Props> = ({ picture, extraClass }) => {
+const ProfilePicture: React.FC<Props> = ({ picture, extraClass, isUpdating }) => {
   return (
     <div className={cx([styles.container, extraClass ? extraClass : null])}>
       <div className={styles.picture}>

@@ -3,8 +3,8 @@ import { Exclude } from 'class-transformer';
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 export enum AccountType {
-  User,
-  Company,
+  User = 'User',
+  Company = 'Company',
 }
 
 @Entity()

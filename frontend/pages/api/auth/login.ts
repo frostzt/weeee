@@ -19,6 +19,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
             name
             email
             age
+            bio
             username
             picture
             createdAt

@@ -20,6 +20,7 @@ const user = async (req: NextApiRequest, res: NextApiResponse) => {
           age
           name
           email
+          bio
           username
           picture
           updatedAt

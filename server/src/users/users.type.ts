@@ -26,5 +26,8 @@ export class UsersType {
   @Field()
   picture: string;
 
+  @Field()
+  bio: string;
+
   password: string;
 }
