@@ -5,20 +5,20 @@ interface ContextProps {
 }
 
 // Pages Enum
-export enum Pages {
+export enum AvailablePages {
   Dashboard = 'dashboard',
   Me = 'me',
 }
 
 const NavigationBarContext = createContext({
-  current: Pages.Dashboard,
-  changePage: (to: Pages) => {},
+  current: AvailablePages.Dashboard,
+  changePage: (to: AvailablePages) => {},
 });
 
 export const NavigationBarContextProvider = ({ children }: ContextProps) => {
-  const [current, setCurrent] = useState(Pages.Dashboard);
+  const [current, setCurrent] = useState(AvailablePages.Dashboard);
 
-  const changePage = (to: Pages) => {
+  const changePage = (to: AvailablePages) => {
     setCurrent(to);
   };
 

@@ -15,6 +15,8 @@ const NavigationBar: React.FC = () => {
 
   const { current } = useContext(NavigationBarContext);
 
+  console.log(current);
+
   return (
     <motion.div variants={containerVarient} initial="initial" animate="animated" className={styles.container}>
       <div className={styles.main}>

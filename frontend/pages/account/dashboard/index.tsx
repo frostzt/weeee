@@ -1,7 +1,6 @@
 import Head from 'next/head';
-import toast from 'react-hot-toast';
 import { GetServerSideProps } from 'next';
-import { Fragment } from 'react';
+import { Fragment, useContext, useEffect } from 'react';
 
 // Styles
 import styles from './dashboard.module.scss';
@@ -11,6 +10,7 @@ import { User } from '../../../interfaces/User.interface';
 import { Button } from '../../../components/Button/Button';
 import { withLoading } from '../../../HOC/withLoading/withLoading';
 import { requireAuthentication } from '../../../HOC/requireAuthentication/requireAuthentication';
+import NavigationBarContext, { AvailablePages } from '../../../contexts/NavigationBar/NavigationBar.context';
 
 interface PageProps {
   signOut(): void;
@@ -23,6 +23,12 @@ interface AuthContextProps {
 }
 
 const DashboardPage: React.FC<PageProps> = ({ signOut, user }) => {
+  // Globally let the NavBar know that page change occured
+  const { changePage } = useContext(NavigationBarContext);
+  useEffect(() => {
+    changePage(AvailablePages.Dashboard);
+  }, []);
+
   console.log(user);
 
   return (

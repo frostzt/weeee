@@ -1,9 +1,11 @@
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
+import NavigationBarContext from '../../../contexts/NavigationBar/NavigationBar.context';
 
 // Custom
 import { User } from '../../../interfaces/User.interface';
+import { AvailablePages } from '../../../contexts/NavigationBar/NavigationBar.context';
 import { requireAuthentication } from '../../../HOC/requireAuthentication/requireAuthentication';
 
 // Components, HOCs
@@ -26,6 +28,12 @@ interface Props {
 
 const MePage: React.FC<Props> = ({ user }) => {
   const [isEditingProfile, setIsEditingProfile] = useState<Boolean>(false);
+
+  // Globally let the NavBar know that page changed
+  const { changePage } = useContext(NavigationBarContext);
+  useEffect(() => {
+    changePage(AvailablePages.Me);
+  }, []);
 
   // Handlers
   const handleEditingProfile = () => {
