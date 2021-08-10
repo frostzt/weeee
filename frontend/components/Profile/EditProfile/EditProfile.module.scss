@@ -38,6 +38,8 @@
   }
 
   .form {
+    padding-bottom: 6rem;
+
     & > *:first-child {
       margin-top: 6rem;
     }
@@ -76,7 +78,6 @@
       bottom: 2%;
       margin: 0 auto;
       position: fixed;
-      margin-top: 6rem;
       text-align: center;
 
       .signup {

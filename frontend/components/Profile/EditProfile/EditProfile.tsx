@@ -46,13 +46,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
           <label className={styles.group__label} htmlFor="name">
             Name
           </label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className={styles.group__input}
-            type="text"
-            name="name"
-          />
+          <input value={name} onChange={(e) => setName(e.target.value)} className={styles.group__input} type="text" name="name" />
         </div>
         <div className={styles.group}>
           <label className={styles.group__label} htmlFor="username">
