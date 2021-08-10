@@ -5,7 +5,7 @@ import NavigationBarContext from '../../contexts/NavigationBar/NavigationBar.con
 import { containerVarient, optionVarient } from './NavigationBar.varients';
 
 // Styling
-import { AiFillHome } from 'react-icons/ai';
+import cx from 'classnames';
 import { MdArrowDropUp } from 'react-icons/md';
 import styles from './NavigationBar.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -18,7 +18,10 @@ const NavigationBar: React.FC = () => {
   return (
     <motion.div variants={containerVarient} initial="initial" animate="animated" className={styles.container}>
       <div className={styles.main}>
-        <MdArrowDropUp onClick={() => setIsOpen((prevState) => !prevState)} />
+        <MdArrowDropUp
+          className={cx([styles.icon, isOpen ? styles.icon__rotate : styles.icon__derotate])}
+          onClick={() => setIsOpen((prevState) => !prevState)}
+        />
         <AnimatePresence>
           {isOpen && (
             <motion.div variants={optionVarient} initial="initial" animate="animated" exit="exit" className={styles.options}></motion.div>
