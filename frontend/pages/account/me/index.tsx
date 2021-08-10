@@ -19,7 +19,7 @@ import { motion } from 'framer-motion';
 import { AiFillEdit, AiFillMail } from 'react-icons/ai';
 
 // Varients
-import { profileVarient } from './me.varients';
+import { profileVarient } from '../../../framer-varients/me.varients';
 import { Toaster } from 'react-hot-toast';
 
 interface Props {
