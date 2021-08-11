@@ -1,5 +1,23 @@
+@import '../../styles/responsiveness.scss';
+
 .container {
   padding: 5rem;
+
+  @include respond(tablet) {
+    padding-left: 25rem;
+    padding-right: 25rem;
+  }
+
+  @include respond(laptop) {
+    padding-left: 25rem;
+    padding-right: 25rem;
+  }
+
+  @include respond(desktopCommon) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-right: 80rem;
+  }
 
   .heading {
     display: flex;
@@ -23,5 +41,14 @@
       margin-left: 2rem;
       letter-spacing: 0.8px;
     }
+  }
+
+  .board {
+    top: 0;
+    right: 0;
+    width: 80rem;
+    height: 100%;
+    position: absolute;
+    background-image: var(--background-gradient);
   }
 }

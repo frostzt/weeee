@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Toaster } from 'react-hot-toast';
 import { GetServerSideProps } from 'next';
 import React, { Fragment, useState, useContext, useEffect } from 'react';
 import NavigationBarContext from '../../../contexts/NavigationBar/NavigationBar.context';
@@ -20,7 +21,6 @@ import { AiFillEdit, AiFillMail } from 'react-icons/ai';
 
 // Varients
 import { profileVarient } from '../../../framer-varients/me.varients';
-import { Toaster } from 'react-hot-toast';
 
 interface Props {
   user: User;

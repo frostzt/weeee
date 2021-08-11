@@ -11,6 +11,7 @@ import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 
 // Styles
 import styles from './auth.module.scss';
+import { useMediaQuery } from 'react-responsive';
 import ClientOnly from '../../components/Utils/ClientOnly';
 
 const AuthPage = () => {
@@ -18,6 +19,9 @@ const AuthPage = () => {
   const { user } = useContext(AuthContext);
 
   const Router = useRouter();
+
+  // Media queries for rendering extra components
+  const isDesktopCommonOrAbove = useMediaQuery({ minWidth: 1366 });
 
   const switchContext = () => {
     setCreatingAccount((prevState) => !prevState);
@@ -48,6 +52,7 @@ const AuthPage = () => {
         ) : (
           <SignInForm creatingAccount={creatingAccount} switchHandler={switchContext} />
         )}
+        <ClientOnly>{isDesktopCommonOrAbove ? <div className={styles.board} /> : null}</ClientOnly>
       </div>
     </Fragment>
   );
