@@ -5,6 +5,7 @@ import { Fragment, useState, useContext } from 'react';
 import AuthContext from '../../contexts/AuthContext/Auth.context';
 
 // Components
+import ClientOnly from '../../components/Utils/ClientOnly';
 import { LinkedButton } from '../../components/Button/Button';
 import SignUpForm from '../../components/Auth/SignUpForm/SignUpForm';
 import SignInForm from '../../components/Auth/SignInForm/SignInForm';
@@ -12,7 +13,6 @@ import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 // Styles
 import styles from './auth.module.scss';
 import { useMediaQuery } from 'react-responsive';
-import ClientOnly from '../../components/Utils/ClientOnly';
 
 const AuthPage = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
@@ -32,7 +32,7 @@ const AuthPage = () => {
   }
 
   return (
-    <Fragment>
+    <div className={styles.global}>
       <ClientOnly>
         <Toaster position="top-right" reverseOrder={true} />
       </ClientOnly>
@@ -52,9 +52,11 @@ const AuthPage = () => {
         ) : (
           <SignInForm creatingAccount={creatingAccount} switchHandler={switchContext} />
         )}
-        <ClientOnly>{isDesktopCommonOrAbove ? <div className={styles.board} /> : null}</ClientOnly>
+        <ClientOnly extraClasses={styles.bcontainer}>
+          {isDesktopCommonOrAbove ? <div className={styles.bcontainer__board} /> : null}
+        </ClientOnly>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

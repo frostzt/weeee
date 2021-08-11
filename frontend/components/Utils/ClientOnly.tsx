@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface Props {
-  children: any;
+  children: React.ReactNode;
+  extraClasses?: string;
 }
 
-const ClientOnly: React.FC<Props> = ({ children, ...delegated }) => {
+const ClientOnly: React.FC<Props> = ({ children, extraClasses, ...delegated }) => {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -15,6 +16,10 @@ const ClientOnly: React.FC<Props> = ({ children, ...delegated }) => {
     return null;
   }
 
-  return <div {...delegated}>{children}</div>;
+  return (
+    <div className={extraClasses} {...delegated}>
+      {children}
+    </div>
+  );
 };
 export default ClientOnly;

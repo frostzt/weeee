@@ -1,56 +1,83 @@
 @import '../../styles/responsiveness.scss';
 @import '../../styles/animations.scss';
 
-.container {
-  padding: 5rem;
+.global {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 
-  @include respond(tablet) {
-    padding-left: 25rem;
-    padding-right: 25rem;
-  }
+  .container {
+    padding: 5rem;
+    overflow: hidden;
 
-  @include respond(laptop) {
-    padding-left: 25rem;
-    padding-right: 25rem;
-  }
-
-  @include respond(desktopCommon) {
-    padding-left: 5rem;
-    padding-right: 5rem;
-    margin-right: 80rem;
-  }
-
-  .heading {
-    display: flex;
-    align-items: flex-end;
-
-    .backbtn {
-      padding: 1.2rem;
-      font-size: 2.7rem;
-      line-height: 0.7;
-      font-weight: 700;
-      border-radius: 1.3rem;
-      display: inline-block;
-      color: rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+    @include respond(tablet) {
+      padding-left: 25rem;
+      padding-right: 25rem;
     }
 
-    .title {
-      color: white;
-      font-size: 4rem;
-      font-weight: 900;
-      margin-left: 2rem;
-      letter-spacing: 0.8px;
+    @include respond(laptop) {
+      padding-left: 25rem;
+      padding-right: 25rem;
     }
-  }
 
-  .board {
-    top: 0;
-    right: 0;
-    width: 80rem;
-    height: 100%;
-    position: absolute;
-    background-image: var(--background-gradient);
-    animation: animatedImageGradient 8s ease-in-out infinite;
+    @include respond(desktopCommon) {
+      padding-left: 5rem;
+      padding-right: 5rem;
+      margin-right: 80rem;
+    }
+
+    @include respond(fullHd) {
+      margin-right: 135rem;
+    }
+
+    @include respond(hugeScreen) {
+      margin-right: 170rem;
+    }
+
+    .heading {
+      display: flex;
+      align-items: flex-end;
+
+      .backbtn {
+        padding: 1.2rem;
+        font-size: 2.7rem;
+        line-height: 0.7;
+        font-weight: 700;
+        border-radius: 1.3rem;
+        display: inline-block;
+        color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+
+      .title {
+        color: white;
+        font-size: 4rem;
+        font-weight: 900;
+        margin-left: 2rem;
+        letter-spacing: 0.8px;
+      }
+    }
+
+    .bcontainer {
+      height: 100%;
+
+      &__board {
+        top: 0;
+        right: 0;
+        width: 80rem;
+        height: 100%;
+        position: absolute;
+        background-image: var(--background-gradient);
+        animation: animatedImageGradient 8s ease-in-out infinite;
+
+        @include respond(fullHd) {
+          width: 135rem;
+        }
+
+        @include respond(hugeScreen) {
+          width: 170rem;
+        }
+      }
+    }
   }
 }
