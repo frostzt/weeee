@@ -7,6 +7,7 @@ import { User } from './users.entity';
 import { UsersResolver } from './users.resolver';
 import { UsersService } from './users.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { Company } from './company.entity';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
         },
       }),
     }),
-    MikroOrmModule.forFeature([User]),
+    MikroOrmModule.forFeature([User, Company]),
   ],
   providers: [UsersService, UsersResolver, JwtStrategy],
   exports: [JwtStrategy, PassportModule],

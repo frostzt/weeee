@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
+import { Company } from './company.entity';
 import { Exclude } from 'class-transformer';
 import { AccountType } from './enums/AccoutType';
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity()
 export class User {
@@ -38,4 +39,7 @@ export class User {
 
   @Property({ default: AccountType.User })
   accountType: string;
+
+  @ManyToOne(() => Company, { nullable: true })
+  companyOrOrganization?: Company;
 }
