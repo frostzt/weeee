@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Toaster } from 'react-hot-toast';
+import { useState, useContext } from 'react';
 import { useRouter } from 'next/dist/client/router';
-import { Fragment, useState, useContext } from 'react';
 import AuthContext from '../../contexts/AuthContext/Auth.context';
 
 // Components

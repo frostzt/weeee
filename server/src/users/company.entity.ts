@@ -4,7 +4,7 @@ import { AccountType } from './enums/AccoutType';
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity()
-export class User {
+export class Company {
   @PrimaryKey({ default: uuidv4() })
   id!: string;
 
@@ -21,21 +21,12 @@ export class User {
   email: string;
 
   @Property({ nullable: true })
-  age?: number;
-
-  @Property({ nullable: true })
   bio?: string;
-
-  @Property({ nullable: false })
-  username: string;
 
   @Property()
   @Exclude({ toPlainOnly: true })
   password: string;
 
-  @Property({ default: 'cat' })
-  picture: string;
-
-  @Property({ default: AccountType.User })
+  @Property({ default: AccountType.Company })
   accountType: string;
 }
