@@ -26,8 +26,8 @@ export class UsersType {
   @Field()
   picture: string;
 
-  @Field()
-  bio: string;
+  @Field(() => String, { nullable: true })
+  bio?: string;
 
   password: string;
 }
