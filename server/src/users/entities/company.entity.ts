@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { User } from './users.entity';
 import { Exclude } from 'class-transformer';
-import { AccountType } from './enums/AccoutType';
+import { AccountType } from '../enums/AccoutType';
 import { Entity, OneToMany, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity()

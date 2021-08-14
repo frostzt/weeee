@@ -3,11 +3,11 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { User } from './users.entity';
+import { User } from './entities/users.entity';
 import { UsersResolver } from './users.resolver';
 import { UsersService } from './users.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { Company } from './company.entity';
+import { Company } from './entities/company.entity';
 
 @Module({
   imports: [

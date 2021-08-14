@@ -1,4 +1,5 @@
 import { Field, ObjectType, ID } from '@nestjs/graphql';
+import { User } from './entities/users.entity';
 
 @ObjectType()
 export class CompanyType {
@@ -16,4 +17,13 @@ export class CompanyType {
 
   @Field()
   email: string;
+
+  @Field()
+  bio?: string;
+
+  @Field()
+  picture: string;
+
+  @Field()
+  user?: User[];
 }

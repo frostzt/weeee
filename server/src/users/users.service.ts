@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateUserInput } from './inputs/create-user.input';
-import { User } from './users.entity';
+import { User } from './entities/users.entity';
 import * as bcrypt from 'bcrypt';
 import { LoginUserInput } from './inputs/login-user.input';
 import { JwtService } from '@nestjs/jwt';

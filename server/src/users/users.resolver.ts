@@ -10,7 +10,7 @@ import { CreateUserInput } from './inputs/create-user.input';
 import { LoginUserInput } from './inputs/login-user.input';
 import { UpdateUserInput } from './inputs/update-user.input';
 import { UserWToken } from './types/UserWToken';
-import { User } from './users.entity';
+import { User } from './entities/users.entity';
 import { UsersService } from './users.service';
 import { UsersType } from './users.type';
 
