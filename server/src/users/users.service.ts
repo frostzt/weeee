@@ -12,6 +12,8 @@ import * as bcrypt from 'bcrypt';
 import { LoginUserInput } from './inputs/login-user.input';
 import { JwtService } from '@nestjs/jwt';
 import { UpdateUserInput } from './inputs/update-user.input';
+import { Company } from './entities/company.entity';
+import { CreateCompanyInput } from './inputs/create-company.input';
 
 export interface UserWToken {
   accessToken: string;
@@ -22,6 +24,8 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: EntityRepository<User>,
+    @InjectRepository(Company)
+    private companyRepository: EntityRepository<Company>,
     private jwtService: JwtService,
   ) {}
 
@@ -55,6 +59,32 @@ export class UsersService {
     });
 
     await this.usersRepository.persistAndFlush(user);
+    return 'success';
+  }
+
+  async createCompany(createCompanyInput: CreateCompanyInput): Promise<string> {
+    const { name, email, password } = createCompanyInput;
+
+    // Check if the company account already exists
+    const emailExists = await this.companyRepository.findOne({ email });
+    if (emailExists) {
+      throw new BadRequestException(
+        'This company is already registered. Please contact your account manager.',
+      );
+    }
+
+    // Hash the password
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const company = this.companyRepository.create({
+      id: uuidv4(),
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    await this.companyRepository.persistAndFlush(company);
     return 'success';
   }
 

@@ -4,7 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from './entities/users.entity';
-import { UsersResolver } from './users.resolver';
+import { UsersResolver } from './resolvers/users.resolver';
 import { UsersService } from './users.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { Company } from './entities/company.entity';
