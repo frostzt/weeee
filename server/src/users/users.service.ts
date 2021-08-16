@@ -62,6 +62,7 @@ export class UsersService {
     return 'success';
   }
 
+  // Register a company and create a company account
   async createCompany(createCompanyInput: CreateCompanyInput): Promise<string> {
     const { name, email, password } = createCompanyInput;
 
@@ -86,6 +87,11 @@ export class UsersService {
 
     await this.companyRepository.persistAndFlush(company);
     return 'success';
+  }
+
+  // Get all companies
+  async getAllCompanies(): Promise<Company[]> {
+    return this.companyRepository.findAll();
   }
 
   // Get and return a user using the Bearer Token

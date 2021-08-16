@@ -40,6 +40,6 @@ export class User {
   @Property({ default: AccountType.User })
   accountType: string;
 
-  @ManyToOne(() => Company, { nullable: true })
+  @ManyToOne(() => Company)
   companyOrOrganization?: Company;
 }

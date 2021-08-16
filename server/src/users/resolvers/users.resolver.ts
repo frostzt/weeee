@@ -14,6 +14,7 @@ import { User } from '../entities/users.entity';
 import { UsersService } from '../users.service';
 import { UsersType } from '../users.type';
 import { CreateCompanyInput } from '../inputs/create-company.input';
+import { CompanyType } from '../company.type';
 
 @Resolver()
 export class UsersResolver {
@@ -23,6 +24,11 @@ export class UsersResolver {
   @Query(() => UserWToken)
   signIn(@Args('loginData') loginData: LoginUserInput) {
     return this.usersService.signIn(loginData);
+  }
+
+  @Query(() => [CompanyType])
+  getAllCompanies() {
+    return this.usersService.getAllCompanies();
   }
 
   @UseInterceptors(ClassSerializerInterceptor)
