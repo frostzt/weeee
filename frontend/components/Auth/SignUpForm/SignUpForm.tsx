@@ -25,19 +25,13 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
     <div className={styles.container}>
       <form className={styles.form}>
         <div className={styles.group}>
-          <label className={styles.group__label} htmlFor="name">
+          <label title="Name" className={styles.group__label} htmlFor="name">
             Name
           </label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className={styles.group__input}
-            type="text"
-            name="name"
-          />
+          <input value={name} onChange={(e) => setName(e.target.value)} className={styles.group__input} type="text" name="name" />
         </div>
         <div className={styles.group}>
-          <label className={styles.group__label} htmlFor="username">
+          <label title="Username" className={styles.group__label} htmlFor="username">
             Username
           </label>
           <input
@@ -49,19 +43,13 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
           />
         </div>
         <div className={styles.group}>
-          <label className={styles.group__label} htmlFor="email">
+          <label title="Email" className={styles.group__label} htmlFor="email">
             Email
           </label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={styles.group__input}
-            type="email"
-            name="email"
-          />
+          <input value={email} onChange={(e) => setEmail(e.target.value)} className={styles.group__input} type="email" name="email" />
         </div>
         <div className={styles.group}>
-          <label className={styles.group__label} htmlFor="password">
+          <label title="Password" className={styles.group__label} htmlFor="password">
             Password
           </label>
           <input
@@ -73,7 +61,7 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
           />
         </div>
         <div className={styles.group}>
-          <label className={styles.group__label} htmlFor="cpassword">
+          <label title="Confirm Password" className={styles.group__label} htmlFor="cpassword">
             Confirm Password
           </label>
           <input
@@ -84,11 +72,8 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
             name="cpassword"
           />
         </div>
-        <div className={styles.btns}>
-          <Button
-            extraClass={styles.signup}
-            handler={(e: Event) => signUp(e, { name, username, email, password, confirmPassword })}
-          >
+        <div title="Signup button" className={styles.btns}>
+          <Button extraClass={styles.signup} handler={(e: Event) => signUp(e, { name, username, email, password, confirmPassword })}>
             Sign Up
           </Button>
           <div className={styles.switch}>
