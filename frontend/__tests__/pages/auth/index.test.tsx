@@ -1,6 +1,6 @@
 // @ts-nocheck
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 // Pages
 import Index from '@pages/auth/index.tsx';

@@ -9,11 +9,7 @@ import styles from '../styles/Home.module.scss';
 import { IoIosArrowDown } from 'react-icons/io';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import {
-  AiFillTwitterCircle,
-  AiFillGithub,
-  AiFillLinkedin,
-} from 'react-icons/ai';
+import { AiFillTwitterCircle, AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 
 // Contexts
 import AuthContext from '../contexts/AuthContext/Auth.context';
@@ -70,23 +66,15 @@ function Home() {
 
   return (
     <>
-      <Logo
-        initial={{ x: '-500%' }}
-        animate={{ x: '0' }}
-        transition={{ ease: 'easeInOut', duration: 1 }}
-        className={styles.logo}
-      />
+      <Logo initial={{ x: '-500%' }} animate={{ x: '0' }} transition={{ ease: 'easeInOut', duration: 1 }} className={styles.logo} />
       <Head>
         <title>Weeee - Management made easier</title>
-        <meta
-          name="description"
-          content="A simple application to manage your team, projects, and tasks."
-        />
+        <meta name="description" content="A simple application to manage your team, projects, and tasks." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       {/* --------------------------------- HEADER --------------------------------- */}
-      <header className={styles.header}>
+      <header data-testid="landing-header" className={styles.header}>
         <div className={styles.title_sub_container}>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -128,11 +116,7 @@ function Home() {
             </div>
             easily!
           </motion.h1>
-          <motion.sub
-            initial={{ opacity: 0, y: 20 }}
-            animate={subTitleControl}
-            className={styles.subtitle}
-          >
+          <motion.sub initial={{ opacity: 0, y: 20 }} animate={subTitleControl} className={styles.subtitle}>
             Manage everything at one place
             <br />
           </motion.sub>
@@ -143,12 +127,8 @@ function Home() {
       </header>
 
       {/* --------------------------------- FEATURES --------------------------------- */}
-      <section ref={featuresRef} className={styles.features}>
-        <motion.div
-          initial={{ y: '20%', opacity: 0 }}
-          animate={cardsControl}
-          className={styles.cards}
-        >
+      <section data-testid="landing-features" ref={featuresRef} className={styles.features}>
+        <motion.div initial={{ y: '20%', opacity: 0 }} animate={cardsControl} className={styles.cards}>
           <FeatureCard
             image="/images/svgs/teamwork.svg"
             heroUrl="/images/img/teamwork.png"
@@ -180,49 +160,36 @@ function Home() {
       </section>
 
       {/* --------------------------------- WHY-WE --------------------------------- */}
-      <section className={styles.whywe}>
+      <section data-testid="landing-why" className={styles.whywe}>
         <div className={styles.whywe__container}>
           <h2 className={styles.whywe__title}>
             But why <span className={styles.whywe__title_grad}>weeee?</span>
           </h2>
           <p className={styles.whywe__paragraph}>
-            We provide you with complete control over the software, after all
-            you're the one using it. You can change it as you like. Which makes
-            this open source software is not only free but highly configurable.
-            Not only that we are constantly working on bringing latest updates
-            and developing new features as well.
+            We provide you with complete control over the software, after all you're the one using it. You can change it as you like.
+            Which makes this open source software is not only free but highly configurable. Not only that we are constantly working on
+            bringing latest updates and developing new features as well.
           </p>
           <br />
           <p className={styles.whywe__paragraph}>
-            Now you're wondering, this is too good to be true! Naah! It is true;
-            you get everything for free, however, yes there is a catch! The
-            application deployed here is for feature purposes and will not hold
-            any data for long! Therefore hosting the app is upto you! We have
-            tried our best to make sure that this application is as perfect and
-            easy to use as possible with easy deployment and easy configuration!
+            Now you're wondering, this is too good to be true! Naah! It is true; you get everything for free, however, yes there is a
+            catch! The application deployed here is for feature purposes and will not hold any data for long! Therefore hosting the app is
+            upto you! We have tried our best to make sure that this application is as perfect and easy to use as possible with easy
+            deployment and easy configuration!
           </p>
         </div>
       </section>
 
       {/* --------------------------------- FOOTER --------------------------------- */}
       {/* FOOTER-FLOATER */}
-      <footer className={styles.footer}>
+      <footer data-testid="landing-footer" className={styles.footer}>
         <div className={styles.footer__floater}>
-          <div
-            className={cx([
-              styles.footer__floater_content,
-              styles.footer__floater_seen,
-            ])}
-          >
-            Wanna see the the app repository and jump straight into how to
-            deploy it?
+          <div className={cx([styles.footer__floater_content, styles.footer__floater_seen])}>
+            Wanna see the the app repository and jump straight into how to deploy it?
           </div>
           <a
             rel="noreferrer"
-            className={cx([
-              styles.footer__floater_content,
-              styles.footer__floater_unseen,
-            ])}
+            className={cx([styles.footer__floater_content, styles.footer__floater_unseen])}
             href="https://github.com/frostzt/weeee"
             target="_blank"
           >
@@ -245,10 +212,7 @@ function Home() {
               </Link>
             </div>
             <div className={styles.footer__links_holder}>
-              <a
-                href="mailto:aidenfrostbite@gmail.com?subject=Important!"
-                target="_blank"
-              >
+              <a href="mailto:aidenfrostbite@gmail.com?subject=Important!" target="_blank">
                 <div className={styles.footer__links_link}>Contact</div>
               </a>
             </div>
@@ -270,26 +234,17 @@ function Home() {
         {/* FOOTER-LOWER-PART */}
         <div className={styles.footer__lower}>
           <div className={styles.footer__lower_linkHolder}>
-            <a
-              href="https://twitter.com/souravsrawat"
-              className={styles.footer__lower_link}
-            >
+            <a href="https://twitter.com/souravsrawat" className={styles.footer__lower_link}>
               <AiFillTwitterCircle className={styles.footer__lower_link_icon} />
             </a>
           </div>
           <div className={styles.footer__lower_linkHolder}>
-            <a
-              href="https://github.com/frostzt"
-              className={styles.footer__lower_link}
-            >
+            <a href="https://github.com/frostzt" className={styles.footer__lower_link}>
               <AiFillGithub className={styles.footer__lower_link_icon} />
             </a>
           </div>
           <div className={styles.footer__lower_linkHolder}>
-            <a
-              href="https://www.linkedin.com/in/frostzt/"
-              className={styles.footer__lower_link}
-            >
+            <a href="https://www.linkedin.com/in/frostzt/" className={styles.footer__lower_link}>
               <AiFillLinkedin className={styles.footer__lower_link_icon} />
             </a>
           </div>
