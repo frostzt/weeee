@@ -98,6 +98,12 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
             placeholder="Tell us something about yourself..."
           />
         </div>
+        <div className={styles.group}>
+          <label className={styles.group__label} htmlFor="company">
+            Company/Organization
+          </label>
+          <input className={styles.group__input} type="text" />
+        </div>
         <div className={styles.btns}>
           <Button extraClass={styles.signup} handler={(e: Event) => updateUser(e, { name, age, email, username, bio })}>
             Update

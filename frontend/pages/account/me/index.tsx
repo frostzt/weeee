@@ -14,6 +14,9 @@ import { withLoading } from '../../../HOC/withLoading/withLoading';
 import EditProfile from '../../../components/Profile/EditProfile/EditProfile';
 import ProfilePicture from '../../../components/Profile/ProfilePicture/ProfilePicture';
 
+// Apollo
+import { client } from '../../../apollo-client';
+
 // Styling
 import styles from './me.module.scss';
 import { motion } from 'framer-motion';
@@ -68,6 +71,8 @@ const MePage: React.FC<Props> = ({ user }) => {
 export default withLoading(MePage);
 
 export const getServerSideProps: GetServerSideProps = requireAuthentication(async (_ctx) => {
+  // const { data } = await client;
+
   return {
     props: {},
   };
