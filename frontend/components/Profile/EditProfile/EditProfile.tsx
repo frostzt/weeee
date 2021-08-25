@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../../contexts/AuthContext/Auth.context';
 
+// Interfaces
+import { Company } from 'pages/account/me';
+
 // Components
 import { User } from '../../../interfaces/User.interface';
 import { Button, DivButton } from '../../Button/Button';
@@ -11,18 +14,23 @@ import styles from './EditProfile.module.scss';
 
 interface Props {
   user: User;
+  companies: Company[];
   stateHandler(): void;
 }
 
-const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
+const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
   // Initialize the states
   const [age, setAge] = useState(0);
   const [bio, setBio] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
+  const [organization, setOrganization] = useState('');
 
   const { updateUser } = useContext(AuthContext);
+
+  console.log(companies);
+  console.log(user);
 
   // Update the states to the user informations
   useEffect(() => {
@@ -32,6 +40,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
       setUsername(user.username);
       setAge(user.age ? user.age : 0);
       setBio(user.bio ? user.bio : '');
+      setOrganization(user.company ? user.company : '');
     }
   }, [user]);
 
@@ -102,7 +111,16 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler }) => {
           <label className={styles.group__label} htmlFor="company">
             Company/Organization
           </label>
-          <input className={styles.group__input} type="text" />
+          <select name="companies" id="select-company">
+            <option className={styles.group__input} value="">
+              --Select a company--
+            </option>
+            {companies.map((company) => (
+              <option key={company.id} value={company.id}>
+                {company.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className={styles.btns}>
           <Button extraClass={styles.signup} handler={(e: Event) => updateUser(e, { name, age, email, username, bio })}>

@@ -15,6 +15,7 @@ import EditProfile from '../../../components/Profile/EditProfile/EditProfile';
 import ProfilePicture from '../../../components/Profile/ProfilePicture/ProfilePicture';
 
 // Apollo
+import { gql } from '@apollo/client';
 import { client } from '../../../apollo-client';
 
 // Styling
@@ -25,11 +26,18 @@ import { AiFillEdit, AiFillMail } from 'react-icons/ai';
 // Varients
 import { profileVarient } from '../../../framer-varients/me.varients';
 
-interface Props {
-  user: User;
+export interface Company {
+  id: string;
+  name: string;
+  email: string;
 }
 
-const MePage: React.FC<Props> = ({ user }) => {
+interface Props {
+  user: User;
+  companies: Company[];
+}
+
+const MePage: React.FC<Props> = ({ user, companies }) => {
   const [isEditingProfile, setIsEditingProfile] = useState<Boolean>(false);
 
   // Globally let the NavBar know that page changed
@@ -49,7 +57,7 @@ const MePage: React.FC<Props> = ({ user }) => {
         <title>Customize your profile | Weeee</title>
       </Head>
       <Toaster />
-      {isEditingProfile ? <EditProfile stateHandler={handleEditingProfile} user={user} /> : null}
+      {isEditingProfile ? <EditProfile companies={companies} stateHandler={handleEditingProfile} user={user} /> : null}
       <div className={styles.container}>
         <motion.div variants={profileVarient} initial="initial" animate="animated" className={styles.profile}>
           <div onClick={handleEditingProfile} className={styles.item}>
@@ -71,9 +79,21 @@ const MePage: React.FC<Props> = ({ user }) => {
 export default withLoading(MePage);
 
 export const getServerSideProps: GetServerSideProps = requireAuthentication(async (_ctx) => {
-  // const { data } = await client;
+  const { data } = await client.query({
+    query: gql`
+      query getAllCompanies {
+        getAllCompanies {
+          id
+          name
+          email
+        }
+      }
+    `,
+  });
 
   return {
-    props: {},
+    props: {
+      companies: data.getAllCompanies,
+    },
   };
 });
