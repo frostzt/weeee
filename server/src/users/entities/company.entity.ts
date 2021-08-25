@@ -5,6 +5,7 @@ import { AccountType } from '../enums/AccoutType';
 import {
   Collection,
   Entity,
+  LoadStrategy,
   OneToMany,
   PrimaryKey,
   Property,
@@ -40,8 +41,10 @@ export class Company {
   @Property({ default: AccountType.Company })
   accountType: string;
 
-  @OneToMany(() => User, (user) => user.companyOrOrganization, {
-    nullable: true,
+  @OneToMany({
+    entity: () => User,
+    mappedBy: (b) => b.companyOrOrganization,
+    strategy: LoadStrategy.JOINED,
   })
   users? = new Collection<User>(this);
 }

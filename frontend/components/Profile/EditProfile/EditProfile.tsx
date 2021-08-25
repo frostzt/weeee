@@ -40,7 +40,6 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
       setUsername(user.username);
       setAge(user.age ? user.age : 0);
       setBio(user.bio ? user.bio : '');
-      setOrganization(user.company ? user.company : '');
     }
   }, [user]);
 
@@ -111,7 +110,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
           <label className={styles.group__label} htmlFor="company">
             Company/Organization
           </label>
-          <select name="companies" id="select-company">
+          <select value={organization} onChange={(e) => setOrganization(e.target.value)} name="companies" id="select-company">
             <option className={styles.group__input} value="">
               --Select a company--
             </option>
@@ -123,7 +122,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
           </select>
         </div>
         <div className={styles.btns}>
-          <Button extraClass={styles.signup} handler={(e: Event) => updateUser(e, { name, age, email, username, bio })}>
+          <Button extraClass={styles.signup} handler={(e: Event) => updateUser(e, { name, age, email, username, bio, organization })}>
             Update
           </Button>
           <DivButton handler={stateHandler} extraClass={styles.discard}>

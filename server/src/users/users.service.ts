@@ -127,7 +127,11 @@ export class UsersService {
     });
 
     // Update the user
-    const { name, email, age, username, bio } = updateData;
+    const { name, email, age, username, bio, companyOrOrganization } =
+      updateData;
+
+    console.log(companyOrOrganization);
+
     if (name) {
       updatedUser.name = name;
     }

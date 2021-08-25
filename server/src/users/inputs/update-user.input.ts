@@ -38,4 +38,9 @@ export class UpdateUserInput {
   @MinLength(1)
   @Field(() => String, { nullable: true })
   bio?: string;
+
+  @IsOptional()
+  @IsString()
+  @Field(() => String, { nullable: true })
+  companyOrOrganization?: string;
 }
