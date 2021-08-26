@@ -85,7 +85,6 @@ export const getServerSideProps: GetServerSideProps = requireAuthentication(asyn
         getAllCompanies {
           id
           name
-          email
         }
       }
     `,

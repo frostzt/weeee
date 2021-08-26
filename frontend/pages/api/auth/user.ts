@@ -1,33 +1,24 @@
 import cookie from 'cookie';
-import { gql } from '@apollo/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createApolloClient } from '../../../Utils/createApolloClient';
 
+// Queries
+import { getUserQuery } from 'GraphQLQueries/userQueries';
+
 const user = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
+    // Return if no cookie exists
     if (!req.headers.cookie) {
       res.status(403).json({ message: 'Not authorized!' });
       return;
     }
 
+    // Get accessToken from parsed cookie
     const { accessToken } = cookie.parse(req.headers.cookie);
 
+    // Create new apollo-client and the query
     const client = createApolloClient(accessToken);
-    const GET_USER = gql`
-      query {
-        getUser {
-          id
-          age
-          name
-          email
-          bio
-          username
-          picture
-          updatedAt
-          createdAt
-        }
-      }
-    `;
+    const GET_USER = getUserQuery;
 
     try {
       const response = await client.query({

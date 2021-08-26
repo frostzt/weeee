@@ -1,6 +1,8 @@
 import cookie from 'cookie';
-import { gql } from '@apollo/client';
 import { NextApiRequest, NextApiResponse } from 'next';
+
+// GraphQL Queries/Mutations
+import { signInUserQuery } from 'GraphQLQueries/userQueries';
 
 // Custom imports
 import { createApolloClientNT } from '../../../Utils/createApolloClient';
@@ -10,24 +12,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
     const { email, password } = req.body;
 
     const client = createApolloClientNT();
-    const SIGN_IN = gql`
-      query signIn($email: String!, $password: String!) {
-        signIn(loginData: { email: $email, password: $password }) {
-          accessToken
-          user {
-            id
-            name
-            email
-            age
-            bio
-            username
-            picture
-            createdAt
-            updatedAt
-          }
-        }
-      }
-    `;
+    const SIGN_IN = signInUserQuery;
 
     try {
       const response = await client.query({

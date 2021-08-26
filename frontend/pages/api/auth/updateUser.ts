@@ -1,7 +1,9 @@
-import { gql } from '@apollo/client';
 import cookie from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createApolloClient } from '../../../Utils/createApolloClient';
+
+// GraphQL Queries/Mutations
+import { updateUserMutation } from 'GraphQLQueries/userQueries';
 
 const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
@@ -15,30 +17,7 @@ const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
     const { accessToken } = cookie.parse(req.headers.cookie);
 
     const client = createApolloClient(accessToken);
-    const UPDATE_USER = gql`
-      mutation updateUser($name: String, $email: String, $username: String, $age: Int, $bio: String, $companyOrOrganization: String) {
-        updateUser(
-          updateData: {
-            name: $name
-            email: $email
-            username: $username
-            age: $age
-            bio: $bio
-            companyOrOrganization: $companyOrOrganization
-          }
-        ) {
-          id
-          name
-          email
-          age
-          bio
-          username
-          picture
-          createdAt
-          updatedAt
-        }
-      }
-    `;
+    const UPDATE_USER = updateUserMutation;
 
     try {
       const response = await client.mutate({

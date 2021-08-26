@@ -1,17 +1,15 @@
-import { gql } from '@apollo/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createApolloClientNT } from '../../../Utils/createApolloClient';
+
+// GraphQL Queries/Mutations
+import { signUpMutation } from 'GraphQLQueries/userQueries';
 
 const signup = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const { name, email, username, password } = req.body;
 
     const client = createApolloClientNT();
-    const SIGN_UP = gql`
-      mutation signUp($name: String!, $email: String!, $username: String!, $password: String!) {
-        signUp(createUserInput: { name: $name, email: $email, username: $username, password: $password })
-      }
-    `;
+    const SIGN_UP = signUpMutation;
 
     try {
       await client.mutate({
