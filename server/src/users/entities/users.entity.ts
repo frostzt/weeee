@@ -41,5 +41,5 @@ export class User {
   accountType: string;
 
   @ManyToOne(() => Company)
-  companyOrOrganization?: Company;
+  companyOrOrganization?: string;
 }

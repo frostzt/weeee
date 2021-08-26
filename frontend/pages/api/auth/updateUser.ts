@@ -16,7 +16,7 @@ const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const client = createApolloClient(accessToken);
     const UPDATE_USER = gql`
-      mutation updateUser($name: String, $email: String, $username: String, $age: Int, $bio: String) {
+      mutation updateUser($name: String, $email: String, $username: String, $age: Int, $bio: String, $companyOrOrganization: String) {
         updateUser(
           updateData: {
             name: $name
@@ -49,7 +49,7 @@ const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
       const { updateUser } = response.data;
       res.json({ user: updateUser });
     } catch (error) {
-      console.error(error.ApolloError);
+      console.error(error.networkError.result.errors);
       res.json({ error });
     }
   }

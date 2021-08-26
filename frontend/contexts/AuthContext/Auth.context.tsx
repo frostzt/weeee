@@ -28,6 +28,7 @@ export interface UpdatedData {
   bio: String;
   email: String;
   username: String;
+  companyOrOrganization: String;
 }
 
 const AuthContext = createContext({
@@ -35,7 +36,7 @@ const AuthContext = createContext({
   error: undefined,
   signIn: (event: Event, credentials: SignInProps) => {},
   signUp: (event: Event, credentials: SignUpProps) => {},
-  updateUser: (event: Event, updatedData: any) => {},
+  updateUser: (event: Event, updatedData: UpdatedData) => {},
   signOut: () => {},
 });
 
@@ -117,12 +118,12 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   // Update User
   const updateUser = async (event: Event, updatedData: UpdatedData) => {
     event.preventDefault();
-    const { name, email, username, age, bio } = updatedData;
+    const { name, email, username, age, bio, companyOrOrganization } = updatedData;
 
     try {
       const res = await axios.post(
         `${NEXT_URL}/api/auth/updateUser`,
-        { name, email, username, age, bio },
+        { name, email, username, age, bio, companyOrOrganization },
         {
           headers: {
             'Content-Type': 'application/json',

@@ -29,9 +29,6 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
 
   const { updateUser } = useContext(AuthContext);
 
-  console.log(companies);
-  console.log(user);
-
   // Update the states to the user informations
   useEffect(() => {
     if (user) {
@@ -122,7 +119,10 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
           </select>
         </div>
         <div className={styles.btns}>
-          <Button extraClass={styles.signup} handler={(e: Event) => updateUser(e, { name, age, email, username, bio, organization })}>
+          <Button
+            extraClass={styles.signup}
+            handler={(e: Event) => updateUser(e, { name, age, email, username, bio, companyOrOrganization: organization })}
+          >
             Update
           </Button>
           <DivButton handler={stateHandler} extraClass={styles.discard}>

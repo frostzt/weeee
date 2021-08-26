@@ -130,8 +130,6 @@ export class UsersService {
     const { name, email, age, username, bio, companyOrOrganization } =
       updateData;
 
-    console.log(companyOrOrganization);
-
     if (name) {
       updatedUser.name = name;
     }
@@ -150,6 +148,10 @@ export class UsersService {
 
     if (bio) {
       updatedUser.bio = bio;
+    }
+
+    if (companyOrOrganization) {
+      user.companyOrOrganization = companyOrOrganization;
     }
 
     await this.usersRepository.persistAndFlush(updatedUser);
