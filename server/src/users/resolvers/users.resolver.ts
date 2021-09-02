@@ -12,7 +12,7 @@ import { UpdateUserInput } from '../inputs/update-user.input';
 import { UserWToken } from '../types/UserWToken';
 import { User } from '../entities/users.entity';
 import { UsersService } from '../users.service';
-import { UsersType } from '../users.type';
+import { FullUser, UsersType } from '../users.type';
 import { CreateCompanyInput } from '../inputs/create-company.input';
 import { CompanyType } from '../company.type';
 
@@ -32,7 +32,7 @@ export class UsersResolver {
   }
 
   @UseInterceptors(ClassSerializerInterceptor)
-  @Query(() => UsersType)
+  @Query(() => FullUser)
   @UseGuards(GqlAuthGuard)
   getUser(@CurrentUser() user: User) {
     return this.usersService.getUser(user);

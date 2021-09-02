@@ -5,7 +5,7 @@ import AuthContext from '../../../contexts/AuthContext/Auth.context';
 import { Company } from 'pages/account/me';
 
 // Components
-import { User } from '../../../interfaces/User.interface';
+import { FullUser } from '../../../interfaces/User.interface';
 import { Button, DivButton } from '../../Button/Button';
 import ProfilePicture from '../ProfilePicture/ProfilePicture';
 
@@ -13,7 +13,7 @@ import ProfilePicture from '../ProfilePicture/ProfilePicture';
 import styles from './EditProfile.module.scss';
 
 interface Props {
-  user: User;
+  user: FullUser;
   companies: Company[];
   stateHandler(): void;
 }
@@ -37,6 +37,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
       setUsername(user.username);
       setAge(user.age ? user.age : 0);
       setBio(user.bio ? user.bio : '');
+      setOrganization(user.companyOrOrganization.id ? user.companyOrOrganization.id : '');
     }
   }, [user]);
 

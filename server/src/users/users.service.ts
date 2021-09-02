@@ -14,6 +14,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UpdateUserInput } from './inputs/update-user.input';
 import { Company } from './entities/company.entity';
 import { CreateCompanyInput } from './inputs/create-company.input';
+import { FullUser } from './users.type';
 
 export interface UserWToken {
   accessToken: string;
@@ -95,8 +96,12 @@ export class UsersService {
   }
 
   // Get and return a user using the Bearer Token
-  async getUser(user: User): Promise<User> {
-    return user;
+  async getUser(user: User): Promise<FullUser> {
+    const fullUser = await this.usersRepository.findOne({ email: user.email }, [
+      'companyOrOrganization',
+    ]);
+
+    return fullUser;
   }
 
   // Verify and sign a user in and return the accessToken

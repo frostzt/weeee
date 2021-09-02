@@ -13,6 +13,11 @@ export const getUserQuery = gql`
       picture
       updatedAt
       createdAt
+      companyOrOrganization {
+        id
+        name
+        email
+      }
     }
   }
 `;
