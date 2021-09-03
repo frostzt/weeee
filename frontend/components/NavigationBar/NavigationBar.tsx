@@ -9,11 +9,16 @@ import { containerVarient, optionVarient } from './NavigationBar.varients';
 import cx from 'classnames';
 import { FaUser } from 'react-icons/fa';
 import { MdArrowDropUp } from 'react-icons/md';
+import { BiLogInCircle } from 'react-icons/bi';
 import { AiFillDashboard } from 'react-icons/ai';
 import styles from './NavigationBar.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const NavigationBar: React.FC = () => {
+interface Props {
+  signOut: () => void;
+}
+
+const NavigationBar: React.FC<Props> = ({ signOut }) => {
   // States
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,6 +49,13 @@ const NavigationBar: React.FC = () => {
                       <FaUser title="My Profile" />
                     </div>
                   </Link>
+                </div>
+                <div className={styles.links__link}>
+                  <div onClick={signOut}>
+                    <div className={cx([styles.links__link_icon])}>
+                      <BiLogInCircle title="Signout" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>

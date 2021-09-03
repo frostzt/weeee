@@ -50,7 +50,7 @@ export const withLoading = (WrappedComponent: React.FC<any>) => {
         </AnimatePresence>
         {!loading ? (
           <NavigationBarContextProvider>
-            <NavigationBar />
+            <NavigationBar signOut={signOut} />
             <WrappedComponent isAuthenticated={isAuthenticated} user={user} signOut={signOut} {...props} />
           </NavigationBarContextProvider>
         ) : null}

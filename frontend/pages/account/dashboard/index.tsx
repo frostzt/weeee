@@ -12,23 +12,15 @@ import { requireAuthentication } from '../../../HOC/requireAuthentication/requir
 import NavigationBarContext, { AvailablePages } from '../../../contexts/NavigationBar/NavigationBar.context';
 
 interface PageProps {
-  signOut(): void;
   user: User;
 }
 
-interface AuthContextProps {
-  signOut(): void;
-  user: User | undefined;
-}
-
-const DashboardPage: React.FC<PageProps> = ({ signOut, user }) => {
+const DashboardPage: React.FC<PageProps> = ({ user }) => {
   // Globally let the NavBar know that page change occured
   const { changePage } = useContext(NavigationBarContext);
   useEffect(() => {
     changePage(AvailablePages.Dashboard);
   }, []);
-
-  console.log(user);
 
   return (
     <Fragment>
@@ -36,7 +28,6 @@ const DashboardPage: React.FC<PageProps> = ({ signOut, user }) => {
         <title>Dashboard - Weeee</title>
         <meta name="description" content="Weeee dashboard, manage everything at one place!" />
       </Head>
-      <Button handler={signOut}>Logout</Button>
     </Fragment>
   );
 };
