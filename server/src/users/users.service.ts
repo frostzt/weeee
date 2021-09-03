@@ -107,13 +107,11 @@ export class UsersService {
   // Verify and sign a user in and return the accessToken
   async signIn(loginData: LoginUserInput): Promise<UserWToken> {
     const { email, password } = loginData;
-    const user = await this.usersRepository.findOne({ email });
+    const user = await this.usersRepository.findOne({ email }, [
+      'companyOrOrganization',
+    ]);
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      // Mutate the user object
-      const curUser = JSON.parse(JSON.stringify(user));
-      delete curUser.password;
-
       const payload = { email };
       const accessToken = this.jwtService.sign(payload);
       return {

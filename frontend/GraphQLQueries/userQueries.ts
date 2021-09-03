@@ -48,14 +48,19 @@ export const signInUserQuery = gql`
       accessToken
       user {
         id
+        age
         name
         email
-        age
         bio
         username
         picture
-        createdAt
         updatedAt
+        createdAt
+        companyOrOrganization {
+          id
+          name
+          email
+        }
       }
     }
   }
