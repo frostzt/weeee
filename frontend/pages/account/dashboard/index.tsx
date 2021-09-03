@@ -3,7 +3,6 @@ import { GetServerSideProps } from 'next';
 import { Fragment, useContext, useEffect } from 'react';
 
 // Styles
-import styles from './dashboard.module.scss';
 
 // Components, Interfaces, HOCs
 import { User } from '../../../interfaces/User.interface';
