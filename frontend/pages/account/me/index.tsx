@@ -5,7 +5,7 @@ import React, { Fragment, useState, useContext, useEffect } from 'react';
 import NavigationBarContext from '../../../contexts/NavigationBar/NavigationBar.context';
 
 // Custom
-import { User } from '../../../interfaces/User.interface';
+import { FullUser } from '../../../interfaces/User.interface';
 import { AvailablePages } from '../../../contexts/NavigationBar/NavigationBar.context';
 import { requireAuthentication } from '../../../HOC/requireAuthentication/requireAuthentication';
 
@@ -33,7 +33,7 @@ export interface Company {
 }
 
 interface Props {
-  user: User;
+  user: FullUser;
   companies: Company[];
 }
 

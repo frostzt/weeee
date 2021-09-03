@@ -2,9 +2,8 @@ import cookie from 'cookie';
 import { gql } from '@apollo/client';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { createApolloClient } from '../../Utils/createApolloClient';
+import { getUserQuery } from 'GraphQLQueries/userQueries';
 
-// @TODO Create a req to verify the user
-// Create a gql query to request user from the API
 export function requireAuthentication(gssp: GetServerSideProps) {
   return async (ctx: GetServerSidePropsContext) => {
     const { req } = ctx;
@@ -12,13 +11,7 @@ export function requireAuthentication(gssp: GetServerSideProps) {
     if (req.headers.cookie) {
       const { accessToken } = cookie.parse(req.headers.cookie);
       const client = createApolloClient(accessToken);
-      const GET_USER = gql`
-        query {
-          getUser {
-            email
-          }
-        }
-      `;
+      const GET_USER = getUserQuery;
 
       try {
         // Send a request to the API and verify that the user exists
