@@ -3,10 +3,11 @@ import { GetServerSideProps } from 'next';
 import { Fragment, useContext, useEffect } from 'react';
 
 // Styles
+import cx from 'classnames';
+import styles from './dashboard.module.scss';
 
 // Components, Interfaces, HOCs
 import { User } from '../../../interfaces/User.interface';
-import { Button } from '../../../components/Button/Button';
 import { withLoading } from '../../../HOC/withLoading/withLoading';
 import { requireAuthentication } from '../../../HOC/requireAuthentication/requireAuthentication';
 import NavigationBarContext, { AvailablePages } from '../../../contexts/NavigationBar/NavigationBar.context';
@@ -22,12 +23,17 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
     changePage(AvailablePages.Dashboard);
   }, []);
 
+  console.log(user);
+
   return (
     <Fragment>
       <Head>
         <title>Dashboard - Weeee</title>
         <meta name="description" content="Weeee dashboard, manage everything at one place!" />
       </Head>
+      <div className={styles.container}>
+        <h2 className={cx(['heading-secondary', styles.username])}>Hey, {user.name.split(' ')[0]}!</h2>
+      </div>
     </Fragment>
   );
 };
