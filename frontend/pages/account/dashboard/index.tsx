@@ -32,7 +32,8 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
         <meta name="description" content="Weeee dashboard, manage everything at one place!" />
       </Head>
       <div className={styles.container}>
-        <h2 className={cx(['heading-secondary', styles.username])}>Hey, {user.name.split(' ')[0]}!</h2>
+        <div className={styles.header}>Dashboard</div>
+        <div className={styles.announcements}></div>
       </div>
     </Fragment>
   );
