@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { AnnouncementsModule } from './company-features/announcements/announcements.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UsersModule } from './users/users.module';
     }),
     MikroOrmModule.forRoot(),
     UsersModule,
+    AnnouncementsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
