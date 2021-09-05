@@ -10,6 +10,7 @@ import {
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
+import { Announcements } from 'src/company-features/announcements/entities/announcements.entity';
 
 @Entity()
 export class Company {
@@ -47,4 +48,11 @@ export class Company {
     strategy: LoadStrategy.JOINED,
   })
   users? = new Collection<User>(this);
+
+  @OneToMany({
+    entity: () => Announcements,
+    mappedBy: (b) => b.companyOrOrganization,
+    strategy: LoadStrategy.JOINED,
+  })
+  announcements? = new Collection<Announcements>(this);
 }

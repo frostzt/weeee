@@ -11,6 +11,7 @@ import { User } from '../../../interfaces/User.interface';
 import { withLoading } from '../../../HOC/withLoading/withLoading';
 import { requireAuthentication } from '../../../HOC/requireAuthentication/requireAuthentication';
 import NavigationBarContext, { AvailablePages } from '../../../contexts/NavigationBar/NavigationBar.context';
+import CompanyAnnouncements from '../../../components/DashboardComponents/CompanyAnnouncements/CompanyAnnouncements';
 
 interface PageProps {
   user: User;
@@ -33,7 +34,9 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
       </Head>
       <div className={styles.container}>
         <div className={styles.header}>Dashboard</div>
-        <div className={styles.announcements}></div>
+        <div className={styles.announcements}>
+          <CompanyAnnouncements />
+        </div>
       </div>
     </Fragment>
   );
