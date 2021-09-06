@@ -3,8 +3,8 @@ import { GetServerSideProps } from 'next';
 import { Fragment, useContext, useEffect } from 'react';
 
 // Styles
+import { BsFillMicFill } from 'react-icons/bs';
 import styles from './dashboard.module.scss';
-import { GrAnnounce } from 'react-icons/gr';
 
 // Components, Interfaces, HOCs
 import { FullUser } from '../../../interfaces/User.interface';
@@ -34,8 +34,9 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
       </Head>
       <div className={styles.container}>
         <div className={styles.header}>Dashboard</div>
-        <div className={styles.announcements}>
-          <FeatureButtons Icon={GrAnnounce} />
+        <div className={styles.features}>
+          <FeatureButtons title="Announcements" Icon={BsFillMicFill} />
+          <FeatureButtons title="" Icon={BsFillMicFill} />
         </div>
       </div>
     </Fragment>

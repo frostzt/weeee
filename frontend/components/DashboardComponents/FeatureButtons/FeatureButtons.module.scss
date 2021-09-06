@@ -1,12 +1,24 @@
 .container {
-  width: 22rem;
+  width: 23rem;
   height: 22rem;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
   border-radius: 0.5rem;
   background-image: var(--orange-juice);
 
+  .title {
+    color: white;
+    margin-left: 1rem;
+  }
+
   .icon {
     &__inner {
-      color: var(--white);
+      right: 0;
+      bottom: 5%;
+      color: white;
+      font-size: 13rem;
+      position: absolute;
     }
   }
 }
