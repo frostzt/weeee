@@ -3,18 +3,18 @@ import { GetServerSideProps } from 'next';
 import { Fragment, useContext, useEffect } from 'react';
 
 // Styles
-import cx from 'classnames';
 import styles from './dashboard.module.scss';
+import { GrAnnounce } from 'react-icons/gr';
 
 // Components, Interfaces, HOCs
-import { User } from '../../../interfaces/User.interface';
+import { FullUser } from '../../../interfaces/User.interface';
 import { withLoading } from '../../../HOC/withLoading/withLoading';
 import { requireAuthentication } from '../../../HOC/requireAuthentication/requireAuthentication';
+import FeatureButtons from 'components/DashboardComponents/FeatureButtons/FeatureButtons';
 import NavigationBarContext, { AvailablePages } from '../../../contexts/NavigationBar/NavigationBar.context';
-import CompanyAnnouncements from '../../../components/DashboardComponents/CompanyAnnouncements/CompanyAnnouncements';
 
 interface PageProps {
-  user: User;
+  user: FullUser;
 }
 
 const DashboardPage: React.FC<PageProps> = ({ user }) => {
@@ -35,7 +35,7 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
       <div className={styles.container}>
         <div className={styles.header}>Dashboard</div>
         <div className={styles.announcements}>
-          <CompanyAnnouncements />
+          <FeatureButtons Icon={GrAnnounce} />
         </div>
       </div>
     </Fragment>
