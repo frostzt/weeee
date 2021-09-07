@@ -4,13 +4,14 @@ import { Fragment, useContext, useEffect } from 'react';
 
 // Styles
 import { BsFillMicFill } from 'react-icons/bs';
+import { BiTask } from 'react-icons/bi';
 import styles from './dashboard.module.scss';
 
 // Components, Interfaces, HOCs
 import { FullUser } from '../../../interfaces/User.interface';
 import { withLoading } from '../../../HOC/withLoading/withLoading';
-import { requireAuthentication } from '../../../HOC/requireAuthentication/requireAuthentication';
 import FeatureButtons from 'components/DashboardComponents/FeatureButtons/FeatureButtons';
+import { requireAuthentication } from '../../../HOC/requireAuthentication/requireAuthentication';
 import NavigationBarContext, { AvailablePages } from '../../../contexts/NavigationBar/NavigationBar.context';
 
 interface PageProps {
@@ -36,7 +37,7 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
         <div className={styles.header}>Dashboard</div>
         <div className={styles.features}>
           <FeatureButtons title="Announcements" Icon={BsFillMicFill} />
-          <FeatureButtons title="" Icon={BsFillMicFill} />
+          <FeatureButtons title="Tasks" Icon={BiTask} />
         </div>
       </div>
     </Fragment>
