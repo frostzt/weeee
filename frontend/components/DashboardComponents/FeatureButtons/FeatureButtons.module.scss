@@ -1,6 +1,6 @@
 .container {
-  width: 23rem;
-  height: 22rem;
+  width: 20rem;
+  height: 20rem;
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -9,7 +9,8 @@
 
   .title {
     color: white;
-    margin-left: 1rem;
+    font-size: 2rem;
+    margin-left: 0.5rem;
   }
 
   .icon {
