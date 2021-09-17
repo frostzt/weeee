@@ -1,0 +1,4 @@
+# Don't include regeneratable directories
+node_modules
+build
+dist
