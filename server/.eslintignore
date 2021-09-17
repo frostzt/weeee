@@ -1,0 +1,4 @@
+# Don't include root folders
+node_modules
+build
+dist
