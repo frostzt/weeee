@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import { Fragment, useContext, useEffect, useState } from 'react';
@@ -20,8 +21,8 @@ interface PageProps {
 }
 
 const DashboardPage: React.FC<PageProps> = ({ user }) => {
-  const [showTasks, setShowTasks] = useState<Boolean>(false);
-  const [showAnnouncement, setShowAnnouncement] = useState<Boolean>(false);
+  const [showTasks, setShowTasks] = useState<boolean>(false);
+  const [showAnnouncement, setShowAnnouncement] = useState<boolean>(false);
 
   // Globally let the NavBar know that page change occured
   const { changePage } = useContext(NavigationBarContext);
@@ -42,7 +43,7 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
 
   return (
     <Fragment>
-      {showAnnouncement && <CompanyAnnouncements user={user} />}
+      {showAnnouncement && <CompanyAnnouncements user={user} handler={handleShowAnnouncements} />}
       <Head>
         <title>Dashboard - Weeee</title>
         <meta name="description" content="Weeee dashboard, manage everything at one place!" />

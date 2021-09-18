@@ -5,9 +5,26 @@
   height: 100%;
   position: fixed;
   z-index: 999999999;
-  background-color: var(--white);
+  text-align: center;
+  background-image: var(--cloudy-knox);
+
+  .close {
+    left: 50%;
+    bottom: 4%;
+    padding: 1rem 1.4rem;
+    position: fixed;
+    font-weight: 900;
+    width: fit-content;
+    color: var(--white);
+    height: fit-content;
+    border-radius: 1rem;
+    transform: translateX(-50%);
+    filter: var(--drop-shadow-small);
+    background-image: var(--background-gradient);
+  }
 
   .title {
-    color: var(--white);
+    margin-top: 2rem;
+    color: var(--black);
   }
 }

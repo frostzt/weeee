@@ -31,10 +31,11 @@
     radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
     radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
     linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+  --cloudy-knox: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 
   // Shadow
-  --drop-shadow-normal: drop-shadow(0.5rem 0.5rem 0.8rem rgba(0, 0, 0, 0.3));
   --drop-shadow-small: drop-shadow(0.5rem 0.5rem 0.3rem rgba(0, 0, 0, 0.3));
+  --drop-shadow-normal: drop-shadow(0.5rem 0.5rem 0.8rem rgba(0, 0, 0, 0.3));
 
   // Fonts
   --default-font-size: 2.4rem;
