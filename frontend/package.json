@@ -11,7 +11,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "cypress": "cypress",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
