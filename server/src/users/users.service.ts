@@ -46,9 +46,16 @@ export class UsersService {
     }
 
     // Get NONE Company
-    const noneCompany = await this.companyRepository.findOne({
+    let noneCompany = await this.companyRepository.findOne({
       email: 'NONE@NONE.com',
     });
+    if (!noneCompany) {
+      noneCompany = await this.createCompany({
+        name: 'NONE',
+        email: 'NONE@NONE.com',
+        password: '.E*4UJzhQ-d(Ff@',
+      });
+    }
 
     // Hash the password
     const salt = await bcrypt.genSalt();
@@ -70,7 +77,9 @@ export class UsersService {
   }
 
   // Register a company and create a company account
-  async createCompany(createCompanyInput: CreateCompanyInput): Promise<string> {
+  async createCompany(
+    createCompanyInput: CreateCompanyInput,
+  ): Promise<Company> {
     const { name, email, password } = createCompanyInput;
 
     // Check if the company account already exists
@@ -93,7 +102,7 @@ export class UsersService {
     });
 
     await this.companyRepository.persistAndFlush(company);
-    return 'success';
+    return company;
   }
 
   // Get all companies
