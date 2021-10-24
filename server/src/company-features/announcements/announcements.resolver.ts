@@ -1,4 +1,8 @@
+import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { CurrentUser } from 'src/authUtils/currentUser.decorator';
+import { GqlAuthGuard } from 'src/authUtils/gqlauthguard';
+import { Company } from 'src/users/entities/company.entity';
 import { AnnouncementsService } from './announcements.service';
 import { AnnouncementsType } from './announcements.type';
 import { createAnnouncement } from './inputs/create-announcement.input';
@@ -12,7 +16,11 @@ export class AnnouncementsResolver {
 
   // Mutations
   @Mutation(() => AnnouncementsType)
-  createAnnouncement(@Args('data') data: createAnnouncement) {
-    return this.announcementsService.createAnnouncement(data);
+  @UseGuards(GqlAuthGuard)
+  createAnnouncement(
+    @Args('data') data: createAnnouncement,
+    @CurrentUser() company: Company,
+  ) {
+    return this.announcementsService.createAnnouncement(data, company);
   }
 }
