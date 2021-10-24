@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { AnnouncementsService } from './announcements.service';
 import { AnnouncementsType } from './announcements.type';
 import { createAnnouncement } from './inputs/create-announcement.input';
@@ -6,6 +6,9 @@ import { createAnnouncement } from './inputs/create-announcement.input';
 @Resolver()
 export class AnnouncementsResolver {
   constructor(private announcementsService: AnnouncementsService) {}
+
+  // @Query(() => [AnnouncementsType])
+  // getAllAnnouncements() {}
 
   // Mutations
   @Mutation(() => AnnouncementsType)

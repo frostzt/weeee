@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
-import { Company } from 'src/users/entities/company.entity';
+import { Company } from '../../../users/entities/company.entity';
 
 @Entity()
 export class Announcements {

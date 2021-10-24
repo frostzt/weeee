@@ -36,6 +36,8 @@
   // Shadow
   --drop-shadow-small: drop-shadow(0.5rem 0.5rem 0.3rem rgba(0, 0, 0, 0.3));
   --drop-shadow-normal: drop-shadow(0.5rem 0.5rem 0.8rem rgba(0, 0, 0, 0.3));
+  --optimized-box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.065), 0 2px 2px hsl(0deg 0% 0% / 0.065), 0 4px 4px hsl(0deg 0% 0% / 0.065),
+    0 8px 8px hsl(0deg 0% 0% / 0.065), 0 16px 16px hsl(0deg 0% 0% / 0.065);
 
   // Fonts
   --default-font-size: 2.4rem;

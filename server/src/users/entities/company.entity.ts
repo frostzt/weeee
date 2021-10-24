@@ -10,7 +10,7 @@ import {
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
-import { Announcements } from 'src/company-features/announcements/entities/announcements.entity';
+import { Announcements } from '../../company-features/announcements/entities/announcements.entity';
 
 @Entity()
 export class Company {

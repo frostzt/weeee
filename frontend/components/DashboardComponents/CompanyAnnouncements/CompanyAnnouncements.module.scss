@@ -6,7 +6,7 @@
   position: fixed;
   z-index: 999999999;
   text-align: center;
-  background-image: var(--cloudy-knox);
+  background-color: var(--background);
 
   .close {
     left: 50%;
@@ -24,7 +24,9 @@
   }
 
   .title {
-    margin-top: 2rem;
-    color: var(--black);
+    padding: 1rem 0;
+    color: var(--white);
+    box-shadow: var(--optimized-box-shadow);
+    background-image: var(--background-gradient);
   }
 }

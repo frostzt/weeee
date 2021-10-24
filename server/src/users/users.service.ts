@@ -45,6 +45,11 @@ export class UsersService {
       throw new BadRequestException('This mail is taken, please sign in!');
     }
 
+    // Get NONE Company
+    const noneCompany = await this.companyRepository.findOne({
+      email: 'NONE@NONE.com',
+    });
+
     // Hash the password
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -57,6 +62,7 @@ export class UsersService {
       email,
       age,
       picture: 'cat',
+      companyOrOrganization: noneCompany.id,
     });
 
     await this.usersRepository.persistAndFlush(user);

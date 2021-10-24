@@ -78,7 +78,7 @@ const MePage: React.FC<Props> = ({ user, companies }) => {
 
 export default withLoading(MePage);
 
-export const getServerSideProps: GetServerSideProps = requireAuthentication(async (_ctx) => {
+export const getServerSideProps: GetServerSideProps = requireAuthentication(async () => {
   const { data } = await client.query({
     query: gql`
       query getAllCompanies {

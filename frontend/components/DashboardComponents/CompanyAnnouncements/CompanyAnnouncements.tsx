@@ -1,9 +1,11 @@
 import React from 'react';
 
+// Interfaces
+import { FullUser } from 'interfaces/User.interface';
+
 // Styling
 import cx from 'classnames';
 import styles from './CompanyAnnouncements.module.scss';
-import { FullUser } from 'interfaces/User.interface';
 
 interface Props {
   user: FullUser;
