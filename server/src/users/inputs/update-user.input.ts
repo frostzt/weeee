@@ -35,7 +35,6 @@ export class UpdateUserInput {
 
   @IsOptional()
   @IsString()
-  @MinLength(1)
   @Field(() => String, { nullable: true })
   bio?: string;
 

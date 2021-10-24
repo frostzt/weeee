@@ -29,4 +29,15 @@
     box-shadow: var(--optimized-box-shadow);
     background-image: var(--background-gradient);
   }
+
+  .noCompany {
+    padding: 0 2rem;
+    margin: 4rem 0 2rem 0;
+    color: var(--white);
+
+    &__beta {
+      padding: 0 2rem;
+      color: var(--white);
+    }
+  }
 }

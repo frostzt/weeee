@@ -27,8 +27,11 @@ const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const { updateUser } = response.data;
       res.json({ user: updateUser });
-    } catch (error) {
-      console.error(error.networkError.result.errors);
+    } catch (error: any) {
+      console.error(error);
+      if (error.networkError) {
+        console.error(error.networkError.result);
+      }
       res.json({ error });
     }
   }

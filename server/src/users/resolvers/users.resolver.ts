@@ -44,7 +44,7 @@ export class UsersResolver {
     return this.usersService.createUser(createUserInput);
   }
 
-  @Mutation(() => String)
+  @Mutation(() => CompanyType)
   signUpCompany(
     @Args('createCompanyInput') createCompanyInput: CreateCompanyInput,
   ) {

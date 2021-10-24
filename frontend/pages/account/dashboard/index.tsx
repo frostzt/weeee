@@ -24,6 +24,9 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
   const [showTasks, setShowTasks] = useState<boolean>(false);
   const [showAnnouncement, setShowAnnouncement] = useState<boolean>(false);
 
+  // Check for company
+  const noCompany = user.companyOrOrganization.email === 'NONE@NONE.com';
+
   // Globally let the NavBar know that page change occured
   const { changePage } = useContext(NavigationBarContext);
   useEffect(() => {
@@ -41,7 +44,7 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
 
   return (
     <Fragment>
-      {showAnnouncement && <CompanyAnnouncements user={user} handler={handleShowAnnouncements} />}
+      {showAnnouncement && <CompanyAnnouncements noCompany={noCompany} user={user} handler={handleShowAnnouncements} />}
       <Head>
         <title>Dashboard - Weeee</title>
         <meta name="description" content="Weeee dashboard, manage everything at one place!" />

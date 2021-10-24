@@ -11,15 +11,27 @@ interface Props {
   user: FullUser;
   handler: () => void;
   extrastyles?: string;
+  noCompany: boolean;
 }
 
-const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler }) => {
+const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noCompany }) => {
   return (
     <div className={cx([styles.container, extrastyles ? extrastyles : null])}>
       <div className={styles.close} onClick={handler}>
         X
       </div>
       <h2 className={styles.title}>Announcements at {user.companyOrOrganization.name}</h2>
+      {noCompany && (
+        <div className={styles.noCompany}>
+          Your account does not have a Company assigned to it, please ask your employer for an invite.
+        </div>
+      )}
+      {noCompany && (
+        <div className={styles.noCompany__beta}>
+          For testing purposes we have a fake Company created please update your profile with Weeee as a company and you will be able to
+          test out all the available features.
+        </div>
+      )}
       <div className={styles.content}></div>
     </div>
   );

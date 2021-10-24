@@ -5,8 +5,8 @@ import AuthContext from '../../../contexts/AuthContext/Auth.context';
 import { Company } from 'pages/account/me';
 
 // Components
-import { FullUser } from '../../../interfaces/User.interface';
 import { Button, DivButton } from '../../Button/Button';
+import { FullUser } from '../../../interfaces/User.interface';
 import ProfilePicture from '../ProfilePicture/ProfilePicture';
 
 // Styling
@@ -20,7 +20,7 @@ interface Props {
 
 const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
   // Initialize the states
-  const [age, setAge] = useState(0);
+  const [age, setAge] = useState('');
   const [bio, setBio] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -35,7 +35,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
       setName(user.name);
       setEmail(user.email);
       setUsername(user.username);
-      setAge(user.age ? user.age : 0);
+      setAge(user.age ? String(user.age) : '');
       setBio(user.bio ? user.bio : '');
       setOrganization(user.companyOrOrganization.id ? user.companyOrOrganization.id : '');
     }
@@ -83,13 +83,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
           <label className={styles.group__label} htmlFor="age">
             Age
           </label>
-          <input
-            value={age}
-            onChange={(e) => setAge(parseInt(e.target.value))}
-            className={styles.group__input}
-            type="number"
-            name="age"
-          />
+          <input value={age} onChange={(e) => setAge(e.target.value)} className={styles.group__input} type="text" name="age" />
         </div>
         <div className={styles.group}>
           <label className={styles.group__label} htmlFor="bio">
@@ -122,7 +116,7 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
         <div className={styles.btns}>
           <Button
             extraClass={styles.signup}
-            handler={(e: Event) => updateUser(e, { name, age, email, username, bio, companyOrOrganization: organization })}
+            handler={(e: Event) => updateUser(e, { name, age: parseInt(age), email, username, bio, companyOrOrganization: organization })}
           >
             Update
           </Button>
