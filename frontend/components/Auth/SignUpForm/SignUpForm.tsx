@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './SignUpForm.module.scss';
 
 // Components
@@ -6,8 +6,8 @@ import { Button } from '../../Button/Button';
 import AuthContext from '../../../contexts/AuthContext/Auth.context';
 
 interface Props {
-  creatingAccount: Boolean;
-  switchHandler: any;
+  creatingAccount: boolean;
+  switchHandler: () => void;
 }
 
 const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {

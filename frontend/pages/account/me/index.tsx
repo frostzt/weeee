@@ -38,7 +38,7 @@ interface Props {
 }
 
 const MePage: React.FC<Props> = ({ user, companies }) => {
-  const [isEditingProfile, setIsEditingProfile] = useState<Boolean>(false);
+  const [isEditingProfile, setIsEditingProfile] = useState<boolean>(false);
 
   // Globally let the NavBar know that page changed
   const { changePage } = useContext(NavigationBarContext);

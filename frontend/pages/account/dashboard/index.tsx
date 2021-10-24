@@ -30,8 +30,6 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
     changePage(AvailablePages.Dashboard);
   }, []);
 
-  console.log(user);
-
   // Handlers
   const handleShowAnnouncements = () => {
     setShowAnnouncement((prevState) => !prevState);

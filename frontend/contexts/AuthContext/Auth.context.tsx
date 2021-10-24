@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
@@ -18,31 +19,39 @@ export interface SignUpProps {
 }
 
 export interface SignInProps {
-  email: String;
-  password: String;
+  email: string;
+  password: string;
 }
 
 export interface UpdatedData {
-  name: String;
-  age: Number;
-  bio: String;
-  email: String;
-  username: String;
-  companyOrOrganization: String;
+  name: string;
+  age: number;
+  bio: string;
+  email: string;
+  username: string;
+  companyOrOrganization: string;
 }
 
 const AuthContext = createContext({
   user: undefined,
   error: undefined,
-  signIn: (event: Event, credentials: SignInProps) => {},
-  signUp: (event: Event, credentials: SignUpProps) => {},
-  updateUser: (event: Event, updatedData: UpdatedData) => {},
-  signOut: () => {},
+  signIn: (event: Event, credentials: SignInProps) => {
+    return;
+  },
+  signUp: (event: Event, credentials: SignUpProps) => {
+    return;
+  },
+  updateUser: (event: Event, updatedData: UpdatedData) => {
+    return;
+  },
+  signOut: () => {
+    return;
+  },
 });
 
 export const AuthProvider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState();
-  const [error, setError] = useState();
+  const [error, setError] = useState<any>();
 
   const Router = useRouter();
 
@@ -138,7 +147,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
       }
 
       toast.success('Updated information successfully!');
-      setUser(res.data.user);
+      checkIfUserLoggedIn();
     } catch (error) {
       console.error(error);
     }

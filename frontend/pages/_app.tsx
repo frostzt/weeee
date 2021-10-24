@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
@@ -10,7 +11,7 @@ import { Provider } from 'next-auth/client';
 import { client } from '../apollo-client';
 import { ApolloProvider } from '@apollo/client';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <AuthProvider>
       <ApolloProvider client={client}>
@@ -24,5 +25,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </ApolloProvider>
     </AuthProvider>
   );
-}
+};
+
 export default MyApp;

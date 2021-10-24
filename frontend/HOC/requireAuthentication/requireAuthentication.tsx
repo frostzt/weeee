@@ -1,5 +1,4 @@
 import cookie from 'cookie';
-import { gql } from '@apollo/client';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { createApolloClient } from '../../Utils/createApolloClient';
 import { getUserQuery } from 'GraphQLQueries/userQueries';
