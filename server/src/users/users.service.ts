@@ -15,6 +15,7 @@ import { UpdateUserInput } from './inputs/update-user.input';
 import { Company } from './entities/company.entity';
 import { CreateCompanyInput } from './inputs/create-company.input';
 import { FullUser } from './users.type';
+import { CompanyWToken } from './types/CompanyWToken';
 
 export interface UserWToken {
   accessToken: string;
@@ -120,17 +121,23 @@ export class UsersService {
   }
 
   // Verify and sign a user in and return the accessToken
-  async signIn(loginData: LoginUserInput): Promise<UserWToken> {
+  async signIn(
+    loginData: LoginUserInput,
+    isCompany: boolean,
+  ): Promise<UserWToken | CompanyWToken> {
     const { email, password } = loginData;
-    const user = await this.usersRepository.findOne({ email }, [
-      'companyOrOrganization',
-    ]);
+    const user = !isCompany
+      ? await this.usersRepository.findOne({ email }, ['companyOrOrganization'])
+      : await this.companyRepository.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload = { email };
       const accessToken = this.jwtService.sign(payload);
+
       return {
         accessToken,
+        // @ts-expect-error the return is mappped by user for both company
+        // and the user however it depends on what the isCompany is.
         user,
       };
     } else {

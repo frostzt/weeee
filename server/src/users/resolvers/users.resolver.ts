@@ -15,6 +15,7 @@ import { UsersService } from '../users.service';
 import { FullUser, UsersType } from '../users.type';
 import { CreateCompanyInput } from '../inputs/create-company.input';
 import { CompanyType } from '../company.type';
+import { CompanyWToken } from '../types/CompanyWToken';
 
 @Resolver()
 export class UsersResolver {
@@ -23,7 +24,12 @@ export class UsersResolver {
   // Queries
   @Query(() => UserWToken)
   signIn(@Args('loginData') loginData: LoginUserInput) {
-    return this.usersService.signIn(loginData);
+    return this.usersService.signIn(loginData, false);
+  }
+
+  @Query(() => CompanyWToken)
+  signInCompany(@Args('loginData') loginData: LoginUserInput) {
+    return this.usersService.signIn(loginData, true);
   }
 
   @Query(() => [CompanyType])
