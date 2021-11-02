@@ -15,11 +15,15 @@ import { UpdateUserInput } from './inputs/update-user.input';
 import { Company } from './entities/company.entity';
 import { CreateCompanyInput } from './inputs/create-company.input';
 import { FullUser } from './users.type';
-import { CompanyWToken } from './types/CompanyWToken';
 
 export interface UserWToken {
   accessToken: string;
   user: User;
+}
+
+export interface CompanyWToken {
+  accessToken: string;
+  company: Company;
 }
 @Injectable()
 export class UsersService {
@@ -126,22 +130,46 @@ export class UsersService {
     isCompany: boolean,
   ): Promise<UserWToken | CompanyWToken> {
     const { email, password } = loginData;
-    const user = !isCompany
-      ? await this.usersRepository.findOne({ email }, ['companyOrOrganization'])
-      : await this.companyRepository.findOne({ email });
+    const user =
+      !isCompany &&
+      (await this.usersRepository.findOne({ email }, [
+        'companyOrOrganization',
+      ]));
+    const company =
+      isCompany && (await this.companyRepository.findOne({ email }));
 
-    if (user && (await bcrypt.compare(password, user.password))) {
-      const payload = { email };
-      const accessToken = this.jwtService.sign(payload);
+    // Find and return user if not company
+    if (!isCompany) {
+      if (user && (await bcrypt.compare(password, user.password))) {
+        const payload = { email };
+        const accessToken = this.jwtService.sign(payload);
 
-      return {
-        accessToken,
-        // @ts-expect-error the return is mappped by user for both company
-        // and the user however it depends on what the isCompany is.
-        user,
-      };
-    } else {
-      throw new UnauthorizedException('The password or username is incorrect!');
+        return {
+          accessToken,
+          user,
+        };
+      } else {
+        throw new UnauthorizedException(
+          'The password or username is incorrect!',
+        );
+      }
+    }
+
+    // Return company if isCompany
+    if (isCompany) {
+      if (company && (await bcrypt.compare(password, company.password))) {
+        const payload = { email };
+        const accessToken = this.jwtService.sign(payload);
+
+        return {
+          accessToken,
+          company,
+        };
+      } else {
+        throw new UnauthorizedException(
+          'The password or username is incorrect!',
+        );
+      }
     }
   }
 

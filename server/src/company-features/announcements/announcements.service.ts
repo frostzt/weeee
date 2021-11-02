@@ -20,16 +20,14 @@ export class AnnouncementsService {
   ): Promise<Announcements> {
     const { title, description } = data;
 
-    console.log(company);
-
     const announcement = this.announcementsRepository.create({
       id: v4(),
       title,
       description,
-      // companyOrOrganization:
+      companyOrOrganization: company.id,
     });
-    // this.announcementsRepository.persistAndFlush(announcement);
 
+    this.announcementsRepository.persistAndFlush(announcement);
     return announcement;
   }
 }
