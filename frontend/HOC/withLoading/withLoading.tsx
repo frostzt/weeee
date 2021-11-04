@@ -10,10 +10,10 @@ import NavigationBar from '../../components/NavigationBar/NavigationBar';
 import { NavigationBarContextProvider } from '../../contexts/NavigationBar/NavigationBar.context';
 
 export const withLoading = (WrappedComponent: React.FC<any>) => {
-  return (props: any) => {
+  const Component = (props: any) => {
     // States
-    const [loading, setLoading] = useState<Boolean>(true);
-    const [isAuthenticated, setIsAuthenticated] = useState<Boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
     // Context
     const { user, signOut } = useContext(AuthContext);
@@ -57,4 +57,6 @@ export const withLoading = (WrappedComponent: React.FC<any>) => {
       </Fragment>
     );
   };
+
+  return Component;
 };

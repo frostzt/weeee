@@ -2,7 +2,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   z-index: 999999999;
   text-align: center;
@@ -39,5 +39,12 @@
       padding: 0 2rem;
       color: var(--white);
     }
+  }
+
+  .content {
+    height: 90%;
+    margin-top: 5rem;
+    overflow-y: auto;
+    padding-bottom: 9rem;
   }
 }

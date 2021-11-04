@@ -2,19 +2,27 @@ import React from 'react';
 
 // Interfaces
 import { FullUser } from 'interfaces/User.interface';
+import AnnouncementInterface from './Announcement.interface';
 
 // Styling
 import cx from 'classnames';
 import styles from './CompanyAnnouncements.module.scss';
+
+// Components
+import Annoucement from './Announcement/Announcement';
 
 interface Props {
   user: FullUser;
   handler: () => void;
   extrastyles?: string;
   noCompany: boolean;
+  err?: string;
+  data?: AnnouncementInterface[];
 }
 
-const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noCompany }) => {
+const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noCompany, data }) => {
+  console.log(data);
+
   return (
     <div className={cx([styles.container, extrastyles ? extrastyles : null])}>
       <div className={styles.close} onClick={handler}>
@@ -32,7 +40,13 @@ const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noC
           test out all the available features.
         </div>
       )}
-      <div className={styles.content}></div>
+      <div className={styles.content}>
+        {data && data.length > 0
+          ? data?.map((annoucementItem) => (
+              <Annoucement key={annoucementItem.id} title={annoucementItem.title} description={annoucementItem.description} />
+            ))
+          : null}
+      </div>
     </div>
   );
 };

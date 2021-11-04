@@ -19,7 +19,7 @@ import Logo from '../components/Logo/Logo';
 import { LinkedButton } from '../components/Button/Button';
 import FeatureCard from '../components/FeatureCard/FeatureCard';
 
-function Home() {
+const Home: React.FC = () => {
   const [session, loading] = useSession();
   const [counter, setCounter] = useState<number>(1);
 
@@ -166,13 +166,13 @@ function Home() {
             But why <span className={styles.whywe__title_grad}>weeee?</span>
           </h2>
           <p className={styles.whywe__paragraph}>
-            We provide you with complete control over the software, after all you're the one using it. You can change it as you like.
+            We provide you with complete control over the software, after all you&apos;re the one using it. You can change it as you like.
             Which makes this open source software is not only free but highly configurable. Not only that we are constantly working on
             bringing latest updates and developing new features as well.
           </p>
           <br />
           <p className={styles.whywe__paragraph}>
-            Now you're wondering, this is too good to be true! Naah! It is true; you get everything for free, however, yes there is a
+            Now you&apos;re wondering, this is too good to be true! Naah! It is true; you get everything for free, however, yes there is a
             catch! The application deployed here is for feature purposes and will not hold any data for long! Therefore hosting the app is
             upto you! We have tried our best to make sure that this application is as perfect and easy to use as possible with easy
             deployment and easy configuration!
@@ -212,12 +212,12 @@ function Home() {
               </Link>
             </div>
             <div className={styles.footer__links_holder}>
-              <a href="mailto:aidenfrostbite@gmail.com?subject=Important!" target="_blank">
+              <a rel="noreferrer" href="mailto:aidenfrostbite@gmail.com?subject=Important!" target="_blank">
                 <div className={styles.footer__links_link}>Contact</div>
               </a>
             </div>
             <div className={styles.footer__links_holder}>
-              <a href="https://frostzt.vercel.app" target="_blank">
+              <a rel="noreferrer" href="https://frostzt.vercel.app" target="_blank">
                 <div className={styles.footer__links_link}>Portfolio</div>
               </a>
             </div>
@@ -252,6 +252,6 @@ function Home() {
       </footer>
     </>
   );
-}
+};
 
 export default Home;

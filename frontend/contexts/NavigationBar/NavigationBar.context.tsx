@@ -12,7 +12,9 @@ export enum AvailablePages {
 
 const NavigationBarContext = createContext({
   current: AvailablePages.Dashboard,
-  changePage: (to: AvailablePages) => {},
+  changePage: (to: AvailablePages) => {
+    return;
+  },
 });
 
 export const NavigationBarContextProvider = ({ children }: ContextProps) => {

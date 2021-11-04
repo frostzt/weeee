@@ -29,11 +29,6 @@ interface PageProps {
 }
 
 const DashboardPage: React.FC<PageProps> = ({ user, data, err }) => {
-  if (err) {
-    console.log(JSON.parse(err));
-  }
-  console.log(data);
-
   const [showTasks, setShowTasks] = useState<boolean>(false);
   const [showAnnouncement, setShowAnnouncement] = useState<boolean>(false);
 
@@ -57,7 +52,9 @@ const DashboardPage: React.FC<PageProps> = ({ user, data, err }) => {
 
   return (
     <Fragment>
-      {showAnnouncement && <CompanyAnnouncements noCompany={noCompany} user={user} handler={handleShowAnnouncements} />}
+      {showAnnouncement && (
+        <CompanyAnnouncements noCompany={noCompany} user={user} handler={handleShowAnnouncements} err={err} data={data} />
+      )}
       <Head>
         <title>Dashboard - Weeee</title>
         <meta name="description" content="Weeee dashboard, manage everything at one place!" />

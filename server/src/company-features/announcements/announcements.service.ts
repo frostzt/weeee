@@ -16,6 +16,7 @@ export class AnnouncementsService {
 
   // Get all announcements
   async getAllAnnouncements(currentEntity: User | Company) {
+    // Handle if the call by Company
     if (currentEntity instanceof Company) {
       const announcements = await this.announcementsRepository.find({
         companyOrOrganization: currentEntity.id,
@@ -24,6 +25,7 @@ export class AnnouncementsService {
       return announcements;
     }
 
+    // Handle if the call is by User
     if (currentEntity instanceof User) {
       const announcements = await this.announcementsRepository.find({
         companyOrOrganization: currentEntity.companyOrOrganization,
