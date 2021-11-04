@@ -10,7 +10,7 @@ import { AnnouncementsModule } from './company-features/announcements/announceme
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`.${process.env.STAGE}.stage.env`],
+      envFilePath: ['.dev.stage.env'],
     }),
     GraphQLModule.forRoot({
       debug: true,
