@@ -43,7 +43,12 @@ const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noC
       <div className={styles.content}>
         {data && data.length > 0
           ? data?.map((annoucementItem) => (
-              <Annoucement key={annoucementItem.id} title={annoucementItem.title} description={annoucementItem.description} />
+              <Annoucement
+                key={annoucementItem.id}
+                title={annoucementItem.title}
+                description={annoucementItem.description}
+                time={annoucementItem.createdAt}
+              />
             ))
           : null}
       </div>

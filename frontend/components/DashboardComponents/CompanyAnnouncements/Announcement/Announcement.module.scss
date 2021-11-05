@@ -1,13 +1,27 @@
 .container {
-  width: 100%;
-  height: 10rem;
-  color: var(--white);
+  width: 90%;
+  padding: 0.5rem;
+  margin: 0 auto;
+  text-align: left;
+  height: fit-content;
+  color: var(--font-color);
+  background-image: var(--background-gradient);
 
-  .title {
-    font-size: 2.4rem;
-  }
+  .wrapper {
+    padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+    background-color: var(--white);
 
-  .desc {
-    font-size: 1.7rem;
+    .title {
+      font-size: 2.4rem;
+    }
+
+    .desc {
+      font-size: 1.7rem;
+    }
+
+    .time {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+    }
   }
 }

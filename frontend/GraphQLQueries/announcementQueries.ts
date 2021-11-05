@@ -7,6 +7,7 @@ export const getMyAnnouncements = gql`
       id
       title
       description
+      createdAt
     }
   }
 `;
