@@ -16,6 +16,7 @@ import { FullUser, UsersType } from '../users.type';
 import { CreateCompanyInput } from '../inputs/create-company.input';
 import { CompanyType } from '../company.type';
 import { CompanyWToken } from '../types/CompanyWToken';
+import { Company } from '../entities/company.entity';
 
 @Resolver()
 export class UsersResolver {
@@ -63,6 +64,15 @@ export class UsersResolver {
     @CurrentUser() user: User,
     @Args('updateData') updateUserInput: UpdateUserInput,
   ) {
-    return this.usersService.updateUser(updateUserInput, user);
+    return this.usersService.updateUser<User>(updateUserInput, user);
+  }
+
+  @Mutation(() => CompanyType)
+  @UseGuards(GqlAuthGuard)
+  updateCompany(
+    @CurrentUser() company: Company,
+    @Args('updateData') updateCompanyInput: UpdateUserInput,
+  ) {
+    return this.usersService.updateUser<Company>(updateCompanyInput, company);
   }
 }

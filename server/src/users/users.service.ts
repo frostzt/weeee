@@ -3,6 +3,7 @@ import { InjectRepository } from '@mikro-orm/nestjs';
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
@@ -174,40 +175,70 @@ export class UsersService {
   }
 
   // Update the user on the bases of data provided
-  async updateUser(updateData: UpdateUserInput, user: User): Promise<User> {
-    const updatedUser = await this.usersRepository.findOne({
-      email: user.email,
-    });
+  async updateUser<T>(
+    updateData: UpdateUserInput,
+    instance: T,
+  ): Promise<User | Company> {
+    if (instance instanceof User) {
+      const updatedUser = await this.usersRepository.findOne({
+        email: instance.email,
+      });
 
-    // Update the user
-    const { name, email, age, username, bio, companyOrOrganization } =
-      updateData;
+      // Update the user
+      const { name, email, age, username, bio, companyOrOrganization } =
+        updateData;
 
-    if (name) {
-      updatedUser.name = name;
+      if (name) {
+        updatedUser.name = name;
+      }
+
+      if (email) {
+        updatedUser.email = email;
+      }
+
+      if (age) {
+        updatedUser.age = parseInt(age);
+      }
+
+      if (username) {
+        updatedUser.username = username;
+      }
+
+      if (bio) {
+        updatedUser.bio = bio;
+      }
+
+      if (companyOrOrganization) {
+        instance.companyOrOrganization = companyOrOrganization;
+      }
+
+      await this.usersRepository.persistAndFlush(updatedUser);
+      return updatedUser;
     }
 
-    if (email) {
-      updatedUser.email = email;
+    if (instance instanceof Company) {
+      const updatedCompany = await this.companyRepository.findOne({
+        email: instance.email,
+      });
+
+      // Update the company
+      const { name, email, bio } = updateData;
+
+      if (name) {
+        updatedCompany.name = name;
+      }
+
+      if (email) {
+        updatedCompany.email = email;
+      }
+
+      if (bio) {
+        updatedCompany.bio = bio;
+      }
     }
 
-    if (age) {
-      updatedUser.age = parseInt(age);
-    }
-
-    if (username) {
-      updatedUser.username = username;
-    }
-
-    if (bio) {
-      updatedUser.bio = bio;
-    }
-
-    if (companyOrOrganization) {
-      user.companyOrOrganization = companyOrOrganization;
-    }
-
-    await this.usersRepository.persistAndFlush(updatedUser);
-    return updatedUser;
+    throw new InternalServerErrorException(
+      "Something went wrong we're working on it!",
+    );
   }
 }
