@@ -1,9 +1,9 @@
 import cookie from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { API_URL } from '../../../Config/Config';
-import { createHttpLink, ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { createHttpLink, ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 
-export const createApolloClient = () => {
+export const createApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   const ENDPOINT = `${API_URL}/graphql`;
 
   const httpLink = createHttpLink({
@@ -16,7 +16,7 @@ export const createApolloClient = () => {
   });
 };
 
-const logout = async (req: NextApiRequest, res: NextApiResponse) => {
+const logout = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'POST') {
     // Destroy cookie
     res.setHeader(

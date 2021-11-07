@@ -33,7 +33,10 @@ const DashboardPage: React.FC<PageProps> = ({ user, data, err }) => {
   const [showAnnouncement, setShowAnnouncement] = useState<boolean>(false);
 
   // Check for company
-  const noCompany = user.companyOrOrganization.email === 'NONE@NONE.com';
+  let noCompany = true;
+  if (user) {
+    noCompany = user.companyOrOrganization.email === 'NONE@NONE.com';
+  }
 
   // Globally let the NavBar know that page change occured
   const { changePage } = useContext(NavigationBarContext);
