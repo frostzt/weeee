@@ -1,4 +1,5 @@
 @import '../../../styles/mixins.scss';
+@import '../../../styles/responsiveness.scss';
 
 .container {
   top: 50%;
@@ -12,6 +13,18 @@
   border: 4px solid white;
   transform: translate(-50%, -50%);
   background-color: var(--background);
+
+  @include respond(tablet) {
+    width: 80%;
+  }
+
+  @include respond(laptop) {
+    width: 70%;
+  }
+
+  @include respond(laptopLarge) {
+    width: 65%;
+  }
 
   .backbtn {
     color: white;

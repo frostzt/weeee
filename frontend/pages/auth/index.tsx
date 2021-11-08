@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import { Toaster } from 'react-hot-toast';
 import { useState, useContext } from 'react';
@@ -14,7 +15,7 @@ import SignInForm from '../../components/Auth/SignInForm/SignInForm';
 import styles from './auth.module.scss';
 import { useMediaQuery } from 'react-responsive';
 
-const AuthPage = () => {
+const AuthPage: React.FC = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
   const { user } = useContext(AuthContext);
 

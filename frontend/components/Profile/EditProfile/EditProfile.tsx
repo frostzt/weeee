@@ -102,10 +102,14 @@ const EditProfile: React.FC<Props> = ({ user, stateHandler, companies }) => {
           <label className={styles.group__label} htmlFor="company">
             Company/Organization
           </label>
-          <select value={organization} onChange={(e) => setOrganization(e.target.value)} name="companies" id="select-company">
-            <option className={styles.group__input} value="">
-              --Select a company--
-            </option>
+          <select
+            style={{ height: '4rem', borderRadius: '1rem' }}
+            value={organization}
+            onChange={(e) => setOrganization(e.target.value)}
+            name="companies"
+            id="select-company"
+          >
+            <option value="">--Select a company--</option>
             {companies.map((company) => (
               <option key={company.id} value={company.id}>
                 {company.name}

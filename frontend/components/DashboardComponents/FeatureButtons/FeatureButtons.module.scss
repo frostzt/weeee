@@ -1,3 +1,5 @@
+@import '../../../styles/responsiveness.scss';
+
 .container {
   width: 20rem;
   height: 20rem;
@@ -6,6 +8,10 @@
   position: relative;
   border-radius: 0.5rem;
   background-image: var(--orange-juice);
+
+  @include respond(mobileMedium) {
+    width: 25rem;
+  }
 
   .title {
     color: white;

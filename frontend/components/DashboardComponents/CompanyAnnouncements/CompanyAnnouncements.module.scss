@@ -11,13 +11,14 @@
   .close {
     left: 50%;
     bottom: 4%;
-    padding: 1rem 1.4rem;
+    cursor: pointer;
     position: fixed;
     font-weight: 900;
     width: fit-content;
     color: var(--white);
     height: fit-content;
     border-radius: 1rem;
+    padding: 1rem 1.4rem;
     transform: translateX(-50%);
     filter: var(--drop-shadow-small);
     background-image: var(--background-gradient);
