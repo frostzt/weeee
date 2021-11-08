@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AnnouncementsModule } from './company-features/announcements/announcements.module';
+import { TasksModule } from './company-features/tasks/tasks.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AnnouncementsModule } from './company-features/announcements/announceme
     MikroOrmModule.forRoot(),
     UsersModule,
     AnnouncementsModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
