@@ -11,6 +11,7 @@ import {
   Property,
 } from '@mikro-orm/core';
 import { Announcements } from '../../company-features/announcements/entities/announcements.entity';
+import { Task } from '../..//company-features/tasks/entities/tasks.entity';
 
 @Entity()
 export class Company {
@@ -55,4 +56,11 @@ export class Company {
     strategy: LoadStrategy.JOINED,
   })
   announcements? = new Collection<Announcements>(this);
+
+  @OneToMany({
+    entity: () => Task,
+    mappedBy: (b) => b.createdByCompany,
+    strategy: LoadStrategy.JOINED,
+  })
+  createdTasks? = new Collection<Task>(this);
 }

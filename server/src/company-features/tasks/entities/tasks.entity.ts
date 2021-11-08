@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { Company } from '../../../users/entities/company.entity';
+import { User } from '../../../users/entities/users.entity';
 
 @Entity()
 export class Task {
@@ -17,4 +19,10 @@ export class Task {
 
   @Property()
   description: string;
+
+  @ManyToOne(() => Company)
+  createdByCompany: string;
+
+  @ManyToOne(() => User)
+  assignedTo: string;
 }
