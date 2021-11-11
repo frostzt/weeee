@@ -3,19 +3,28 @@ import { createApolloClientNT } from '../../../Utils/createApolloClient';
 
 // GraphQL Queries/Mutations
 import { signUpMutation } from 'GraphQLQueries/userQueries';
+import { signUpCompanyMutation } from 'GraphQLQueries/companyQueries';
 
-const signup = async (req: NextApiRequest, res: NextApiResponse) => {
+const signup = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'POST') {
-    const { name, email, username, password } = req.body;
+    const { name, email, username, password, isCompany } = req.body;
 
     const client = createApolloClientNT();
     const SIGN_UP = signUpMutation;
+    const SIGN_UP_COMPANY = signUpCompanyMutation;
 
     try {
-      await client.mutate({
-        mutation: SIGN_UP,
-        variables: { name, email, username, password },
-      });
+      if (isCompany) {
+        await client.mutate({
+          mutation: SIGN_UP_COMPANY,
+          variables: { name, email, password },
+        });
+      } else {
+        await client.mutate({
+          mutation: SIGN_UP,
+          variables: { name, email, username, password },
+        });
+      }
 
       res.json({ msg: 'Account created successfully!' });
     } catch (error) {

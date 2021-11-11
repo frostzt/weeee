@@ -16,6 +16,9 @@ export class CompanyType {
   name: string;
 
   @Field()
+  accountType: string;
+
+  @Field()
   email: string;
 
   @Field()

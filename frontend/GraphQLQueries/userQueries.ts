@@ -10,6 +10,7 @@ export const getUserQuery = gql`
       email
       bio
       username
+      accountType
       picture
       updatedAt
       createdAt
@@ -33,6 +34,7 @@ export const updateUserMutation = gql`
       email
       age
       bio
+      accountType
       username
       picture
       createdAt
@@ -56,6 +58,7 @@ export const signInUserQuery = gql`
         picture
         updatedAt
         createdAt
+        accountType
         companyOrOrganization {
           id
           name

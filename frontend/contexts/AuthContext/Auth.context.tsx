@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   }, []);
 
   // Register
-  const signUp = async (event: Event, credentials: SignUpProps) => {
+  const signUp = async (event: Event, credentials: SignUpProps, isCompany: boolean) => {
     event.preventDefault();
     const { name, username, email, password, confirmPassword } = credentials;
 
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     try {
       const res = await axios.post(
         `${NEXT_URL}/api/auth/signup`,
-        { name, username, email, password },
+        { name, username, email, password, isCompany },
         {
           headers: {
             'Content-Type': 'application/json',

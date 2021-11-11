@@ -25,6 +25,9 @@ export class UsersType {
   username: string;
 
   @Field()
+  accountType: string;
+
+  @Field()
   picture: string;
 
   @Field(() => String, { nullable: true })
@@ -49,6 +52,9 @@ export class FullUser {
 
   @Field()
   email: string;
+
+  @Field()
+  accountType: string;
 
   @Field(() => Int, { nullable: true })
   age?: number;

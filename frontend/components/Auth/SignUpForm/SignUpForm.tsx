@@ -36,18 +36,20 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
           </label>
           <input value={name} onChange={(e) => setName(e.target.value)} className={styles.group__input} type="text" name="name" />
         </div>
-        <div className={styles.group}>
-          <label title="Username" className={styles.group__label} htmlFor="username">
-            Username
-          </label>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className={styles.group__input}
-            type="text"
-            name="username"
-          />
-        </div>
+        {!isCompany && (
+          <div className={styles.group}>
+            <label title="Username" className={styles.group__label} htmlFor="username">
+              Username
+            </label>
+            <input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className={styles.group__input}
+              type="text"
+              name="username"
+            />
+          </div>
+        )}
         <div className={styles.group}>
           <label title="Email" className={styles.group__label} htmlFor="email">
             Email
@@ -78,7 +80,13 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
             name="cpassword"
           />
         </div>
-        <Checkbox label="Create a company account?" name="isCompanySignup" currentState={isCompany} handler={handleIsCompany} />
+        <Checkbox
+          className={styles.checkbox}
+          label="Create a company account?"
+          name="isCompanySignup"
+          currentState={isCompany}
+          handler={handleIsCompany}
+        />
         <div title="Signup button" className={styles.btns}>
           <Button
             extraClass={styles.signup}

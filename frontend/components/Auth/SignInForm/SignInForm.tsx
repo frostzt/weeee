@@ -5,6 +5,7 @@ import styles from './SignInForm.module.scss';
 
 // Components
 import { Button } from '../../Button/Button';
+import Checkbox from 'components/Checkbox/Checkbox';
 
 interface Props {
   creatingAccount: boolean;
@@ -17,6 +18,10 @@ const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
   const [isCompany, setIsCompany] = useState<boolean>(false);
 
   const { signIn } = useContext(AuthContext);
+
+  const handleChangeIsCompany = () => {
+    setIsCompany((prev) => !prev);
+  };
 
   return (
     <div className={styles.container}>
@@ -39,6 +44,13 @@ const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
             name="password"
           />
         </div>
+        <Checkbox
+          className={styles.checkbox}
+          label="Is this a company account?"
+          name="companySignIn"
+          currentState={isCompany}
+          handler={handleChangeIsCompany}
+        />
         <div className={styles.btns}>
           <Button extraClass={styles.signup} handler={(e: Event) => signIn(e, { email, password }, isCompany)}>
             Sign In

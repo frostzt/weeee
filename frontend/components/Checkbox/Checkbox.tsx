@@ -15,8 +15,8 @@ interface Props {
 const Checkbox: React.FC<Props> = ({ handler, currentState, className, name, label }) => {
   return (
     <div className={cx([styles.container, className || null])}>
+      <input className={styles.check} type="checkbox" name={name} checked={currentState} onChange={handler} />
       {label?.trim() ? <label htmlFor={name}>{label}</label> : null}
-      <input type="checkbox" name={name} checked={currentState} onChange={handler} />
     </div>
   );
 };
