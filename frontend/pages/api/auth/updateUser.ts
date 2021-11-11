@@ -5,7 +5,7 @@ import { createApolloClient } from '../../../Utils/createApolloClient';
 // GraphQL Queries/Mutations
 import { updateUserMutation } from 'GraphQLQueries/userQueries';
 
-const updateUser = async (req: NextApiRequest, res: NextApiResponse) => {
+const updateUser = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'POST') {
     if (!req.headers.cookie) {
       res.status(403).json({ message: 'Not authorized!' });

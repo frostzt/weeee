@@ -35,10 +35,11 @@ export interface UpdatedData {
 const AuthContext = createContext({
   user: undefined,
   error: undefined,
-  signIn: (event: Event, credentials: SignInProps) => {
+  isCompany: false,
+  signIn: (event: Event, credentials: SignInProps, isCompany: boolean) => {
     return;
   },
-  signUp: (event: Event, credentials: SignUpProps) => {
+  signUp: (event: Event, credentials: SignUpProps, isCompany: boolean) => {
     return;
   },
   updateUser: (event: Event, updatedData: UpdatedData) => {
@@ -171,11 +172,14 @@ export const AuthProvider = ({ children }: ProviderProps) => {
       const res = await axios.post(`${NEXT_URL}/api/auth/user`);
       setUser(res.data.user);
     } catch (error) {
+      console.error(error);
       setUser(undefined);
     }
   };
 
-  return <AuthContext.Provider value={{ user, error, signIn, signUp, signOut, updateUser }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, error, signIn, signUp, signOut, updateUser, isCompany: false }}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthContext;

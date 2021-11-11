@@ -4,6 +4,7 @@ import styles from './SignUpForm.module.scss';
 // Components
 import { Button } from '../../Button/Button';
 import AuthContext from '../../../contexts/AuthContext/Auth.context';
+import Checkbox from '../../Checkbox/Checkbox';
 
 interface Props {
   creatingAccount: boolean;
@@ -19,7 +20,12 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isCompany, setIsCompany] = useState<boolean>(false);
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+
+  const handleIsCompany = () => {
+    setIsCompany((prev) => !prev);
+  };
 
   return (
     <div className={styles.container}>
@@ -72,8 +78,12 @@ const SignUpForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
             name="cpassword"
           />
         </div>
+        <Checkbox label="Create a company account?" name="isCompanySignup" currentState={isCompany} handler={handleIsCompany} />
         <div title="Signup button" className={styles.btns}>
-          <Button extraClass={styles.signup} handler={(e: Event) => signUp(e, { name, username, email, password, confirmPassword })}>
+          <Button
+            extraClass={styles.signup}
+            handler={(e: Event) => signUp(e, { name, username, email, password, confirmPassword }, isCompany)}
+          >
             Sign Up
           </Button>
           <div className={styles.switch}>

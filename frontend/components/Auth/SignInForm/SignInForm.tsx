@@ -1,20 +1,20 @@
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AuthContext from '../../../contexts/AuthContext/Auth.context';
 
 import styles from './SignInForm.module.scss';
 
 // Components
 import { Button } from '../../Button/Button';
-import { useState } from 'react';
 
 interface Props {
-  creatingAccount: Boolean;
-  switchHandler: any;
+  creatingAccount: boolean;
+  switchHandler: () => void;
 }
 
 const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isCompany, setIsCompany] = useState<boolean>(false);
 
   const { signIn } = useContext(AuthContext);
 
@@ -25,13 +25,7 @@ const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
           <label className={styles.group__label} htmlFor="email">
             Email
           </label>
-          <input
-            className={styles.group__input}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            name="email"
-          />
+          <input className={styles.group__input} value={email} onChange={(e) => setEmail(e.target.value)} type="email" name="email" />
         </div>
         <div className={styles.group}>
           <label className={styles.group__label} htmlFor="password">
@@ -46,16 +40,11 @@ const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
           />
         </div>
         <div className={styles.btns}>
-          <Button
-            extraClass={styles.signup}
-            handler={(e: Event) => signIn(e, { email, password })}
-          >
+          <Button extraClass={styles.signup} handler={(e: Event) => signIn(e, { email, password }, isCompany)}>
             Sign In
           </Button>
           <div className={styles.switch}>
-            {creatingAccount
-              ? 'Already have an account?'
-              : 'No account? No problem!'}{' '}
+            {creatingAccount ? 'Already have an account?' : 'No account? No problem!'}{' '}
             <span onClick={switchHandler} className={styles.switch_btn}>
               {creatingAccount ? 'Sign in' : 'Sign up'}
             </span>{' '}

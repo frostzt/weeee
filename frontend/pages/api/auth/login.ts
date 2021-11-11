@@ -7,7 +7,7 @@ import { signInUserQuery } from 'GraphQLQueries/userQueries';
 // Custom imports
 import { createApolloClientNT } from '../../../Utils/createApolloClient';
 
-const login = async (req: NextApiRequest, res: NextApiResponse) => {
+const login = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'POST') {
     const { email, password } = req.body;
 
@@ -40,7 +40,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   } else {
     res.setHeader('Allow', ['POST']);
-    res.status(405).json({ message: `Method ${req.method} not allowed!` });
+    return res.status(405).json({ message: `Method ${req.method} not allowed!` });
   }
 };
 
