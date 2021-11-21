@@ -32,3 +32,26 @@ export const signInCompanyQuery = gql`
     }
   }
 `;
+
+// Get company
+export const getCompany = gql`
+  query {
+    getCompany {
+      id
+      age
+      name
+      email
+      bio
+      username
+      accountType
+      picture
+      updatedAt
+      createdAt
+      companyOrOrganization {
+        id
+        name
+        email
+      }
+    }
+  }
+`;

@@ -16,6 +16,7 @@ import { UpdateUserInput } from './inputs/update-user.input';
 import { Company } from './entities/company.entity';
 import { CreateCompanyInput } from './inputs/create-company.input';
 import { FullUser } from './users.type';
+import { CompanyType } from './company.type';
 
 export interface UserWToken {
   accessToken: string;
@@ -123,6 +124,14 @@ export class UsersService {
     ]);
 
     return fullUser;
+  }
+
+  async getCompany(company: Company): Promise<Company> {
+    const fullCompany = await this.companyRepository.findOne({
+      email: company.email,
+    });
+
+    return fullCompany;
   }
 
   // Verify and sign a user in and return the accessToken

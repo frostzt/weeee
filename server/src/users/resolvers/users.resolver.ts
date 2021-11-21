@@ -45,6 +45,13 @@ export class UsersResolver {
     return this.usersService.getUser(user);
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Query(() => CompanyType)
+  @UseGuards(GqlAuthGuard)
+  getCompany(@CurrentUser() company: Company) {
+    return this.usersService.getCompany(company);
+  }
+
   // Mutations
   @Mutation(() => String)
   signUp(@Args('createUserInput') createUserInput: CreateUserInput) {
