@@ -3,7 +3,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { createApolloClient } from '../../Utils/createApolloClient';
 import { getUserQuery } from 'GraphQLQueries/userQueries';
 
-export function requireAuthentication(gssp: GetServerSideProps) {
+export function requireAuthentication(gssp: GetServerSideProps, isCompany = false) {
   return async (ctx: GetServerSidePropsContext) => {
     const { req } = ctx;
 

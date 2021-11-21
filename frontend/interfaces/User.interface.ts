@@ -20,6 +20,7 @@ export interface FullUser {
   picture: string;
   updatedAt: Date;
   createdAt: Date;
+  accountType: string;
   companyOrOrganization: {
     id: string;
     name: string;

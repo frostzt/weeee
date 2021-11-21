@@ -1,6 +1,7 @@
 import React from 'react';
 import cookie from 'cookie';
 import Head from 'next/head';
+import { useRouter } from 'next/dist/client/router';
 import { GetServerSideProps } from 'next';
 import { Fragment, useContext, useEffect, useState } from 'react';
 
@@ -31,6 +32,14 @@ interface PageProps {
 const DashboardPage: React.FC<PageProps> = ({ user, data, err }) => {
   const [showTasks, setShowTasks] = useState<boolean>(false);
   const [showAnnouncement, setShowAnnouncement] = useState<boolean>(false);
+
+  const Router = useRouter();
+
+  useEffect(() => {
+    if (user.accountType === 'Company') {
+      Router.replace('/account/admin');
+    }
+  }, []);
 
   // Check for company
   let noCompany = true;

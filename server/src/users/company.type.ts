@@ -21,7 +21,7 @@ export class CompanyType {
   @Field()
   email: string;
 
-  @Field()
+  @Field({ nullable: true })
   bio?: string;
 
   @Field()

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { signIn, signOut, useSession } from 'next-auth/client';
 
 // Styles, icons
 import cx from 'classnames';
@@ -20,12 +19,9 @@ import { LinkedButton } from '../components/Button/Button';
 import FeatureCard from '../components/FeatureCard/FeatureCard';
 
 const Home: React.FC = () => {
-  const [session, loading] = useSession();
-  const [counter, setCounter] = useState<number>(1);
+  const [, setCounter] = useState<number>(1);
 
   const { user } = useContext(AuthContext);
-
-  // console.log(user);
 
   // Animations
   const cardsControl = useAnimation();

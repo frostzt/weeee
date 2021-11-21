@@ -1263,7 +1263,7 @@
   resolved "https://registry.yarnpkg.com/@microsoft/fetch-event-source/-/fetch-event-source-2.0.1.tgz#9ceecc94b49fbaa15666e38ae8587f64acce007d"
   integrity sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==
 
-"@mikro-orm/cli@^4.5.7":
+"@mikro-orm/cli@^4.5.9":
   version "4.5.9"
   resolved "https://registry.yarnpkg.com/@mikro-orm/cli/-/cli-4.5.9.tgz#3e2fdb5c972b0124cc28bba58dd1df32c24a4044"
   integrity sha512-UiT82KezvYw2J87t19NvIGgtwVZfCJJLoCCuiHcE0VejptnFDpigAYP4iGZULCDdW1kVr2SJYEbwOqcUQIZ+jw==
