@@ -11,7 +11,7 @@ import { TasksModule } from './company-features/tasks/tasks.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.dev.stage.env'],
+      envFilePath: ['../.dev.stage.env'],
     }),
     GraphQLModule.forRoot({
       debug: true,
