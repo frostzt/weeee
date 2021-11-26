@@ -1,8 +1,8 @@
 import { EntityRepository } from '@mikro-orm/knex';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { Company } from 'src/users/entities/company.entity';
-import { User } from 'src/users/entities/users.entity';
+import { Company } from '../../users/entities/company.entity';
+import { User } from '../../users/entities/users.entity';
 import { v4 } from 'uuid';
 import { Announcements } from './entities/announcements.entity';
 import { createAnnouncement } from './inputs/create-announcement.input';
