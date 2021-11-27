@@ -7,7 +7,7 @@ import { TasksResolver } from './tasks.resolver';
 import { TasksService } from './tasks.service';
 
 @Module({
-  imports: [ConfigModule, UsersModule, MikroOrmModule.forFeature([Task])],
+  imports: [ConfigModule, MikroOrmModule.forFeature([Task]), UsersModule],
   providers: [TasksResolver, TasksService],
 })
 export class TasksModule {}

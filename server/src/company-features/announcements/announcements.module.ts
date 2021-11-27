@@ -4,7 +4,7 @@ import { AnnouncementsResolver } from './announcements.resolver';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Announcements } from './entities/announcements.entity';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from 'src/users/users.module';
+import { UsersModule } from '../../users/users.module';
 
 @Module({
   imports: [

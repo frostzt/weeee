@@ -4,7 +4,7 @@ import { CurrentUser } from '../../authUtils/currentUser.decorator';
 import { GqlAuthGuard } from '../../authUtils/gqlauthguard';
 import { Company } from '../../users/entities/company.entity';
 import { User } from '../../users/entities/users.entity';
-import CreateTaskInput from './inputs/createTask.input';
+import { createTaskInput } from './inputs/createTask.input';
 import { TasksService } from './tasks.service';
 import { TasksType } from './tasks.type';
 
@@ -21,8 +21,8 @@ export class TasksResolver {
   @Mutation(() => TasksType)
   @UseGuards(GqlAuthGuard)
   createTask(
-    @Args('data') data: CreateTaskInput,
     @CurrentUser() entity: Company,
+    @Args('data') data: createTaskInput,
   ) {
     return this.taskService.createTask(entity, data);
   }

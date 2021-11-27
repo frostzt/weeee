@@ -1,16 +1,16 @@
 import { EntityRepository } from '@mikro-orm/knex';
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
 import { Company } from '../../users/entities/company.entity';
 import { User } from '../../users/entities/users.entity';
 import { Task } from './entities/tasks.entity';
-import CreateTaskInput from './inputs/createTask.input';
+import { createTaskInput } from './inputs/createTask.input';
 
 @Injectable()
 export class TasksService {
   constructor(
-    @InjectRepository(Task)
-    private tasksRepository: EntityRepository<Task>,
+    @InjectRepository(Task) private tasksRepository: EntityRepository<Task>,
   ) {}
 
   // Get all tasks based on current user
@@ -19,7 +19,23 @@ export class TasksService {
     return tasks;
   }
 
-  async createTask(entity: Company, data: CreateTaskInput) {
-    const { title, description, assignedTo } = data;
+  // Create a task by a company
+  async createTask(entity: Company, data: createTaskInput): Promise<Task> {
+    if (entity instanceof Company) {
+      const { title, description, assignedTo } = data;
+
+      const task = this.tasksRepository.create({
+        id: uuidv4(),
+        title,
+        description,
+        assignedTo,
+        createdByCompany: entity.id,
+      });
+
+      this.tasksRepository.persistAndFlush(task);
+      return task;
+    }
+
+    throw new BadRequestException('Only a company can create Tasks!');
   }
 }
