@@ -6,6 +6,7 @@ import { GetServerSideProps } from 'next';
 import { Fragment, useContext, useEffect, useState } from 'react';
 
 // Gql
+import { getMyTasks } from 'GraphQLQueries/tasksQueries';
 import { createApolloClient } from '../../../Utils/createApolloClient';
 import { getMyAnnouncements } from 'GraphQLQueries/announcementQueries';
 
@@ -16,7 +17,9 @@ import styles from './dashboard.module.scss';
 
 // Components, Interfaces, HOCs
 import { FullUser } from '../../../interfaces/User.interface';
+import Tasks from 'components/DashboardComponents/Tasks/Tasks';
 import { withLoading } from '../../../HOC/withLoading/withLoading';
+import Task from '../../../components/DashboardComponents/Tasks/Tasks.interface';
 import FeatureButtons from 'components/DashboardComponents/FeatureButtons/FeatureButtons';
 import { requireAuthentication } from '../../../HOC/requireAuthentication/requireAuthentication';
 import CompanyAnnouncements from 'components/DashboardComponents/CompanyAnnouncements/CompanyAnnouncements';
@@ -24,12 +27,13 @@ import NavigationBarContext, { AvailablePages } from '../../../contexts/Navigati
 import AnnouncementInterface from '../../../components/DashboardComponents/CompanyAnnouncements/Announcement.interface';
 
 interface PageProps {
-  user: FullUser;
   err?: string;
+  user: FullUser;
+  tasksData?: Task[];
   data?: AnnouncementInterface[];
 }
 
-const DashboardPage: React.FC<PageProps> = ({ user, data, err }) => {
+const DashboardPage: React.FC<PageProps> = ({ user, data, tasksData, err }) => {
   const [showTasks, setShowTasks] = useState<boolean>(false);
   const [showAnnouncement, setShowAnnouncement] = useState<boolean>(false);
 
@@ -67,6 +71,7 @@ const DashboardPage: React.FC<PageProps> = ({ user, data, err }) => {
       {showAnnouncement && (
         <CompanyAnnouncements noCompany={noCompany} user={user} handler={handleShowAnnouncements} err={err} data={data} />
       )}
+      {showTasks && <Tasks noCompany={noCompany} user={user} handler={handleShowTasks} err={err} data={tasksData} />}
       <Head>
         <title>Dashboard - Weeee</title>
         <meta name="description" content="Weeee dashboard, manage everything at one place!" />
@@ -93,10 +98,12 @@ export const getServerSideProps: GetServerSideProps = requireAuthentication(asyn
       const client = createApolloClient(accessToken);
 
       const { data } = await client.query({ query: getMyAnnouncements });
+      const { data: tasksData } = await client.query({ query: getMyTasks });
 
       return {
         props: {
           data: data.getMyAnnouncements,
+          tasksData: tasksData.getMyTasks,
         },
       };
     } catch (error) {

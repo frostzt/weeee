@@ -1,32 +1,28 @@
 import React from 'react';
-
-// Interfaces
-import { FullUser } from 'interfaces/User.interface';
-import AnnouncementInterface from './Announcement.interface';
-
-// Styling
 import cx from 'classnames';
-import styles from './CompanyAnnouncements.module.scss';
 
-// Components
-import Annoucement from './Announcement/Announcement';
+import Task from './Task/Task';
+import TaskInterface from './Tasks.interface';
+import { FullUser } from 'interfaces/User.interface';
+
+import styles from './Tasks.module.scss';
 
 interface Props {
+  err?: string;
   user: FullUser;
+  noCompany: boolean;
   handler: () => void;
   extrastyles?: string;
-  noCompany: boolean;
-  err?: string;
-  data?: AnnouncementInterface[];
+  data?: TaskInterface[];
 }
 
-const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noCompany, data }) => {
+const Tasks: React.FC<Props> = ({ data, user, noCompany, handler, extrastyles }) => {
   return (
-    <div className={cx([styles.container, extrastyles ? extrastyles : null])}>
+    <div className={cx([styles.container, extrastyles || null])}>
       <div className={styles.close} onClick={handler}>
         X
       </div>
-      <h2 className={styles.title}>Announcements at {user.companyOrOrganization.name}</h2>
+      <h2 className={styles.title}>Tasks for you at {user.companyOrOrganization.name}</h2>
       {noCompany && (
         <div className={styles.noCompany}>
           Your account does not have a Company assigned to it, please ask your employer for an invite.
@@ -41,12 +37,7 @@ const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noC
       <div className={styles.content}>
         {data && data.length > 0
           ? data?.map((annoucementItem) => (
-              <Annoucement
-                key={annoucementItem.id}
-                title={annoucementItem.title}
-                description={annoucementItem.description}
-                time={annoucementItem.createdAt}
-              />
+              <Task key={annoucementItem.id} title={annoucementItem.title} description={annoucementItem.description} />
             ))
           : null}
       </div>
@@ -54,4 +45,4 @@ const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noC
   );
 };
 
-export default CompanyAnnouncements;
+export default Tasks;

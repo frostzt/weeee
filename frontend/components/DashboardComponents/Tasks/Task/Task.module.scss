@@ -1,0 +1,24 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  text-align: left;
+  height: fit-content;
+  border-radius: 1rem;
+  color: var(--font-color);
+  background-image: var(--background-gradient);
+
+  .wrapper {
+    border-radius: 1rem;
+    background-color: var(--white);
+    padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+
+    .title {
+      font-size: 2.4rem;
+    }
+
+    .desc {
+      font-size: 1.7rem;
+    }
+  }
+}
