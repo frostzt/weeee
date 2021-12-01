@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
 import { Company } from '../../../users/entities/company.entity';
 import { User } from '../../../users/entities/users.entity';
+import TaskStatus from '../enums/tasksStatus.enum';
 
 @Entity()
 export class Task {
@@ -16,6 +17,9 @@ export class Task {
 
   @Property()
   title: string;
+
+  @Property({ default: TaskStatus.BACKLOG })
+  status: TaskStatus;
 
   @Property()
   description: string;

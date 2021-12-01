@@ -1,4 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import TaskStatus from './enums/tasksStatus.enum';
 
 @ObjectType()
 export class TasksType {
@@ -16,4 +17,7 @@ export class TasksType {
 
   @Field()
   description: string;
+
+  @Field()
+  status: TaskStatus;
 }

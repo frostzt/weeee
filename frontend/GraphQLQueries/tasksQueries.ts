@@ -5,6 +5,7 @@ export const getMyTasks = gql`
     getMyTasks {
       id
       title
+      status
       description
     }
   }

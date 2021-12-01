@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Company } from '../../users/entities/company.entity';
 import { User } from '../../users/entities/users.entity';
 import { Task } from './entities/tasks.entity';
+import TaskStatus from './enums/tasksStatus.enum';
 import { createTaskInput } from './inputs/createTask.input';
 
 @Injectable()
@@ -37,5 +38,20 @@ export class TasksService {
     }
 
     throw new BadRequestException('Only a company can create Tasks!');
+  }
+
+  // Update task status
+  async updateTaskStatus(entity: User, status: TaskStatus): Promise<Task> {
+    const { id } = entity;
+
+    const task = await this.tasksRepository.findOne({ assignedTo: id });
+    if (!task) {
+      throw new BadRequestException('This task does not exist!');
+    }
+
+    task.status = status;
+    await this.tasksRepository.persistAndFlush(task);
+
+    return task;
   }
 }
