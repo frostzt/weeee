@@ -6,9 +6,9 @@
   height: fit-content;
   border-radius: 1rem;
   color: var(--font-color);
-  background-image: var(--background-gradient);
 
   .wrapper {
+    position: relative;
     border-radius: 1rem;
     background-color: var(--white);
     padding: 2.5rem 2.5rem 1.5rem 2.5rem;
@@ -20,5 +20,37 @@
     .desc {
       font-size: 1.7rem;
     }
+
+    .status {
+      top: 50%;
+      right: 5%;
+      display: flex;
+      position: absolute;
+      transform: translateY(-50%);
+
+      &__item {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+      }
+
+      &__options {
+        outline: none;
+        font-size: 2rem;
+        margin-left: 1rem;
+      }
+    }
   }
+}
+
+.backlog {
+  background-image: var(--sunny-morning);
+}
+
+.inProgress {
+  background-image: var(--love-kiss);
+}
+
+.done {
+  background-image: var(--background-gradient);
 }
