@@ -7,6 +7,7 @@ import { User } from '../../users/entities/users.entity';
 import { Task } from './entities/tasks.entity';
 import TaskStatus from './enums/tasksStatus.enum';
 import { createTaskInput } from './inputs/createTask.input';
+import { UpdateTaskStatusInput } from './inputs/updateTaskStatus.input';
 
 @Injectable()
 export class TasksService {
@@ -41,17 +42,26 @@ export class TasksService {
   }
 
   // Update task status
-  async updateTaskStatus(entity: User, status: TaskStatus): Promise<Task> {
+  async updateTaskStatus(
+    entity: User,
+    data: UpdateTaskStatusInput,
+  ): Promise<Task> {
+    const { status, task } = data;
     const { id } = entity;
 
-    const task = await this.tasksRepository.findOne({ assignedTo: id });
-    if (!task) {
+    const assignedTask = await this.tasksRepository.findOne({ id: task });
+    if (!assignedTask) {
       throw new BadRequestException('This task does not exist!');
     }
 
-    task.status = status;
-    await this.tasksRepository.persistAndFlush(task);
+    // @ts-expect-error "assignedTask.assignedTo.id" is post population therefore it is string anymore
+    if (assignedTask.assignedTo.id !== id) {
+      throw new BadRequestException('This task is not assigned to you!');
+    }
 
-    return task;
+    assignedTask.status = status;
+    await this.tasksRepository.persistAndFlush(assignedTask);
+
+    return assignedTask;
   }
 }

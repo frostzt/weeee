@@ -6,6 +6,7 @@ import { Company } from '../../users/entities/company.entity';
 import { User } from '../../users/entities/users.entity';
 import TaskStatus from './enums/tasksStatus.enum';
 import { createTaskInput } from './inputs/createTask.input';
+import { UpdateTaskStatusInput } from './inputs/updateTaskStatus.input';
 import { TasksService } from './tasks.service';
 import { TasksType } from './tasks.type';
 
@@ -32,7 +33,7 @@ export class TasksResolver {
   @UseGuards(GqlAuthGuard)
   updateTaskStatus(
     @CurrentUser() entity: User,
-    @Args('status') data: TaskStatus,
+    @Args('updateInput') data: UpdateTaskStatusInput,
   ) {
     return this.taskService.updateTaskStatus(entity, data);
   }

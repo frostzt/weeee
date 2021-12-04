@@ -10,3 +10,9 @@ export const getMyTasks = gql`
     }
   }
 `;
+
+export const updateTaskStatus = gql`
+  mutation {
+    
+  }
+`;

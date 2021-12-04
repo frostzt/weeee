@@ -14,6 +14,11 @@ interface Props {
 const Task: React.FC<Props> = ({ title, description, status }) => {
   const [currentStatus, setCurrentStatus] = useState<TaskStatus>(status);
 
+  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    // @ts-expect-error 'e.target.value' is of type string, however fixed to type TaskStatus therefore no problem UNLESS the options are modified
+    setCurrentStatus(e.target.value);
+  };
+
   return (
     <div
       className={cx([
@@ -35,14 +40,7 @@ const Task: React.FC<Props> = ({ title, description, status }) => {
               status === TaskStatus.IN_PROGRESS && styles.inProgress,
             ])}
           />
-          <select
-            className={styles.status__options}
-            name="status"
-            id="status"
-            value={currentStatus}
-            // @ts-expect-error 'e.target.value' is of type string, however fixed to type TaskStatus therefore no problem UNLESS the options are modified
-            onChange={(e) => setCurrentStatus(e.target.value)}
-          >
+          <select className={styles.status__options} name="status" id="status" value={currentStatus} onChange={handleStatusChange}>
             <option value={TaskStatus.DONE}>Done</option>
             <option value={TaskStatus.BACKLOG}>Backlog</option>
             <option value={TaskStatus.IN_PROGRESS}>In Progress</option>
