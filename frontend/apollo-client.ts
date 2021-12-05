@@ -5,6 +5,7 @@ const ENDPOINT = `${API_URL}/graphql`;
 
 const httpLink = createHttpLink({
   uri: ENDPOINT,
+  credentials: 'include',
 });
 
 export const client = new ApolloClient({

@@ -12,7 +12,12 @@ export const getMyTasks = gql`
 `;
 
 export const updateTaskStatus = gql`
-  mutation {
-    
+  mutation updateTaskStatus($status: String!, $task: String!) {
+    updateTaskStatus(updateInput: { status: $status, task: $task }) {
+      id
+      title
+      status
+      description
+    }
   }
 `;

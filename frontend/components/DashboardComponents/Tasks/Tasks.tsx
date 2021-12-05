@@ -37,7 +37,13 @@ const Tasks: React.FC<Props> = ({ data, user, noCompany, handler, extrastyles })
       <div className={styles.content}>
         {data && data.length > 0
           ? data?.map((taskItem) => (
-              <Task key={taskItem.id} title={taskItem.title} description={taskItem.description} status={taskItem.status} />
+              <Task
+                key={taskItem.id}
+                id={taskItem.id}
+                title={taskItem.title}
+                description={taskItem.description}
+                status={taskItem.status}
+              />
             ))
           : null}
       </div>

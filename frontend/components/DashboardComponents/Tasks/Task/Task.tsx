@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import { TaskStatus } from '../Tasks.interface';
+import { updateTaskStatus } from 'GraphQLQueries/tasksQueries';
 
 // Styling
 import cx from 'classnames';
 import styles from './Task.module.scss';
 
 interface Props {
+  id: string;
   title: string;
   description: string;
   status: TaskStatus;
 }
 
-const Task: React.FC<Props> = ({ title, description, status }) => {
+const Task: React.FC<Props> = ({ id, title, description, status }) => {
   const [currentStatus, setCurrentStatus] = useState<TaskStatus>(status);
+  const [updateTask, { data, error, loading }] = useMutation(updateTaskStatus);
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // @ts-expect-error 'e.target.value' is of type string, however fixed to type TaskStatus therefore no problem UNLESS the options are modified
     setCurrentStatus(e.target.value);
+    updateTask({ variables: { status: e.target.value, task: id } });
   };
 
   return (

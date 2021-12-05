@@ -17,7 +17,8 @@ import { TasksModule } from './company-features/tasks/tasks.module';
       debug: true,
       autoSchemaFile: true,
       cors: {
-        origin: '*',
+        origin: 'http://localhost:3000',
+        credentials: true,
       },
     }),
     MikroOrmModule.forRoot(),
