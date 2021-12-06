@@ -1,22 +1,28 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import cx from 'classnames';
 
-import Task from './Task/Task';
-import TaskInterface from './Tasks.interface';
 import { FullUser } from 'interfaces/User.interface';
 
 import styles from './Tasks.module.scss';
+import { NEXT_URL } from 'Config/Config';
 
 interface Props {
-  err?: string;
   user: FullUser;
   noCompany: boolean;
   handler: () => void;
   extrastyles?: string;
-  data?: TaskInterface[];
 }
 
-const Tasks: React.FC<Props> = ({ data, user, noCompany, handler, extrastyles }) => {
+const Tasks: React.FC<Props> = ({ user, noCompany, handler, extrastyles }) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await axios.get(`${NEXT_URL}/api/getTasks`);
+      console.log(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className={cx([styles.container, extrastyles || null])}>
       <div className={styles.close} onClick={handler}>
@@ -35,7 +41,7 @@ const Tasks: React.FC<Props> = ({ data, user, noCompany, handler, extrastyles })
         </div>
       )}
       <div className={styles.content}>
-        {data && data.length > 0
+        {/* {data && data.length > 0
           ? data?.map((taskItem) => (
               <Task
                 key={taskItem.id}
@@ -45,7 +51,7 @@ const Tasks: React.FC<Props> = ({ data, user, noCompany, handler, extrastyles })
                 status={taskItem.status}
               />
             ))
-          : null}
+          : null} */}
       </div>
     </div>
   );
