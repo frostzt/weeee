@@ -1,2 +1,2 @@
-export const NEXT_URL = 'https://weeee.vercel.app';
-export const API_URL = 'https://api-weeee.herokuapp.com';
+export const NEXT_URL = process.env.NEXT_PUBLIC_FE_URL;
+export const API_URL = process.env.NEXT_PUBLIC_BE_URL;
