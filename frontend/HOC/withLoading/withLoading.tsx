@@ -1,7 +1,7 @@
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import AuthContext from '../../contexts/AuthContext/Auth.context';
 import styles from './LoadingComponents/LoadingScreen.module.scss';
-import React, { useState, useContext, useEffect, Fragment } from 'react';
 
 // Varients
 import { DotVarient } from './LoadingComponents/LoadingScreen.varients';

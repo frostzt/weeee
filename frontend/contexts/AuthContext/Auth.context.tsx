@@ -35,8 +35,10 @@ export interface UpdatedData {
 const AuthContext = createContext({
   user: undefined,
   error: undefined,
-  companyAccount: false,
-  signIn: (event: Event, credentials: SignInProps, isCompany: boolean) => {
+  signIn: (event: Event, credentials: SignInProps) => {
+    return;
+  },
+  signInCompany: (event: Event, credentials: SignInProps, isCompany: boolean) => {
     return;
   },
   signUp: (event: Event, credentials: SignUpProps, isCompany: boolean) => {
@@ -54,12 +56,13 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState();
   // Error is unknown to support every form of error this is any
   const [error, setError] = useState<any>();
-  const [companyAccount, setIsCompanyAccount] = useState(false);
 
   const Router = useRouter();
 
   useEffect(() => {
-    checkIfUserLoggedIn();
+    if (!user) {
+      checkIfUserLoggedIn();
+    }
   }, []);
 
   // Register
@@ -97,14 +100,14 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   };
 
   // Sign in
-  const signIn = async (event: Event, credentials: SignInProps, isCompany: boolean) => {
+  const signIn = async (event: Event, credentials: SignInProps) => {
     event.preventDefault();
     const { email, password } = credentials;
 
     try {
       const res = await axios.post(
         `${NEXT_URL}/api/auth/login`,
-        { email, password, isCompany },
+        { email, password },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -118,16 +121,39 @@ export const AuthProvider = ({ children }: ProviderProps) => {
         return;
       }
 
-      if (!isCompany) {
-        const { user } = res.data;
-        setUser(user);
-        Router.push('/account/dashboard');
-      } else {
-        setIsCompanyAccount(true);
-        const { company: user } = res.data;
-        setUser(user);
-        Router.push('/account/admin');
+      const { user } = res.data;
+      setUser(user);
+      Router.push('/account/dashboard');
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+  };
+
+  const signInCompany = async (event: Event, credentials: SignInProps) => {
+    event.preventDefault();
+    const { email, password } = credentials;
+
+    try {
+      const response = await axios.post(
+        `${NEXT_URL}/api/auth/login`,
+        { email, password, isCompany: true },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (response.data.error) {
+        toast.error(response.data.error.message);
+        setError(response.data.error.message);
+        return;
       }
+
+      const { user } = response.data;
+      setUser(user);
+      Router.push('/account/admin');
     } catch (error) {
       console.error(error);
       setError(error);
@@ -187,7 +213,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, error, signIn, signUp, signOut, updateUser, companyAccount }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, error, signIn, signUp, signOut, updateUser, signInCompany }}>{children}</AuthContext.Provider>
   );
 };
 

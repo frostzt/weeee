@@ -37,28 +37,28 @@ const login = async (req: NextApiRequest, res: NextApiResponse): Promise<void> =
         );
 
         return res.status(200).json({ user });
+      } else {
+        // If isCompany
+        const response = await client.query({
+          query: SIGN_IN_COMPANY,
+          variables: { email, password },
+        });
+
+        const { accessToken, company } = response.data.signInCompany;
+
+        res.setHeader(
+          'Set-Cookie',
+          cookie.serialize('accessToken', accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== 'development',
+            maxAge: 60 * 60 * 24 * 7,
+            sameSite: 'strict',
+            path: '/',
+          })
+        );
+
+        return res.status(200).json({ company });
       }
-
-      // If isCompany
-      const response = await client.query({
-        query: SIGN_IN_COMPANY,
-        variables: { email, password },
-      });
-
-      const { accessToken, company } = response.data.signInCompany;
-
-      res.setHeader(
-        'Set-Cookie',
-        cookie.serialize('accessToken', accessToken, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV !== 'development',
-          maxAge: 60 * 60 * 24 * 7,
-          sameSite: 'strict',
-          path: '/',
-        })
-      );
-
-      return res.status(200).json({ company });
     } catch (error) {
       console.error(error);
       return res.json({ error });

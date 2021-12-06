@@ -1,16 +1,16 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 
-import { requireAuthentication } from 'HOC/requireAuthentication/requireAuthentication';
+import { requireCompany } from 'HOC/requireCompany/requireCompany';
 
 const AdminPage: React.FC = () => {
-  return <div></div>;
+  return <h1>I am Company</h1>;
 };
 
 export default AdminPage;
 
-export const getServerSideProps: GetServerSideProps = requireAuthentication(async () => {
+export const getServerSideProps: GetServerSideProps = requireCompany(async () => {
   return {
     props: {},
   };
-}, true);
+});
