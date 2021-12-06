@@ -57,17 +57,21 @@ const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noC
       )}
       <div className={styles.content}>
         {err && <div style={{ color: 'white' }}>There was an error, please try refreshing the page!</div>}
-        {data && data.length > 0 ? (
-          data?.map((annoucementItem) => (
-            <Annoucement
-              key={annoucementItem.id}
-              title={annoucementItem.title}
-              description={annoucementItem.description}
-              time={annoucementItem.createdAt}
-            />
-          ))
-        ) : (
-          <div style={{ color: 'white' }}>Loading...</div>
+        {!noCompany && (
+          <>
+            {data && data.length > 0 ? (
+              data?.map((annoucementItem) => (
+                <Annoucement
+                  key={annoucementItem.id}
+                  title={annoucementItem.title}
+                  description={annoucementItem.description}
+                  time={annoucementItem.createdAt}
+                />
+              ))
+            ) : (
+              <div style={{ color: 'white' }}>Loading...</div>
+            )}
+          </>
         )}
       </div>
     </div>

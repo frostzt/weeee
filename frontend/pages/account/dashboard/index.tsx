@@ -64,7 +64,7 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
         <meta name="description" content="Weeee dashboard, manage everything at one place!" />
       </Head>
       <div className={styles.container}>
-        <div className={styles.header}>Welcome {user.name} - Dashboard</div>
+        <div className={styles.header}>Welcome {user ? user.name : ''} - Dashboard</div>
         <h2 className={styles.title}>Quick view</h2>
         <div className={styles.features}>
           <FeatureButtons title="Announcements" Icon={BsFillMicFill} handler={handleShowAnnouncements} />

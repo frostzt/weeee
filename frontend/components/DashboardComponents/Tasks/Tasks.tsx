@@ -51,12 +51,22 @@ const Tasks: React.FC<Props> = ({ user, noCompany, handler, extrastyles }) => {
       )}
       <div className={styles.content}>
         {err && <div style={{ color: 'white' }}>Seems like there was an erro!</div>}
-        {data && data.length > 0 ? (
-          data?.map((taskItem) => (
-            <Task key={taskItem.id} id={taskItem.id} title={taskItem.title} description={taskItem.description} status={taskItem.status} />
-          ))
-        ) : (
-          <div style={{ color: 'white' }}>Loading...</div>
+        {!noCompany && (
+          <>
+            {data && data.length > 0 ? (
+              data?.map((taskItem) => (
+                <Task
+                  key={taskItem.id}
+                  id={taskItem.id}
+                  title={taskItem.title}
+                  description={taskItem.description}
+                  status={taskItem.status}
+                />
+              ))
+            ) : (
+              <div style={{ color: 'white' }}>Loading...</div>
+            )}
+          </>
         )}
       </div>
     </div>
