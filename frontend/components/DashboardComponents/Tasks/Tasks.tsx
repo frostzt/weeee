@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
+import React, { useEffect, useState } from 'react';
 
 import { FullUser } from 'interfaces/User.interface';
 
@@ -17,12 +17,17 @@ interface Props {
 }
 
 const Tasks: React.FC<Props> = ({ user, noCompany, handler, extrastyles }) => {
+  const [err, setErr] = useState<any>();
   const [data, setData] = useState<TaskInterface[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`${NEXT_URL}/api/getTasks`);
-      setData(response.data.task);
+      try {
+        const response = await axios.get(`${NEXT_URL}/api/getTasks`);
+        setData(response.data.task);
+      } catch (error) {
+        setErr(error);
+      }
     };
     fetchData();
   }, []);
@@ -45,12 +50,13 @@ const Tasks: React.FC<Props> = ({ user, noCompany, handler, extrastyles }) => {
         </div>
       )}
       <div className={styles.content}>
+        {err && <div style={{ color: 'white' }}>Seems like there was an erro!</div>}
         {data && data.length > 0 ? (
           data?.map((taskItem) => (
             <Task key={taskItem.id} id={taskItem.id} title={taskItem.title} description={taskItem.description} status={taskItem.status} />
           ))
         ) : (
-          <div>Loading...</div>
+          <div style={{ color: 'white' }}>Loading...</div>
         )}
       </div>
     </div>

@@ -1,4 +1,6 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { NEXT_URL } from 'Config/Config';
 
 // Interfaces
 import { FullUser } from 'interfaces/User.interface';
@@ -16,11 +18,26 @@ interface Props {
   handler: () => void;
   extrastyles?: string;
   noCompany: boolean;
-  err?: string;
-  data?: AnnouncementInterface[];
 }
 
-const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noCompany, data }) => {
+const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noCompany }) => {
+  const [err, setErr] = useState<any>();
+  const [data, setData] = useState<AnnouncementInterface[]>([]);
+
+  useEffect(() => {
+    if (!noCompany) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`${NEXT_URL}/api/announcements/getAnnouncements`);
+          setData(response.data.announcements);
+        } catch (error) {
+          setErr(error);
+        }
+      };
+      fetchData();
+    }
+  }, []);
+
   return (
     <div className={cx([styles.container, extrastyles ? extrastyles : null])}>
       <div className={styles.close} onClick={handler}>
@@ -39,16 +56,19 @@ const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noC
         </div>
       )}
       <div className={styles.content}>
-        {data && data.length > 0
-          ? data?.map((annoucementItem) => (
-              <Annoucement
-                key={annoucementItem.id}
-                title={annoucementItem.title}
-                description={annoucementItem.description}
-                time={annoucementItem.createdAt}
-              />
-            ))
-          : null}
+        {err && <div style={{ color: 'white' }}>There was an error, please try refreshing the page!</div>}
+        {data && data.length > 0 ? (
+          data?.map((annoucementItem) => (
+            <Annoucement
+              key={annoucementItem.id}
+              title={annoucementItem.title}
+              description={annoucementItem.description}
+              time={annoucementItem.createdAt}
+            />
+          ))
+        ) : (
+          <div style={{ color: 'white' }}>Loading...</div>
+        )}
       </div>
     </div>
   );
