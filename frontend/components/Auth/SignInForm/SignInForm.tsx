@@ -23,6 +23,10 @@ const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
   //   setIsCompany((prev) => !prev);
   // };
 
+  const handleSignIn = (e: Event) => {
+    signIn(e, { email, password }, isCompany);
+  };
+
   return (
     <div className={styles.container}>
       <form className={styles.form}>
@@ -52,7 +56,7 @@ const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
           handler={handleChangeIsCompany}
         /> */}
         <div className={styles.btns}>
-          <Button extraClass={styles.signup} handler={(e: Event) => signIn(e, { email, password }, isCompany)}>
+          <Button extraClass={styles.signup} handler={handleSignIn}>
             Sign In
           </Button>
           <div className={styles.switch}>

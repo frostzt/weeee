@@ -1,27 +1,23 @@
 import React from 'react';
 import Link from 'next/link';
-import cx from 'classnames';
 
 // Style
+import cx from 'classnames';
 import { motion } from 'framer-motion';
 import styles from './Button.module.scss';
 
 interface Props {
-  extraClass?: string;
   handler: any;
+  extraClass?: string;
 }
 
 interface LinkedProps {
-  extraClass?: string;
   link: string;
   override?: boolean;
+  extraClass?: string;
 }
 
-export const DivButton: React.FC<Props> = ({
-  children,
-  extraClass,
-  handler,
-}) => {
+export const DivButton: React.FC<Props> = ({ children, extraClass, handler }) => {
   return (
     <motion.div
       onClick={handler}
@@ -55,12 +51,7 @@ export const Button: React.FC<Props> = ({ children, extraClass, handler }) => {
   );
 };
 
-export const LinkedButton: React.FC<LinkedProps> = ({
-  children,
-  extraClass,
-  link,
-  override,
-}) => {
+export const LinkedButton: React.FC<LinkedProps> = ({ children, extraClass, link, override }) => {
   if (override) {
     return (
       <Link href={link}>
@@ -70,9 +61,7 @@ export const LinkedButton: React.FC<LinkedProps> = ({
   }
   return (
     <Link href={link}>
-      <div className={cx([styles.button, extraClass ? extraClass : null])}>
-        {children}
-      </div>
+      <div className={cx([styles.button, extraClass ? extraClass : null])}>{children}</div>
     </Link>
   );
 };
