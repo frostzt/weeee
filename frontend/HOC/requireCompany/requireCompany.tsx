@@ -15,7 +15,7 @@ export function requireCompany(gssp: GetServerSideProps) {
         const response = await client.query({ query: getCompany });
         const { getCompany: company } = response.data;
 
-        if (!accessToken || !company || !company.email) {
+        if (!accessToken && !company && !company.email) {
           return {
             redirect: {
               permanent: false,

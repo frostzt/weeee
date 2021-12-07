@@ -36,6 +36,7 @@ const AuthContext = createContext({
   user: undefined,
   error: undefined,
   company: undefined,
+  isCompany: false,
   signIn: (event: Event, credentials: SignInProps) => {
     return;
   },
@@ -69,7 +70,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     if (isCompany) {
       checkIfCompanyLoggedIn();
     }
-  }, []);
+  }, [isCompany]);
 
   // Register
   const signUp = async (event: Event, credentials: SignUpProps, isCompany: boolean) => {
@@ -219,6 +220,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     }
   };
 
+  // Check if the company is logged in
   const checkIfCompanyLoggedIn = async () => {
     try {
       const res = await axios.post(`${NEXT_URL}/api/auth/company`);
@@ -230,7 +232,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, company, error, signIn, signUp, signOut, updateUser, signInCompany }}>
+    <AuthContext.Provider value={{ user, company, error, signIn, signUp, signOut, updateUser, signInCompany, isCompany }}>
       {children}
     </AuthContext.Provider>
   );
