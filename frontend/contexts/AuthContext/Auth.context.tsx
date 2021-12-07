@@ -35,6 +35,7 @@ export interface UpdatedData {
 const AuthContext = createContext({
   user: undefined,
   error: undefined,
+  company: undefined,
   signIn: (event: Event, credentials: SignInProps) => {
     return;
   },
@@ -54,14 +55,19 @@ const AuthContext = createContext({
 
 export const AuthProvider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState();
+  const [company, setCompany] = useState();
+  const [isCompany, setIsCompany] = useState(false);
   // Error is unknown to support every form of error this is any
   const [error, setError] = useState<any>();
 
   const Router = useRouter();
 
   useEffect(() => {
-    if (!user) {
+    if (!isCompany) {
       checkIfUserLoggedIn();
+    }
+    if (isCompany) {
+      checkIfCompanyLoggedIn();
     }
   }, []);
 
@@ -135,7 +141,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     const { email, password } = credentials;
 
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         `${NEXT_URL}/api/auth/login`,
         { email, password, isCompany: true },
         {
@@ -145,14 +151,15 @@ export const AuthProvider = ({ children }: ProviderProps) => {
         }
       );
 
-      if (response.data.error) {
-        toast.error(response.data.error.message);
-        setError(response.data.error.message);
+      if (res.data.error) {
+        toast.error(res.data.error.message);
+        setError(res.data.error.message);
         return;
       }
 
-      const { user } = response.data;
-      setUser(user);
+      const { company } = res.data;
+      setCompany(company);
+      setIsCompany(true);
       Router.push('/account/admin');
     } catch (error) {
       console.error(error);
@@ -212,8 +219,20 @@ export const AuthProvider = ({ children }: ProviderProps) => {
     }
   };
 
+  const checkIfCompanyLoggedIn = async () => {
+    try {
+      const res = await axios.post(`${NEXT_URL}/api/auth/company`);
+      setCompany(res.data.company);
+    } catch (error) {
+      console.error(error);
+      setCompany(undefined);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, error, signIn, signUp, signOut, updateUser, signInCompany }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, company, error, signIn, signUp, signOut, updateUser, signInCompany }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 

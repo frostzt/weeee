@@ -4,7 +4,7 @@ import { GetServerSideProps } from 'next';
 import { requireCompany } from 'HOC/requireCompany/requireCompany';
 
 const AdminPage: React.FC = () => {
-  return <h1>I am Company</h1>;
+  return <div>I am Company</div>;
 };
 
 export default AdminPage;
