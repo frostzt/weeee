@@ -1,15 +1,18 @@
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
 
 import styles from './admin.module.scss';
 
+import { Company } from 'interfaces/Company.interface';
+import { withCompany } from '../../../HOC/withLoading/withCompany';
 import { requireCompany } from 'HOC/requireCompany/requireCompany';
-import AuthContext from 'contexts/AuthContext/Auth.context';
 
-const AdminPage: React.FC = () => {
-  const { company } = useContext(AuthContext);
+interface Props {
+  company: Company;
+}
 
+const AdminPage: React.FC<Props> = ({ company }) => {
   console.log(company);
 
   return (
@@ -19,13 +22,13 @@ const AdminPage: React.FC = () => {
         <meta name="description" content="Weeee dashboard, manage everything at one place!" />
       </Head>
       <div className={styles.container}>
-        <div className={styles.header}>Dashboard</div>
+        <div className={styles.header}>{company.name} - Dashboard</div>
       </div>
     </Fragment>
   );
 };
 
-export default AdminPage;
+export default withCompany(AdminPage);
 
 export const getServerSideProps: GetServerSideProps = requireCompany(async () => {
   return {

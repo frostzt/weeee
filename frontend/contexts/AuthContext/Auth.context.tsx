@@ -36,7 +36,6 @@ const AuthContext = createContext({
   user: undefined,
   error: undefined,
   company: undefined,
-  isCompany: false,
   signIn: (event: Event, credentials: SignInProps) => {
     return;
   },
@@ -57,20 +56,15 @@ const AuthContext = createContext({
 export const AuthProvider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState();
   const [company, setCompany] = useState();
-  const [isCompany, setIsCompany] = useState(false);
   // Error is unknown to support every form of error this is any
   const [error, setError] = useState<any>();
 
   const Router = useRouter();
 
   useEffect(() => {
-    if (!isCompany) {
-      checkIfUserLoggedIn();
-    }
-    if (isCompany) {
-      checkIfCompanyLoggedIn();
-    }
-  }, [isCompany]);
+    checkIfUserLoggedIn();
+    checkIfCompanyLoggedIn();
+  }, []);
 
   // Register
   const signUp = async (event: Event, credentials: SignUpProps, isCompany: boolean) => {
@@ -160,7 +154,6 @@ export const AuthProvider = ({ children }: ProviderProps) => {
 
       const { company } = res.data;
       setCompany(company);
-      setIsCompany(true);
       Router.push('/account/admin');
     } catch (error) {
       console.error(error);
@@ -232,7 +225,7 @@ export const AuthProvider = ({ children }: ProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, company, error, signIn, signUp, signOut, updateUser, signInCompany, isCompany }}>
+    <AuthContext.Provider value={{ user, company, error, signIn, signUp, signOut, updateUser, signInCompany }}>
       {children}
     </AuthContext.Provider>
   );

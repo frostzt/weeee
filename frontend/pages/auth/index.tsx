@@ -17,7 +17,7 @@ import { useMediaQuery } from 'react-responsive';
 
 const AuthPage: React.FC = () => {
   const [creatingAccount, setCreatingAccount] = useState(true);
-  const { user } = useContext(AuthContext);
+  const { user, company } = useContext(AuthContext);
 
   const Router = useRouter();
 
@@ -30,6 +30,10 @@ const AuthPage: React.FC = () => {
 
   if (user) {
     Router.push('/account/dashboard');
+  }
+
+  if (company) {
+    Router.push('/account/admin');
   }
 
   return (

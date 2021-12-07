@@ -11,14 +11,16 @@ import { FaUser } from 'react-icons/fa';
 import { MdArrowDropUp } from 'react-icons/md';
 import { BiLogInCircle } from 'react-icons/bi';
 import { AiFillDashboard } from 'react-icons/ai';
-import styles from './NavigationBar.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 
+import styles from './NavigationBar.module.scss';
+
 interface Props {
+  isCompany?: boolean;
   signOut: () => void;
 }
 
-const NavigationBar: React.FC<Props> = ({ signOut }) => {
+const NavigationBar: React.FC<Props> = ({ signOut, isCompany }) => {
   // States
   const [isOpen, setIsOpen] = useState(false);
 
