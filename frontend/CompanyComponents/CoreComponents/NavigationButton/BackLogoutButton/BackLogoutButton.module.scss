@@ -1,0 +1,11 @@
+.button {
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  font-size: 3rem;
+  color: var(--white);
+  align-items: center;
+  border-radius: 1rem;
+  justify-content: center;
+  background-image: var(--background-gradient);
+}
