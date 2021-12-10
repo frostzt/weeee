@@ -11,3 +11,15 @@ export const getMyAnnouncements = gql`
     }
   }
 `;
+
+export const getCompanyAnnouncementsQuery = gql`
+  query {
+    getCompanyAnnouncements {
+      id
+      title
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;

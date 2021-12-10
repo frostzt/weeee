@@ -17,3 +17,9 @@ export class AnnouncementsType {
   @Field()
   description: string;
 }
+
+@ObjectType()
+export class DeletedAnnouncement {
+  @Field()
+  status: string;
+}

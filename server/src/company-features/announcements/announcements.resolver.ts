@@ -5,7 +5,7 @@ import { GqlAuthGuard } from 'src/authUtils/gqlauthguard';
 import { Company } from 'src/users/entities/company.entity';
 import { User } from 'src/users/entities/users.entity';
 import { AnnouncementsService } from './announcements.service';
-import { AnnouncementsType } from './announcements.type';
+import { AnnouncementsType, DeletedAnnouncement } from './announcements.type';
 import { createAnnouncement } from './inputs/create-announcement.input';
 
 @Resolver()
@@ -32,5 +32,14 @@ export class AnnouncementsResolver {
     @CurrentUser() company: Company,
   ) {
     return this.announcementsService.createAnnouncement(data, company);
+  }
+
+  @Mutation(() => DeletedAnnouncement)
+  @UseGuards(GqlAuthGuard)
+  deleteAnnouncement(
+    @Args('announcement') announcement: string,
+    @CurrentUser() company: Company,
+  ) {
+    return this.announcementsService.deleteAnnouncement(announcement, company);
   }
 }

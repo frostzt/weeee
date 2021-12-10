@@ -1,6 +1,10 @@
 import { EntityRepository } from '@mikro-orm/knex';
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Company } from '../../users/entities/company.entity';
 import { User } from '../../users/entities/users.entity';
 import { v4 } from 'uuid';
@@ -55,5 +59,24 @@ export class AnnouncementsService {
 
     this.announcementsRepository.persistAndFlush(announcement);
     return announcement;
+  }
+
+  // Delete an announcement
+  async deleteAnnouncement(announcement: string, company: Company) {
+    const announcementObject = this.announcementsRepository.findOne({
+      id: announcement,
+      companyOrOrganization: company.id,
+    });
+    if (!announcementObject) {
+      throw new BadRequestException(
+        'This Announcement has either been already deleted or it does not exist anymore, please refresh!',
+      );
+    }
+
+    this.announcementsRepository.removeAndFlush(announcementObject);
+
+    return {
+      status: 'deleted',
+    };
   }
 }

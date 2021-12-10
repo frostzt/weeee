@@ -2,8 +2,8 @@ import Head from 'next/head';
 import React, { Fragment } from 'react';
 import { GetServerSideProps } from 'next';
 
-import styles from './admin.module.scss';
 import { BiLogInCircle } from 'react-icons/bi';
+import styles from './admin.module.scss';
 
 import { Company } from 'interfaces/Company.interface';
 import { withCompany } from '../../../HOC/withLoading/withCompany';
