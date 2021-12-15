@@ -65,7 +65,7 @@ const MePage: React.FC<Props> = ({ user, companies }) => {
           </div>
           <div className={styles.profileInfo}>
             <ProfilePicture picture={user.picture ? user.picture : 'dog'} />
-            <h2 className={styles.name}>{user.name}</h2>
+            <h2 className={styles.name}>{user.name ? user.name : ''}</h2>
           </div>
           <div className={styles.item}>
             <AiFillMail />

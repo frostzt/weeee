@@ -70,9 +70,6 @@ const DashboardPage: React.FC<PageProps> = ({ user }) => {
           <FeatureButtons title="Announcements" Icon={BsFillMicFill} handler={handleShowAnnouncements} />
           <FeatureButtons title="Tasks" Icon={BiTask} handler={handleShowTasks} />
         </div>
-        <h2 className={styles.title} style={{ marginTop: '3rem' }}>
-          Projects
-        </h2>
       </div>
     </Fragment>
   );

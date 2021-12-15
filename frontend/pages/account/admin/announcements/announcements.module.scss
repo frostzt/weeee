@@ -1,11 +1,48 @@
 .creator {
   top: 50%;
   left: 50%;
-  width: 50vw;
-  height: 50vw;
+  z-index: 99999;
   position: fixed;
   transform: translate(-50%, -50%);
-  background-image: var(--background-gradient);
+  background-image: var(--white);
+
+  .inner {
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+  }
+
+  &__group {
+    margin-top: 2.5rem;
+
+    & > * {
+      display: block;
+    }
+
+    &_title {
+      width: 100%;
+      text-transform: uppercase;
+    }
+
+    &_input {
+      height: 3rem;
+      outline: none;
+      margin-top: 1rem;
+      border-radius: 0.5rem;
+      padding: 1.5rem 1.2rem;
+      border: 1px solid grey;
+    }
+  }
+
+  &__button {
+    margin: 0 auto;
+    margin-top: 3rem;
+  }
 }
 
 .container {
