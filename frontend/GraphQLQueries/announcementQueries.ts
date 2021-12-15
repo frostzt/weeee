@@ -23,3 +23,15 @@ export const getCompanyAnnouncementsQuery = gql`
     }
   }
 `;
+
+export const createAnnoucementMutation = gql`
+  mutation createAnnoucement($title: String!, $description: String!) {
+    createAnnoucement(data: { title: $title, description: $description }) {
+      id
+      title
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;

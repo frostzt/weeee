@@ -20,13 +20,12 @@ const getAllAnnoucements = async (req: NextApiRequest, res: NextApiResponse): Pr
       const response = await client.query({ query: getCompanyAnnouncementsQuery });
 
       const { getCompanyAnnouncements } = response.data;
-      res.json({ announcements: getCompanyAnnouncements });
+      return res.json({ announcements: getCompanyAnnouncements });
     } catch (error: any) {
-      console.error(error);
       if (error.networkError) {
         console.error(error.networkError.result);
       }
-      res.json({ error });
+      return res.json({ error });
     }
   }
 };

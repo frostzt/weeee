@@ -9,7 +9,7 @@ import { Company } from 'interfaces/Company.interface';
 import { withCompany } from '../../../HOC/withLoading/withCompany';
 import { requireCompany } from 'HOC/requireCompany/requireCompany';
 import NavigationButton from '../../../CompanyComponents/CoreComponents/NavigationButton/NavigationButton';
-import BackLogoutButton from 'CompanyComponents/CoreComponents/NavigationButton/BackLogoutButton/BackLogoutButton';
+import Button from 'CompanyComponents/CoreComponents/BackLogoutButton/BackLogoutButton';
 
 interface Props {
   company: Company;
@@ -31,9 +31,9 @@ const AdminPage: React.FC<Props> = ({ company, signOut }) => {
         <NavigationButton href="/account/admin/announcements" className={styles.button}>
           Create, Edit, View Announcements
         </NavigationButton>
-        <BackLogoutButton handler={signOut} className={styles.logout}>
+        <Button handler={signOut} className={styles.logout}>
           <BiLogInCircle />
-        </BackLogoutButton>
+        </Button>
       </div>
     </Fragment>
   );

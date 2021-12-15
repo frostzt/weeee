@@ -10,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-const BackLogoutButton: React.FC<Props> = ({ className, handler, children }) => {
+const Button: React.FC<Props> = ({ className, handler, children }) => {
   return (
     <div onClick={handler} className={cx([styles.button, className || null])}>
       {children}
@@ -30,4 +30,4 @@ export const BackLogoutButtonWithLink: React.FC<LinkProps> = ({ className, handl
   );
 };
 
-export default BackLogoutButton;
+export default Button;
