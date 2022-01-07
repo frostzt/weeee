@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { Company } from '../../users/entities/company.entity';
 import { User } from '../../users/entities/users.entity';
 import { Task } from './entities/tasks.entity';
-import TaskStatus from './enums/tasksStatus.enum';
 import { createTaskInput } from './inputs/createTask.input';
 import { UpdateTaskStatusInput } from './inputs/updateTaskStatus.input';
 
@@ -14,6 +13,14 @@ export class TasksService {
   constructor(
     @InjectRepository(Task) private tasksRepository: EntityRepository<Task>,
   ) {}
+
+  // Get all company tasks
+  async getAllTasks(entity: Company) {
+    const tasks = await this.tasksRepository.find({
+      createdByCompany: entity.id,
+    });
+    return tasks;
+  }
 
   // Get all tasks based on current user
   async getMyTasks(entity: User) {
@@ -54,7 +61,7 @@ export class TasksService {
       throw new BadRequestException('This task does not exist!');
     }
 
-    // @ts-expect-error "assignedTask.assignedTo.id" is post population therefore it is string anymore
+    // @ts-expect-error "assignedTask.assignedTo.id" is post population therefore it is NOT string anymore
     if (assignedTask.assignedTo.id !== id) {
       throw new BadRequestException('This task is not assigned to you!');
     }

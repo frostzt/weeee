@@ -4,7 +4,6 @@ import { CurrentUser } from '../../authUtils/currentUser.decorator';
 import { GqlAuthGuard } from '../../authUtils/gqlauthguard';
 import { Company } from '../../users/entities/company.entity';
 import { User } from '../../users/entities/users.entity';
-import TaskStatus from './enums/tasksStatus.enum';
 import { createTaskInput } from './inputs/createTask.input';
 import { UpdateTaskStatusInput } from './inputs/updateTaskStatus.input';
 import { TasksService } from './tasks.service';
@@ -13,6 +12,12 @@ import { TasksType } from './tasks.type';
 @Resolver()
 export class TasksResolver {
   constructor(private taskService: TasksService) {}
+
+  @Query(() => [TasksType])
+  @UseGuards(GqlAuthGuard)
+  getAllTasks(@CurrentUser() entity: Company) {
+    return this.taskService.getAllTasks(entity);
+  }
 
   @Query(() => [TasksType])
   @UseGuards(GqlAuthGuard)

@@ -134,6 +134,17 @@ export class UsersService {
     return fullCompany;
   }
 
+  async getAllEmployees(company: Company) {
+    const users = await this.usersRepository.find(
+      {
+        companyOrOrganization: company.id,
+      },
+      ['companyOrOrganization'],
+    );
+
+    return users;
+  }
+
   // Verify and sign a user in and return the accessToken
   async signIn(
     loginData: LoginUserInput,

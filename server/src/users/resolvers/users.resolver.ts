@@ -45,6 +45,12 @@ export class UsersResolver {
     return this.usersService.getUser(user);
   }
 
+  @Query(() => [FullUser])
+  @UseGuards(GqlAuthGuard)
+  getAllEmployees(@CurrentUser() company: Company) {
+    return this.usersService.getAllEmployees(company);
+  }
+
   @UseInterceptors(ClassSerializerInterceptor)
   @Query(() => CompanyType)
   @UseGuards(GqlAuthGuard)

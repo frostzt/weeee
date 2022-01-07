@@ -166,13 +166,6 @@ const Home: React.FC = () => {
             Which makes this open source software is not only free but highly configurable. Not only that we are constantly working on
             bringing latest updates and developing new features as well.
           </p>
-          <br />
-          <p className={styles.whywe__paragraph}>
-            Now you&apos;re wondering, this is too good to be true! Naah! It is true; you get everything for free, however, yes there is a
-            catch! The application deployed here is for feature purposes and will not hold any data for long! Therefore hosting the app is
-            upto you! We have tried our best to make sure that this application is as perfect and easy to use as possible with easy
-            deployment and easy configuration!
-          </p>
         </div>
       </section>
 
@@ -180,9 +173,7 @@ const Home: React.FC = () => {
       {/* FOOTER-FLOATER */}
       <footer data-testid="landing-footer" className={styles.footer}>
         <div className={styles.footer__floater}>
-          <div className={cx([styles.footer__floater_content, styles.footer__floater_seen])}>
-            Wanna see the the app repository and jump straight into how to deploy it?
-          </div>
+          <div className={cx([styles.footer__floater_content, styles.footer__floater_seen])}>Check out the repo for the code.</div>
           <a
             rel="noreferrer"
             className={cx([styles.footer__floater_content, styles.footer__floater_unseen])}

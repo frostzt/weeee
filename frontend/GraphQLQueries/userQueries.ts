@@ -75,3 +75,15 @@ export const signUpMutation = gql`
     signUp(createUserInput: { name: $name, email: $email, username: $username, password: $password })
   }
 `;
+
+// Get all users
+export const getAllEmployees = gql`
+  query GetAllEmployees {
+    getAllEmployees {
+      id
+      username
+      name
+      email
+    }
+  }
+`;

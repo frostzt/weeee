@@ -31,6 +31,12 @@ const AdminPage: React.FC<Props> = ({ company, signOut }) => {
         <NavigationButton href="/account/admin/announcements" className={styles.button}>
           Create, Edit, View Announcements
         </NavigationButton>
+        <h2 className={styles.title} style={{ marginTop: '1rem' }}>
+          Tasks
+        </h2>
+        <NavigationButton href="/account/admin/tasks" className={styles.button}>
+          Create, Edit, View Tasks
+        </NavigationButton>
         <Button handler={signOut} className={styles.logout}>
           <BiLogInCircle />
         </Button>

@@ -5,40 +5,51 @@ import { IoMdArrowDropleftCircle } from 'react-icons/io';
 
 import { withCompany } from '../../../../HOC/withLoading/withCompany';
 import { requireCompany } from '../../../../HOC/requireCompany/requireCompany';
-import Announcement from '../../../../components/DashboardComponents/CompanyAnnouncements/Announcement/Announcement';
+import Task from '../../../../components/DashboardComponents/Tasks/Task/Task';
 import Button, { BackLogoutButtonWithLink } from '../../../../CompanyComponents/CoreComponents/BackLogoutButton/BackLogoutButton';
 
-import styles from './announcements.module.scss';
+import styles from './tasks.module.scss';
 import { NEXT_URL } from 'Config/Config';
 import toast from 'react-hot-toast';
 import Creator from 'CompanyComponents/CoreComponents/Creator/Creator';
 import { DivButton } from 'components/Button/Button';
+import { TaskStatus } from 'components/DashboardComponents/Tasks/Tasks.interface';
 
-interface AnnouncementType {
+interface TaskType {
   createdAt: string;
   description: string;
   id: string;
   title: string;
   updatedAt: string;
+  status: TaskStatus;
 }
 
-const AnnouncementsPage: React.FC = () => {
+interface Emp {
+  email: string;
+  id: string;
+  username: string;
+  name: string;
+}
+
+const TaskPage: React.FC = () => {
+  const [emps, setEmps] = useState<Emp[]>();
   const [err, setErr] = useState<any>();
   const [loading, setLoading] = useState(false);
   const [showCreator, setShowCreator] = useState<boolean>(false);
-  const [allAnnouncement, setAllAnnouncements] = useState<AnnouncementType[]>([]);
+  const [tasks, setAllTasks] = useState<TaskType[]>([]);
 
   // Data For Creator
   const [desc, setDesc] = useState<string>('');
   const [title, setTitle] = useState<string>('');
+  const [assignedTo, setAssignedTo] = useState('');
 
   // Fetch latest data for announcements
   useEffect(() => {
     if (!loading) {
       const fetchData = async () => {
         try {
-          const response = await axios.get(`${NEXT_URL}/api/announcements/getCompanyAnnouncements`);
-          setAllAnnouncements(response.data.announcements);
+          const response = await axios.get(`${NEXT_URL}/api/tasks/getAllTasks`);
+          setAllTasks(response.data.tasks);
         } catch (error) {
           setErr(error);
         }
@@ -47,16 +58,30 @@ const AnnouncementsPage: React.FC = () => {
     }
   }, [loading]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${NEXT_URL}/api/company/getAllEmployees`);
+        setEmps(response.data.employees);
+      } catch (error) {
+        setErr(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const handleCreatorToggle = () => {
     setShowCreator((prev) => !prev);
   };
 
-  const handleCreateAnnouncement = async () => {
+  const handleCreateTask = async () => {
     try {
       setLoading(true);
-      await axios.post(`${NEXT_URL}/api/announcements/createAnnouncement`, {
+      await axios.post(`${NEXT_URL}/api/tasks/createTask`, {
         title,
         description: desc,
+        assignedTo,
       });
       setLoading(false);
     } catch (error) {
@@ -72,51 +97,63 @@ const AnnouncementsPage: React.FC = () => {
     <Fragment>
       {showCreator && (
         <Creator className={styles.creator} innerClassName={styles.inner}>
-          <h3 className={styles.creator__title}>Create a new announcement!</h3>
+          <h3 className={styles.creator__title}>Create a new Task!</h3>
           <div className={styles.creator__group}>
-            <label htmlFor="announcement-title" className={styles.creator__group_title}>
+            <label htmlFor="task-title" className={styles.creator__group_title}>
               Title:
             </label>
             <input
               value={title}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
               type="text"
-              name="announcement-title"
+              name="task-title"
               placeholder="Title here..."
               className={styles.creator__group_input}
             />
           </div>
           <div className={styles.creator__group}>
-            <label htmlFor="announcement-desc" className={styles.creator__group_title} style={{ marginBottom: '1rem' }}>
+            <label htmlFor="task-desc" className={styles.creator__group_title}>
               Description
             </label>
             <textarea
               value={desc}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDesc(e.target.value)}
-              name="announcement-desc"
+              name="task-desc"
               cols={30}
               style={{ borderRadius: '0.5rem', padding: '1rem' }}
               rows={10}
               placeholder="More about it..."
             />
           </div>
-          <DivButton extraClass={styles.creator__button} handler={handleCreateAnnouncement}>
-            Create Announcement
+          <div className={styles.creator__group}>
+            <label htmlFor="task-for" className={styles.creator__group_title} style={{ marginBottom: '1rem' }}>
+              Assign to
+            </label>
+            <select
+              name="task-for"
+              value={assignedTo}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setAssignedTo(e.target.value)}
+            >
+              {emps &&
+                emps.map((emp) => (
+                  <option key={emp.id} value={emp.id}>
+                    {emp.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+          <DivButton extraClass={styles.creator__button} handler={handleCreateTask}>
+            Create Task
           </DivButton>
         </Creator>
       )}
       <div className={styles.container}>
-        <div className={styles.header}>Announcements</div>
+        <div className={styles.header}>Tasks</div>
         <div className={styles.content}>
-          {allAnnouncement &&
-            allAnnouncement.length > 0 &&
-            allAnnouncement.map((announcement) => (
-              <Announcement
-                key={announcement.id}
-                title={announcement.title}
-                time={announcement.createdAt}
-                description={announcement.description}
-              />
+          {tasks &&
+            tasks.length > 0 &&
+            tasks.map((task) => (
+              <Task id={task.id} key={task.id} title={task.title} status={task.status} description={task.description} />
             ))}
         </div>
         <BackLogoutButtonWithLink className={styles.back} href="/account/admin">
@@ -125,14 +162,14 @@ const AnnouncementsPage: React.FC = () => {
           </div>
         </BackLogoutButtonWithLink>
         <Button handler={handleCreatorToggle} className={styles.btn}>
-          Create new Announcement
+          Create new Task
         </Button>
       </div>
     </Fragment>
   );
 };
 
-export default withCompany(AnnouncementsPage);
+export default withCompany(TaskPage);
 
 export const getServerSideProps: GetServerSideProps = requireCompany(async () => {
   return {

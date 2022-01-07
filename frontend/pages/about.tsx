@@ -21,10 +21,6 @@ const AboutPage: React.FC = () => {
         any subscription or even any software for that, weeee are here for you! This is quite easy to deploy and use, best part of weeee
         is that it is made for developers so that they can customize it with whatever feature they want!
         <br />
-        <br />
-        So in a nutshell this thing that you&apos;re seeing here is not a application that you can use, you will need to deploy it and
-        then it is ready for production! Now don&apos;t get me wrong the reason why I haven&apos;t deployed it is because the costs would
-        get too much and I don&apos;t really think I would be able to handle it out!
       </div>
     </div>
   );
