@@ -45,6 +45,10 @@
       margin-top: 6rem;
       text-align: center;
 
+      &__auth {
+        display: flex;
+      }
+
       .signup {
         margin: 0 auto;
       }

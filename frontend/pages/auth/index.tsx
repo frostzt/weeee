@@ -51,13 +51,13 @@ const AuthPage: React.FC = () => {
             {'<'}
           </LinkedButton>
           <div title="Signup or into your account!" className={styles.title}>
-            {creatingAccount ? 'Sign up' : 'Sign in'}
+            {creatingAccount ? 'Sign in' : 'Sign up'}
           </div>
         </div>
         {creatingAccount ? (
-          <SignUpForm creatingAccount={creatingAccount} switchHandler={switchContext} />
-        ) : (
           <SignInForm creatingAccount={creatingAccount} switchHandler={switchContext} />
+        ) : (
+          <SignUpForm creatingAccount={creatingAccount} switchHandler={switchContext} />
         )}
         <ClientOnly extraClasses={styles.bcontainer}>
           {isDesktopCommonOrAbove ? <div className={styles.bcontainer__board} /> : null}

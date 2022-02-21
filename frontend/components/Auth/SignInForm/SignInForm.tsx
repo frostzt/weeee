@@ -12,7 +12,7 @@ interface Props {
   switchHandler: () => void;
 }
 
-const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
+const SignInForm: React.FC<Props> = ({ switchHandler }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isCompany, setIsCompany] = useState<boolean>(false);
@@ -29,6 +29,15 @@ const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
     } else {
       signIn(e, { email, password });
     }
+  };
+
+  const handleSignInUser = (e: Event) => {
+    signIn(e, { email: 'tommy@weeee.com', password: 'LrQGQXX6@849436' });
+  };
+
+  const handleSignInCompany = (e: Event) => {
+    setIsCompany(true);
+    signInCompany(e, { email: 'maybegoogle@company.com', password: 'LrQGQXX6@849436' }, true);
   };
 
   return (
@@ -60,13 +69,21 @@ const SignInForm: React.FC<Props> = ({ creatingAccount, switchHandler }) => {
           handler={handleChangeIsCompany}
         />
         <div className={styles.btns}>
-          <Button extraClass={styles.signup} handler={handleSignIn}>
-            Sign In
-          </Button>
+          <div className={styles.btns__auth}>
+            <Button extraClass={styles.signup} handler={handleSignIn}>
+              Sign In
+            </Button>
+            <Button extraClass={styles.signup} handler={handleSignInUser}>
+              Test User
+            </Button>
+            <Button extraClass={styles.signup} handler={handleSignInCompany}>
+              Test Company
+            </Button>
+          </div>
           <div className={styles.switch}>
-            {creatingAccount ? 'Already have an account?' : 'No account? No problem!'}{' '}
+            No account? No problem!{' '}
             <span onClick={switchHandler} className={styles.switch_btn}>
-              {creatingAccount ? 'Sign in' : 'Sign up'}
+              Sign up
             </span>{' '}
             here and lets get to work asap!
           </div>
