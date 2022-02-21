@@ -88,6 +88,14 @@ export const AuthProvider = ({ children }: ProviderProps) => {
         }
       );
 
+      if (res.data.error?.graphQLErrors['0']?.extensions?.response?.message) {
+        const errors = res.data.error?.graphQLErrors['0']?.extensions?.response?.message;
+        errors.forEach((err: string) => {
+          toast.error(err);
+        });
+        return null;
+      }
+
       if (res.data.error) {
         toast.error(res.data.error.message);
         return null;
