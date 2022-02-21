@@ -54,19 +54,17 @@ const Tasks: React.FC<Props> = ({ user, noCompany, handler, extrastyles }) => {
         {!data || data.length === 0 ? <div style={{ color: 'white' }}>There were no tasks found!</div> : null}
         {!noCompany && (
           <>
-            {data && data.length > 0 ? (
-              data?.map((taskItem) => (
-                <Task
-                  key={taskItem.id}
-                  id={taskItem.id}
-                  title={taskItem.title}
-                  description={taskItem.description}
-                  status={taskItem.status}
-                />
-              ))
-            ) : (
-              <div style={{ color: 'white' }}>Loading...</div>
-            )}
+            {data && data.length > 0
+              ? data?.map((taskItem) => (
+                  <Task
+                    key={taskItem.id}
+                    id={taskItem.id}
+                    title={taskItem.title}
+                    description={taskItem.description}
+                    status={taskItem.status}
+                  />
+                ))
+              : null}
           </>
         )}
       </div>

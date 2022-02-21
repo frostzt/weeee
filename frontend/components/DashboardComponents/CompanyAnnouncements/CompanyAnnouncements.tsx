@@ -60,18 +60,16 @@ const CompanyAnnouncements: React.FC<Props> = ({ extrastyles, user, handler, noC
         {!data || data.length === 0 ? <div style={{ color: 'white' }}>There were no announcements found!</div> : null}
         {!noCompany && (
           <>
-            {data && data.length > 0 ? (
-              data?.map((annoucementItem) => (
-                <Annoucement
-                  key={annoucementItem.id}
-                  title={annoucementItem.title}
-                  description={annoucementItem.description}
-                  time={annoucementItem.createdAt}
-                />
-              ))
-            ) : (
-              <div style={{ color: 'white' }}>Loading...</div>
-            )}
+            {data && data.length > 0
+              ? data?.map((annoucementItem) => (
+                  <Annoucement
+                    key={annoucementItem.id}
+                    title={annoucementItem.title}
+                    description={annoucementItem.description}
+                    time={annoucementItem.createdAt}
+                  />
+                ))
+              : null}
           </>
         )}
       </div>
