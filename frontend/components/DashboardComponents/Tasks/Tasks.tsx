@@ -51,6 +51,7 @@ const Tasks: React.FC<Props> = ({ user, noCompany, handler, extrastyles }) => {
       )}
       <div className={styles.content}>
         {err && <div style={{ color: 'white' }}>Seems like there was an erro!</div>}
+        {!data || data.length === 0 ? <div style={{ color: 'white' }}>There were no tasks found!</div> : null}
         {!noCompany && (
           <>
             {data && data.length > 0 ? (
